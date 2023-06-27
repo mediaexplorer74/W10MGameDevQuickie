@@ -1,9 +1,14 @@
 # W10MGameDevQuickie 1.0.x (MonoGame2D tutorial projects/samples)
 
 url: https://github.com/mediaexplorer74/W10MGameDevQuickie
+
 page_type: sample
-description: "LubiiiCZ's Quick Monogame2D-based game development tutorials planned to port on/to W10M."
+
+description: "LubiiiCZ's Quick Monogame2D-based game development tutorials planned to 
+port on/to W10M."
+
 languages: csharp
+
 products: windows 10, windows 10 mobile
 
 ## About 

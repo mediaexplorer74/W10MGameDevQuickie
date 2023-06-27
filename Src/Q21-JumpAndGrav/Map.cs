@@ -9,7 +9,9 @@ namespace GameManager
     public class Map
     {
         private readonly RenderTarget2D _target;
-        public static readonly int TILE_SIZE = 128;
+
+        //RnD
+        public static readonly int TILE_SIZE = 64;//128;
 
         public static readonly int[,] tiles = 
         {
@@ -75,7 +77,8 @@ namespace GameManager
             {
                 for (int y = leftTile; y <= rightTile; y++)
                 {
-                    if (tiles[x, y] != 0) result.Add(Colliders[x, y]);
+                    if (tiles[x, y] != 0) 
+                        result.Add(Colliders[x, y]);
                 }
             }
 

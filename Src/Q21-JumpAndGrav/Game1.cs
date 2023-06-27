@@ -20,10 +20,16 @@ namespace GameManager
 
         protected override void Initialize()
         {
+            //RnD
+            //_graphics.PreferredBackBufferWidth = 680;//1024;
+            //_graphics.PreferredBackBufferHeight = 480;// 768;
+            //_graphics.ApplyChanges();
+
             Glob.WindowSize = new(Map.tiles.GetLength(1) * Map.TILE_SIZE, 
                 Map.tiles.GetLength(0) * Map.TILE_SIZE);
-            _graphics.PreferredBackBufferWidth = Glob.WindowSize.X;
-            _graphics.PreferredBackBufferHeight = Glob.WindowSize.Y;
+
+            _graphics.PreferredBackBufferWidth = 640;//Glob.WindowSize.X;
+            _graphics.PreferredBackBufferHeight = 480;//Glob.WindowSize.Y;
             _graphics.ApplyChanges();
 
             Glob.Content = Content;

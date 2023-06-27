@@ -70,6 +70,7 @@ non-infringement.
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 
 namespace Microsoft.Xna.Framework.Graphics 
@@ -116,19 +117,23 @@ namespace Microsoft.Xna.Framework.Graphics
 
 			for (var i = 0; i < characters.Count; i++) 
             {
+                //RnD
+                
 				var glyph = new Glyph 
                 {
-					BoundsInTexture = glyphBounds[i],
-					Cropping = cropping[i],
+					BoundsInTexture = default,//glyphBounds[i],
+					Cropping = default,//cropping[i],
+                    
                     Character = characters[i],
+                    
+                    LeftSideBearing = 0,//kerning[i].X,
+                    Width = 1,//kerning[i].Y,
+                    RightSideBearing = 1,//kerning[i].Z,
 
-                    LeftSideBearing = kerning[i].X,
-                    Width = kerning[i].Y,
-                    RightSideBearing = kerning[i].Z,
-
-                    WidthIncludingBearings = kerning[i].X + kerning[i].Y + kerning[i].Z
+                    WidthIncludingBearings = 5,//kerning[i].X + kerning[i].Y + kerning[i].Z
 				};
 				_glyphs.Add (glyph.Character, glyph);
+                
 			}
 		}
 
@@ -321,8 +326,18 @@ namespace Microsoft.Xna.Framework.Graphics
 
             // Get the default glyph here once.
             Glyph? defaultGlyph = null;
+
+            //RnD
             if (DefaultCharacter.HasValue)
+            {
                 defaultGlyph = _glyphs[DefaultCharacter.Value];
+            }
+            else
+            {
+                defaultGlyph = default;
+            }
+            
+
 
             var currentGlyph = Glyph.Empty;
             var offset = Vector2.Zero;
@@ -347,26 +362,36 @@ namespace Microsoft.Xna.Framework.Graphics
                     continue;
                 }
 
-                if (hasCurrentGlyph) {
+                if (hasCurrentGlyph) 
+                {
                     offset.X += Spacing + currentGlyph.Width + currentGlyph.RightSideBearing;
                 }
 
                 if (!_glyphs.TryGetValue(c, out currentGlyph))
                 {
                     if (!defaultGlyph.HasValue)
-                        throw new ArgumentException(Errors.TextContainsUnresolvableCharacters, "text");
-
-                    currentGlyph = defaultGlyph.Value;
+                    {
+                        // throw new ArgumentException(
+                        //     Errors.TextContainsUnresolvableCharacters, "text");
+                        //Debug.WriteLine("[ex] TextContainsUnresolvableCharacters: " + "text");
+                        currentGlyph = default;
+                    }
+                    else
+                    {
+                        currentGlyph = defaultGlyph.Value;
+                    }
                 }
                 hasCurrentGlyph = true;
 
                 // The first character on a line might have a negative left side bearing.
                 // In this scenario, SpriteBatch/SpriteFont normally offset the text to the right,
                 //  so that text does not hang off the left side of its rectangle.
-                if (firstGlyphOfLine) {
+                if (firstGlyphOfLine) 
+                {
                     offset.X = Math.Max(currentGlyph.LeftSideBearing, 0);
                     firstGlyphOfLine = false;
-                } else {
+                } else 
+                {
                     offset.X += currentGlyph.LeftSideBearing;
                 }
 
@@ -386,9 +411,11 @@ namespace Microsoft.Xna.Framework.Graphics
                                             currentGlyph.BoundsInTexture.Width * scale.X,
                                             currentGlyph.BoundsInTexture.Height * scale.Y);
 
-				spriteBatch.DrawInternal(
+				spriteBatch.DrawInternal
+                (
                     _texture, destRect, currentGlyph.BoundsInTexture,
-					color, rotation, Vector2.Zero, effect, depth, false);
+					color, rotation, Vector2.Zero, effect, depth, false
+                );
 			}
 
 			// We need to flush if we're using Immediate sort mode.

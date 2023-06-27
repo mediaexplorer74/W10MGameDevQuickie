@@ -320,9 +320,14 @@ namespace Microsoft.Xna.Framework.Content
 	
 				if (string.IsNullOrEmpty(assetName1))
 				{
-					throw new ContentLoadException(
-                        "Could not load " + originalAssetName + 
-                        " asset as a non-content file!"/*, ex*/);
+                    //RnD
+                    //throw new ContentLoadException(
+                    //    "Could not load " + originalAssetName + 
+                    //    " asset as a non-content file!"/*, ex*/);
+
+                    Debug.WriteLine("Could not load " + originalAssetName +
+                       " asset as a non-content file! Exception: " + ex.Message);
+                    return default;
 				}
 
                 result = ReadRawAsset<T>(assetName1, originalAssetName);
@@ -386,8 +391,41 @@ namespace Microsoft.Xna.Framework.Content
             }
             else if ((typeof(T) == typeof(SpriteFont)))
             {
-                //result = new SpriteFont(Texture2D.FromFile(graphicsDeviceService.GraphicsDevice,assetName), null, null, null, 0, 0.0f, null, null);
-                throw new NotImplementedException();
+                //RnD: Plan C
+                //string t = SpriteFontReader.Normalize(assetName);
+                //return t;
+
+                //RnD: Plan B
+                
+                using (Stream assetStream = TitleContainer.OpenStream(assetName))
+                {
+                    Texture2D texture = Texture2D.FromStream(
+                        graphicsDeviceService.GraphicsDevice, assetStream);
+
+                    List<char> characters = new List<char> { 'a', 'b', 'c', 
+                        'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+                    SpriteFont result = new SpriteFont(
+                        texture, 
+                        default, // glyphBounds 
+                        default, //cropping
+                        characters, //characters
+                        0,        // linespacing
+                        0.0f,  //spacing
+                        default, //kerning
+                        '1' //default character
+                    );
+                                        
+                    return result;
+                    //throw new NotImplementedException();
+                }
+                
+
+                //RnD: Plan A
+                //var result = new SpriteFont(Texture2D.FromFile(
+                //graphicsDeviceService.GraphicsDevice,assetName), 
+                //null, null, null, 0, 0.0f, null, null);
+                //throw new NotImplementedException();
+                //return result;
             }
 //#if !DIRECTX
             else if ((typeof(T) == typeof(Song)))

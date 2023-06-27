@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22609.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Framework.WindowsUAP", "MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj", "{09C41A48-7BF3-4A46-9EB8-CE95B4C27CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Framework.Net.WindowsUAP", "MonoGame.Framework\MonoGame.Framework.Net.WindowsUAP.csproj", "{9CE2FA93-3D41-4025-B228-3D9D81F19BE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09C41A48-7BF3-4A46-9EB8-CE95B4C27CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C41A48-7BF3-4A46-9EB8-CE95B4C27CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C41A48-7BF3-4A46-9EB8-CE95B4C27CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C41A48-7BF3-4A46-9EB8-CE95B4C27CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE2FA93-3D41-4025-B228-3D9D81F19BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE2FA93-3D41-4025-B228-3D9D81F19BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE2FA93-3D41-4025-B228-3D9D81F19BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE2FA93-3D41-4025-B228-3D9D81F19BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

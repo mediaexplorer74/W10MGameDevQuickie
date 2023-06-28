@@ -22,7 +22,8 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 
 ## Progress
-- Only Q01-Q21 ported to UWP patrially (because of no TouchPanel "handlers" yet)
+- Q01-Q21 ported to UWP, but a lite incomplete (because of no TouchPanel "handlers" yet).
+- P01 ported to UWP (mouse control only at now...).
 
 ## Bugs / Errors
 - SpriteFont mulfunction 
@@ -42,6 +43,12 @@ This app requires Visual Studio 2022 Community to run. [Click here to learn how 
 
 ## Learn more about MonoGame UWP gamedev
 For a step-by-step walkthrough of the code, check out the [MonoGame 2D tutorial on docs.microsoft.com](https://web.archive.org/web/20170907085024/https://docs.microsoft.com/en-us/windows/uwp/get-started/get-started-tutorial-game-mg2d).
+
+## TODO
+- Port P02.
+- Create Wiki.
+- Refactor game control for better W10M support :)
+- Refactor readme... and something else? 
 
 ## ..
 As is. No support. For Learning purposes only.

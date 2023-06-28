@@ -343,9 +343,11 @@ namespace Microsoft.Xna.Framework.Content
                         disposableAssets.Add(result as IDisposable);
                 }
 			}//
-            
-			if (result == null)
-				throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
+
+            if (result == null)
+            {
+                throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
+            }
 
 			return (T)result;
 		}

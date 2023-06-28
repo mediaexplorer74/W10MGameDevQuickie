@@ -1,4 +1,4 @@
-# W10MGameDevQuickie 1.0.x (MonoGame2D tutorial projects/samples)
+# W10MGameDevQuickie 1.0.0 (MonoGame2D tutorial projects/samples)
 
 url: https://github.com/mediaexplorer74/W10MGameDevQuickie
 
@@ -22,11 +22,13 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 
 ## Progress
-- Only Q01 & Q21 ported to UWP (patrially because of no touchpanel logics added yet)
+- Only Q01-Q21 ported to UWP patrially (because of no TouchPanel "handlers" yet)
 
 ## Bugs / Errors
 - SpriteFont mulfunction 
 - Strange scene scaling (some error still here)
+- Pixel Shaders (fx) incompatibility
+- Map pathfinding seems to be broken ;(
 
 ## Requirements
 This app requires Visual Studio 2022 Community to run. [Click here to learn how to get set up with Visual Studio](https://docs.microsoft.com/windows/uwp/get-started/get-set-up).

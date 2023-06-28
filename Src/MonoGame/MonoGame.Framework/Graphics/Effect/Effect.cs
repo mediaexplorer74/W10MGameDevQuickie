@@ -125,20 +125,30 @@ namespace Microsoft.Xna.Framework.Graphics
             header.HeaderSize = i;
 
             if (header.Signature != MGFXHeader.MGFXSignature)
-                throw new Exception("This does not appear to be a MonoGame MGFX file!");
+            {
+                //throw new Exception("This does not appear to be a MonoGame MGFX file!");
+                Debug.WriteLine("This does not appear to be a MonoGame MGFX file!");
+            }
             if (header.Version < MGFXHeader.MGFXVersion)
-                throw new Exception("This MGFX effect is for an older release of MonoGame and needs to be rebuilt.");
+            {
+                //throw new Exception("This MGFX effect is for an older release of MonoGame and needs to be rebuilt.");
+                Debug.WriteLine("This MGFX effect is for an older release of MonoGame and needs to be rebuilt.");
+            }
             if (header.Version > MGFXHeader.MGFXVersion)
-                throw new Exception("This MGFX effect seems to be for a newer release of MonoGame.");
+            {
+                //throw new Exception("This MGFX effect seems to be for a newer release of MonoGame.");
+                Debug.WriteLine("This MGFX effect seems to be for a newer release of MonoGame.");
+            }
 
 #if DIRECTX
             if (header.Profile != 1)
 #else
 			if (header.Profile != 0)
 #endif
-                throw new Exception("This MGFX effect was built for a different platform!");
-            
-            
+                //RnD
+                //throw new Exception("This MGFX effect was built for a different platform!");
+                Debug.WriteLine("This MGFX effect was built for a different platform!");
+
             return header;
         }
 

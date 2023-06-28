@@ -3,7 +3,7 @@
   <Identity Name="ME.JumpGravV1" Publisher="CN=Admin" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="5e06543d-af2a-4105-4a80-eb18c64e4724" PhonePublisherId="50000045-6565-4035-4000-200280350024" />
   <Properties>
-    <DisplayName>Jumping And Gravity</DisplayName>
+    <DisplayName>JumpAndGrav</DisplayName>
     <PublisherDisplayName>mediaexplorer</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

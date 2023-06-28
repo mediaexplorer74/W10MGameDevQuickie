@@ -39,13 +39,14 @@ This app requires Visual Studio 2022 Community to run. [Click here to learn how 
 1. Install **MonoGame 3.6** for Visual Studio from [monogame.net](http://www.monogame.net/)
 2. Clone or download this repository
 3. Open **Src\W10MGameDevQuickie.sln** in Visual Studio.
-4. Select Q21 and set this project as default app (project) for run or debug... 
+4. Select the desired Qxx (or Pxx) project and set it as default project for run. 
 5. To run the selected app, press **F5**. To quit, press **ESC**.
 
 ## Learn more about MonoGame UWP gamedev
 For a step-by-step walkthrough of the code, check out the [MonoGame 2D tutorial on docs.microsoft.com](https://web.archive.org/web/20170907085024/https://docs.microsoft.com/en-us/windows/uwp/get-started/get-started-tutorial-game-mg2d).
 
 ## TODO
+- Improve Monogame endine src code (fx, shaders, wav, ogg, etc.).
 - Create Wiki.
 - Refactor game control for better W10M support :)
 - Refactor readme... and something else? 

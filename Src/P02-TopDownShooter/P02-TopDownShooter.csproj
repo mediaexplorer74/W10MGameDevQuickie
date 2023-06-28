@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{7818B762-93FD-46BA-A206-BC6127F637D6}</ProjectGuid>
+    <ProjectGuid>{659B6B9F-AB49-4215-B63D-F312DC5847C9}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GameManager</RootNamespace>
-    <AssemblyName>MemoryGame</AssemblyName>
+    <AssemblyName>TopDownShooter</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
@@ -121,27 +121,23 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Glob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_Managers\CardPartsManager.cs" />
+    <Compile Include="_Managers\ExperienceManager.cs" />
     <Compile Include="_Managers\GameManager.cs" />
-    <Compile Include="_Managers\GameStateManager.cs" />
     <Compile Include="_Managers\InputManager.cs" />
-    <Compile Include="_Managers\ScoreManager.cs" />
-    <Compile Include="_Managers\SoundManager.cs" />
-    <Compile Include="_Models\Board.cs" />
-    <Compile Include="_Models\Button.cs" />
-    <Compile Include="_Models\Card.cs" />
-    <Compile Include="_Models\CardPart.cs" />
-    <Compile Include="_Models\Difficulty.cs" />
-    <Compile Include="_Models\Label.cs" />
-    <Compile Include="_Models\RotatingSprite.cs" />
-    <Compile Include="_Models\Sprite.cs" />
-    <Compile Include="_Models\States\FlipFirstCardState.cs" />
-    <Compile Include="_Models\States\FlipSecondCardState.cs" />
-    <Compile Include="_Models\States\GameState.cs" />
-    <Compile Include="_Models\States\MenuState.cs" />
-    <Compile Include="_Models\States\PlayState.cs" />
-    <Compile Include="_Models\States\ResolveTurnState.cs" />
-    <Compile Include="_Models\States\WinState.cs" />
+    <Compile Include="_Managers\ProjectileManager.cs" />
+    <Compile Include="_Managers\UIManager.cs" />
+    <Compile Include="_Managers\ZombieManager.cs" />
+    <Compile Include="_Models\Background.cs" />
+    <Compile Include="_Models\Base\MovingSprite.cs" />
+    <Compile Include="_Models\Base\Sprite.cs" />
+    <Compile Include="_Models\Experience.cs" />
+    <Compile Include="_Models\Player.cs" />
+    <Compile Include="_Models\Weapons\MachineGun.cs" />
+    <Compile Include="_Models\Weapons\Projectile.cs" />
+    <Compile Include="_Models\Weapons\ProjectileData.cs" />
+    <Compile Include="_Models\Weapons\Shotgun.cs" />
+    <Compile Include="_Models\Weapons\Weapon.cs" />
+    <Compile Include="_Models\Zombie.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -168,94 +164,31 @@
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\WideTile.scale-100.png" />
     <Content Include="Assets\WideTile.scale-200.png" />
-    <Content Include="Content\Cards\1.PNG">
+    <Content Include="Content\bullet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\10.PNG">
+    <Content Include="Content\exp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\11.PNG">
+    <Content Include="Content\player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\12.PNG">
+    <Content Include="Content\tile1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\13.PNG">
+    <Content Include="Content\tile2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\14.PNG">
+    <Content Include="Content\tile3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\15.PNG">
+    <Content Include="Content\tile4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\16.PNG">
+    <Content Include="Content\tile5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Cards\17.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\18.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\2.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\3.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\4.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\5.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\6.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\7.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\8.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\9.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Cards\back.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\easy.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\hard.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\medium.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\music.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\sounds.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\win.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu\youtube.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Sound\flip.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Sound\music.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Sound\tear.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Sound\victory.mp3">
+    <Content Include="Content\zombie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.bmp">
@@ -297,16 +230,16 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Content.mgcb" />
-    <None Include="Content\Menu\font.spritefont">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
       <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
       <Name>MonoGame.Framework.WindowsUAP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Content.mgcb" />
+    <None Include="Content\font.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

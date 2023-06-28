@@ -15,15 +15,16 @@ products: windows 10, windows 10 mobile
 This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M Astoria OS!:)
 
 ## Screenshots (Target: win 11 on desktop pc)
-![](Images/Q01.png)
-![](Images/Q21.png)
+![Button](Images/Q01.png)
+![JumpingAndGravity](Images/Q21.png)
+![TopDownShooter](Images/P02.png)
 
 ## Features
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 
 ## Progress
-- Q01-Q21 ported to UWP, but a lite incomplete (because of no TouchPanel "handlers" yet).
-- P01 ported to UWP (mouse control only at now...).
+- Q01-Q21 ported to UWP, but a lite incomplete (because of no TouchPanel "handlers" yet)
+- P01 and P02 ported to UWP too (keyboard/mouse control only at now... no touch, heh!)
 
 ## Bugs / Errors
 - SpriteFont mulfunction 
@@ -45,7 +46,6 @@ This app requires Visual Studio 2022 Community to run. [Click here to learn how 
 For a step-by-step walkthrough of the code, check out the [MonoGame 2D tutorial on docs.microsoft.com](https://web.archive.org/web/20170907085024/https://docs.microsoft.com/en-us/windows/uwp/get-started/get-started-tutorial-game-mg2d).
 
 ## TODO
-- Port P02.
 - Create Wiki.
 - Refactor game control for better W10M support :)
 - Refactor readme... and something else? 

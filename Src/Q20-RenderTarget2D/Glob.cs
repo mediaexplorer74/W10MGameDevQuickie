@@ -6,19 +6,8 @@ namespace GameManager
 {
     public static class Glob
     {
-        public static int WindowWidth = 320;//640;
-        public static int WindowHeight = 240;//480;
-
-        
-       // public static float Time { get; private set; }
-       // public static ContentManager Content { get; set; }
-        //public static SpriteBatch SpriteBatch { get; set; }
-
-        //public static void Update(GameTime gt)
-        //{
-        //    Time = (float)gt.ElapsedGameTime.TotalSeconds;
-        //}
-        
+        public static int WindowWidth = 640;//640;
+        public static int WindowHeight = 480;//480;
 
     }
 }

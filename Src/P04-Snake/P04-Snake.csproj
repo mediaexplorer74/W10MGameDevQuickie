@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{6F02370D-96A5-40EF-9C93-91A53EF85344}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Snake</RootNamespace>
+    <AssemblyName>Snake</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>15</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>P04-Snake_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>73C95F000991561184B309BC10B55DEC312145F3</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.4.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <None Include="P04-Snake_TemporaryKey.pfx" />
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="BackgroundParticles.cs" />
+    <Compile Include="BufferedKeyboard.cs" />
+    <Compile Include="BufferedGamePad.cs" />
+    <Compile Include="BufferedTouchPanel.cs" />
+    <Compile Include="ForegroundParticles.cs" />
+    <Compile Include="BufferedInput.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Engine.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Particles.cs" />
+    <Compile Include="PersistentState.cs" />
+    <Compile Include="PixelFont.cs" />
+    <Compile Include="Alignment.cs" />
+    <Compile Include="Scenes\Level\EnumerableExtensions.cs" />
+    <Compile Include="Scenes\Level\LevelScene.cs" />
+    <Compile Include="Scenes\Level\SimpleTheme.cs" />
+    <Compile Include="Scenes\Level\Theme.cs" />
+    <Compile Include="Scenes\Level\Themes.cs" />
+    <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scenes\SplashScreen.cs" />
+    <Compile Include="Scenes\TitleScreen.cs" />
+    <None Include="Assets\for Deployment\screenshot for tile.png" />
+    <None Include="Assets\for Deployment\tile concept.pdn" />
+    <None Include="Assets\for Deployment\tile concept.png" />
+    <None Include="Assets\for the Game\253619__xtrgamr__potato-chip-crunch-2.wav" />
+    <None Include="Assets\for the Game\381772__stumpbutt__retro-1up-3-sfx.wav" />
+    <None Include="Assets\for the Game\387433__blosche__video-game-die.wav" />
+    <None Include="Assets\for the Game\glow.pdn" />
+    <None Include="Assets\for the Game\glowing Tile.pdn" />
+    <None Include="Assets\Logos &amp; Tiles\LargeTile.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\LargeTile.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\LargeTile.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\LargeTile.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\LargeTile.scale-400.png" />
+    <None Include="Assets\Logos &amp; Tiles\Logo.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\Logo.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\Logo.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\Logo.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\Logo.scale-400.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.altform-unplated_targetsize-16.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.altform-unplated_targetsize-24.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.altform-unplated_targetsize-256.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.altform-unplated_targetsize-32.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.altform-unplated_targetsize-48.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.scale-400.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.targetsize-16.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.targetsize-24.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.targetsize-256.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.targetsize-32.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallLogo.targetsize-48.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallTile.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallTile.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallTile.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallTile.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\SmallTile.scale-400.png" />
+    <None Include="Assets\Logos &amp; Tiles\SplashScreen.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\SplashScreen.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\SplashScreen.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\SplashScreen.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\SplashScreen.scale-400.png" />
+    <None Include="Assets\Logos &amp; Tiles\StoreLogo.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\StoreLogo.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\StoreLogo.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\StoreLogo.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\StoreLogo.scale-400.png" />
+    <None Include="Assets\Logos &amp; Tiles\WideTile.scale-100.png" />
+    <None Include="Assets\Logos &amp; Tiles\WideTile.scale-125.png" />
+    <None Include="Assets\Logos &amp; Tiles\WideTile.scale-150.png" />
+    <None Include="Assets\Logos &amp; Tiles\WideTile.scale-200.png" />
+    <None Include="Assets\Logos &amp; Tiles\WideTile.scale-400.png" />
+    <None Include="Assets\Screenshots\installed on XBox One S.png" />
+    <None Include="Assets\Screenshots\running on Windows 10.png" />
+    <Content Include="Assets\Logos &amp; Tiles\*.png" />
+    <None Include="Content\Content.mgcb" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="Content\Album\01.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\dying Snake.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\eating Apple.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\glowing Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\new Highscore.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Default.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+</Project>

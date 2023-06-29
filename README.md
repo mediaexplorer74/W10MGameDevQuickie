@@ -19,6 +19,8 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 ![JumpingAndGravity](Images/Q21.png)
 ![TopDownShooter](Images/P02.png)
 ![Land](Images/P03.png)
+![Infart](Images/P10.png)
+![InfartonW10M](Images/W10M.png)
 
 ## Features
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
@@ -27,6 +29,8 @@ Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 - Q01-Q21 ported to UWP, but a lite incomplete (because of no TouchPanel "handlers" yet)
 - P01 and P02 ported to UWP too (keyboard/mouse control only at now... no touch, heh!)
 - P03 added as *bonus* ( it's my "uwp fork" of https://github.com/semack/land )
+- P05 project is only in draft state/mode (not complete at all!)
+- P10 added as *astoria + uwp + orchestrators* technics demo ( my fork of https://github.com/FrancescoBonizzi/InfartGame )
 
 ## Bugs / Errors
 - SpriteFont mulfunction 

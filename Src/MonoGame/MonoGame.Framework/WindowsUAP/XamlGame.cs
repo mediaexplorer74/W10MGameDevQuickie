@@ -46,6 +46,7 @@ namespace MonoGame.Framework
             // Set the swap chain panel on the graphics mananger.
             if (game.graphicsDeviceManager == null)
                 throw new NullReferenceException("You must create the GraphicsDeviceManager in the Game constructor!");
+            
             game.graphicsDeviceManager.SwapChainPanel = swapChainPanel;
 
             // Start running the game.

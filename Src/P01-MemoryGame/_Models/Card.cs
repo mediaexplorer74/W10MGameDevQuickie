@@ -12,7 +12,7 @@ namespace GameManager
         {
             get
             {
-                return new((int)(Position.X - origin.X), (int)(Position.Y - origin.Y),
+                return new Rectangle((int)(Position.X - origin.X), (int)(Position.Y - origin.Y),
                                               Texture.Width, Texture.Height);
             }
         }

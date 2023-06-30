@@ -12,7 +12,7 @@ namespace GameManager
 
         public GameManager()
         {
-            Board = new();
+            Board = new Board(); //new Board
             SoundManager.Init();
             ScoreManager.Init();
             GameStateManager.Init(this);

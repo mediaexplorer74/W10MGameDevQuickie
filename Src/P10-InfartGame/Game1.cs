@@ -55,7 +55,7 @@ namespace GameManager
 
         private GameOrchestrator _orchestrator;
         private SoundManager _soundManager;
-        private bool _isPc; // readonly ?
+        private readonly bool _isPc; // readonly ?
 
         private readonly ILocalizedStringsRepository _localizedStringsRepository;
 
@@ -67,9 +67,11 @@ namespace GameManager
             //RnD
             //********************
 
-            int? deviceWidth = 640;
-            int? deviceHeight = 480;
-            bool _isFullScreen = false;           
+            int? deviceWidth = 1280;//640;
+            int? deviceHeight = 800;//480;
+
+            //RnD
+            bool _isFullScreen = true;//false;   // set it as "true" for W10M        
             
 
             Window.Title = GameName;
@@ -85,7 +87,7 @@ namespace GameManager
             GraphicsDeviceManager = new GraphicsDeviceManager(this)
             {
                 SupportedOrientations = DisplayOrientation.LandscapeLeft
-                | DisplayOrientation.LandscapeLeft,
+                | DisplayOrientation.Portrait,//| DisplayOrientation.LandscapeLeft,
                 IsFullScreen = _isFullScreen
             };
 
@@ -240,13 +242,13 @@ namespace GameManager
 
             _inputListeners = new List<IInputListener>();
 
-            if (_isPc)
-            {
+            //if (_isPc)
+            //{
                 var mouseListener = new MouseListener(_matrixScaleProvider);
-                mouseListener.MouseDown += MouseListener_MouseClicked;
+               mouseListener.MouseDown += MouseListener_MouseClicked;
                 _inputListeners.Add(mouseListener);
-            }
-            else
+            //}
+            //else
             {
                 var touchListener = new TouchListener(_matrixScaleProvider);
                 touchListener.TouchStarted += TouchListener_TouchEnded;

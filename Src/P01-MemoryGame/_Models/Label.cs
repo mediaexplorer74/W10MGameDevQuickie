@@ -19,7 +19,7 @@ namespace GameManager
         public void SetText(string text)
         {
             Text = text;
-            _pos = new(_centerPos.X - (_font.MeasureString(Text).X / 2) + 3, _centerPos.Y);
+            _pos = new Vector2(_centerPos.X - (_font.MeasureString(Text).X / 2) + 3, _centerPos.Y);
         }
 
         public void Draw()

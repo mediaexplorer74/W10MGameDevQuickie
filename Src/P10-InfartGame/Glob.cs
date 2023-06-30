@@ -13,7 +13,7 @@ namespace GameManager
         public static float TotalSeconds { get; set; }
         public static ContentManager Content { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
-        public static Random Random { get; set; } = new();
+        public static Random Random { get; set; } = new Random();
 
         public static void Update(GameTime gt)
         {

@@ -3,9 +3,6 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 
-using System;
-using System.Diagnostics;
-
 namespace Microsoft.Xna.Framework.Graphics
 {
     internal partial class ConstantBuffer : GraphicsResource
@@ -20,18 +17,8 @@ namespace Microsoft.Xna.Framework.Graphics
             desc.Usage = SharpDX.Direct3D11.ResourceUsage.Default;
             desc.BindFlags = SharpDX.Direct3D11.BindFlags.ConstantBuffer;
             desc.CpuAccessFlags = SharpDX.Direct3D11.CpuAccessFlags.None;
-
             lock (GraphicsDevice._d3dContext)
-            {
-                try
-                {
-                    _cbuffer = new SharpDX.Direct3D11.Buffer(GraphicsDevice._d3dDevice, desc);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("[ex] ConstantBuffer DirectX Exception: " + ex.Message);
-                }
-            }
+                _cbuffer = new SharpDX.Direct3D11.Buffer(GraphicsDevice._d3dDevice, desc);
         }
 
         private void PlatformClear()

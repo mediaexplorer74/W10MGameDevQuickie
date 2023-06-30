@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -24,6 +25,8 @@ namespace GameManager
             _music = Glob.Content.Load<Song>("Sound/music.mp3");
             _flipFX = Glob.Content.Load<SoundEffect>("Sound/flip.wav");
             _tearFX = Glob.Content.Load<SoundEffect>("Sound/tear.wav");
+
+            //RnD
             _victoryFX = Glob.Content.Load<Song>("Sound/victory.mp3");//Glob.Content.Load<SoundEffect>("Sound/victory.mp3");
 
             MusicOn = true;
@@ -33,11 +36,11 @@ namespace GameManager
             MediaPlayer.Volume = 0.2f;
             MediaPlayer.Play(_music);
 
-            MusicBtn = new(Glob.Content.Load<Texture2D>("Menu/music"), new(50, 50));
+            MusicBtn = new Button(Glob.Content.Load<Texture2D>("Menu/music"), new Vector2(50, 50));
 
             MusicBtn.OnClick += SwitchMusic;
 
-            SoundBtn = new(Glob.Content.Load<Texture2D>("Menu/sounds"), new(130, 50));
+            SoundBtn = new Button(Glob.Content.Load<Texture2D>("Menu/sounds"), new Vector2(130, 50));
 
             SoundBtn.OnClick += SwitchSounds;
         }

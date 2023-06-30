@@ -32,24 +32,24 @@ namespace GameManager
             switch (dir)
             {
                 case CardDirection.TopLeft:
-                    _direction = new(-1, -1);
-                    _rectangle = new(0, 0, w, h);
+                    _direction = new Vector2(-1, -1);
+                    _rectangle = new Rectangle(0, 0, w, h);
                     break;
                 case CardDirection.TopRight:
-                    _direction = new(1, -1);
-                    _rectangle = new(w, 0, w, h);
+                    _direction = new Vector2(1, -1);
+                    _rectangle = new Rectangle(w, 0, w, h);
                     break;
                 case CardDirection.BottomLeft:
-                    _direction = new(-1, 1);
-                    _rectangle = new(0, w, w, h);
+                    _direction = new Vector2(-1, 1);
+                    _rectangle = new Rectangle(0, w, w, h);
                     break;
                 case CardDirection.BottomRight:
-                    _direction = new(1, 1);
-                    _rectangle = new(w, h, w, h);
+                    _direction = new Vector2(1, 1);
+                    _rectangle = new Rectangle(w, h, w, h);
                     break;
             }
 
-            Vector2 shift = new(w / 2, h / 2);
+            Vector2 shift = new Vector2(w / 2, h / 2);
             Position += _direction * shift;
             Lifespan = _lifespan;
         }

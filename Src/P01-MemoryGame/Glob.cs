@@ -15,8 +15,8 @@ namespace GameManager
 {
     public static class Glob
     {
-        public static int WindowWidth = 800;//640;
-        public static int WindowHeight = 600;//480;
+        public static int WindowWidth = 1280; //800
+        public static int WindowHeight = 800; //600
 
         public static float Time { get; private set; }
         public static ContentManager Content { get; set; }

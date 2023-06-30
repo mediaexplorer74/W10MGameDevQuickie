@@ -9,7 +9,6 @@ using SharpDX;
 using SharpDX.XAudio2;
 using SharpDX.Multimedia;
 using SharpDX.X3DAudio;
-using System.Diagnostics;
 
 namespace Microsoft.Xna.Framework.Audio
 {
@@ -142,20 +141,7 @@ namespace Microsoft.Xna.Framework.Audio
 
         private void PlatformLoadAudioStream(Stream s)
         {
-
-            SoundStream soundStream = default;
-
-            try
-            {
-                soundStream = new SoundStream(s);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("[soundeffect] PlatformLoadAudioStream bug: " + ex.Message);
-
-                return;
-            }
-
+            var soundStream = new SoundStream(s);
             var dataStream = soundStream.ToDataStream();
             var sampleLength = (int)(dataStream.Length / ((soundStream.Format.Channels * soundStream.Format.BitsPerSample) / 8));
             CreateBuffers(  soundStream.Format,
@@ -220,8 +206,7 @@ namespace Microsoft.Xna.Framework.Audio
             }
 
             if (voice == null && Device != null)
-                voice = new SourceVoice(Device, _format, 
-                    VoiceFlags.None, XAudio2.MaximumFrequencyRatio);
+                voice = new SourceVoice(Device, _format, VoiceFlags.None, XAudio2.MaximumFrequencyRatio);
 
             inst._voice = voice;
             inst._format = _format;

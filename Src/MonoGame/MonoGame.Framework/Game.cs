@@ -719,13 +719,7 @@ namespace Microsoft.Xna.Framework
                         Services.GetService(typeof(IGraphicsDeviceManager));
 
                     if (_graphicsDeviceManager == null)
-                    {
-                        //throw new InvalidOperationException("No Graphics Device Manager");
-                        Debug.WriteLine("[warn] No Graphics Device Manager");
-
-                        //DirtyHack
-                        _graphicsDeviceManager = default;
-                    }
+                        throw new InvalidOperationException ("No Graphics Device Manager");
                 }
                 return (GraphicsDeviceManager)_graphicsDeviceManager;
             }

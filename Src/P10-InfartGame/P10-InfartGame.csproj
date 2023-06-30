@@ -340,13 +340,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\BaksoSapi.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\Content.mgcb" />
-    <Content Include="Content\TextFont.spritefont">
+    <Content Include="Content\TextFont.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="InfartGame_TemporaryKey.pfx" />

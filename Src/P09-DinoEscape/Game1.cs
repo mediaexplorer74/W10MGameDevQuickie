@@ -1,21 +1,41 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameManager.JRPG;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DinoEscape
+using Tesserae;
+
+namespace GameManager
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// This is the main type for your game
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager _graphics;
+
+        private GameManager _gameManager;
+
+        //Experimental
+        Zone _zoneTest;
+        Zone zZone;
+
+        public SpriteBatch spriteBatch;
+
+        public Mosaic mosaic;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            _graphics = new GraphicsDeviceManager(this);
+
+            // Default window resolution
+            _graphics.IsFullScreen = false;
+            _graphics.PreferredBackBufferWidth = Glob.defaultWidth;
+            _graphics.PreferredBackBufferHeight = Glob.defaultHeight;
+            _graphics.ApplyChanges();
+
+            IsMouseVisible = true;
+            Window.AllowUserResizing = true;
         }
 
         /// <summary>
@@ -26,7 +46,18 @@ namespace DinoEscape
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = Glob.defaultWidth;//1024;
+            _graphics.PreferredBackBufferHeight = Glob.defaultHeight;//768;
+            _graphics.ApplyChanges();
+
+            Glob.Content = Content;
+
+            _zoneTest = new();
+            
+            
+
+            //_gameManager = new();
+            //_gameManager.Init();
 
             base.Initialize();
         }
@@ -41,11 +72,18 @@ namespace DinoEscape
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            mosaic = new Mosaic(this, "Content/sewers.tmx");
+
+            //RnD
+            zZone = _zoneTest.Load(mosaic.map, Content);
+
+
+            Glob.SpriteBatch = spriteBatch;
         }
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
+        /// all content.
         /// </summary>
         protected override void UnloadContent()
         {
@@ -59,10 +97,14 @@ namespace DinoEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            //Glob.Update(gameTime);
+            // _gameManager.Update();
+
+            zZone.UpdatePosition(Keyboard.GetState(), gameTime);
 
             base.Update(gameTime);
         }
@@ -73,11 +115,50 @@ namespace DinoEscape
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            /*
+             GraphicsDevice.Clear(Color.Beige);
+
+            _spriteBatch.Begin();
+            _gameManager.Draw();
+            _spriteBatch.End();
+
+            */
+
+            //base.Draw(gameTime);
+
+            // ****************************************************************
+            // RnD zone
+            // Todo : Add your drawing code here
+
+
+            // * Mosaic Canvas * Experimental thing 1 :)
+            //mosaic.DrawCanvas(spriteBatch);
+
+            // Draw on the back buffer
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
+                              SamplerState.PointClamp, null, null);
 
+           
+
+            // * JRPG * Experimental thing 2 too :)
+            zZone.Draw(spriteBatch);
+
+            // * MosaicRect * Experimental thing 3
+            //var rect = new Rectangle(0, 0, Glob.defaultWidth, Glob.defaultHeight); 
+            //spriteBatch.Draw(mosaic.renderTarget, rect, /*Color.White*/Color.Red);
+            
+            //_gameManager.Draw();
+
+            spriteBatch.End();
+            
+            // ****************************************************************
+            //RnD : place it before *** 
+            
             base.Draw(gameTime);
+
+            
         }
     }
 }

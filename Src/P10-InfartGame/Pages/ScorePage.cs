@@ -49,9 +49,9 @@ namespace GameManager.Pages
 
             float textsScale = 0.4f;
 
-            var bestFarts = settingsRepository.GetOrSetInt(GameScores.BestFartsScoreKey, default);
-            var bestNumberOfMeters = settingsRepository.GetOrSetInt(GameScores.BestNumberOfMetersScoreKey, default);
-            var bestVegetablesEaten = settingsRepository.GetOrSetInt(GameScores.BestVegetablesEatenScoreKey, default);
+            var bestFarts = 10;//settingsRepository.GetOrSetInt(GameScores.BestFartsScoreKey, default);
+            var bestNumberOfMeters = 30;//settingsRepository.GetOrSetInt(GameScores.BestNumberOfMetersScoreKey, default);
+            var bestVegetablesEaten = 50;//settingsRepository.GetOrSetInt(GameScores.BestVegetablesEatenScoreKey, default);
 
             _scoreInfos = new List<ScoreRecordText>()
             {

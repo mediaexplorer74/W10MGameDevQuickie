@@ -3,7 +3,6 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.Diagnostics;
 using System.Text;
 
 namespace Microsoft.Xna.Framework.Graphics
@@ -155,22 +154,11 @@ namespace Microsoft.Xna.Framework.Graphics
         void CheckValid(SpriteFont spriteFont, string text)
         {
             if (spriteFont == null)
-            {
-                //throw new ArgumentNullException("spriteFont");
-                Debug.WriteLine("[ex] CheckValid: spriteFont exception!");
-            }
-            
+                throw new ArgumentNullException("spriteFont");
             if (text == null)
-            {
                 throw new ArgumentNullException("text");
-            }
-
             if (!_beginCalled)
-            {
-                throw new InvalidOperationException(
-                    "DrawString was called, but Begin has not yet been called. " +
-                    "Begin must be called successfully before you can call DrawString.");
-            }
+                throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
         }
 
         void CheckValid(SpriteFont spriteFont, StringBuilder text)
@@ -500,14 +488,8 @@ namespace Microsoft.Xna.Framework.Graphics
             CheckValid(spriteFont, text);
 
             var source = new SpriteFont.CharacterSource(text);
-
-            //RnD
-
-            if (spriteFont != null)
-            {
-                spriteFont.DrawInto(
-                    this, ref source, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
-            }
+			spriteFont.DrawInto (
+                this, ref source, position, color, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 0f);
 		}
 
         /// <summary>

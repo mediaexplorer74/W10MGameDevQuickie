@@ -15,7 +15,7 @@ namespace GameManager
         {
             Texture = tex;
             Position = pos;
-            origin = new(tex.Width / 2, tex.Height / 2);
+            origin = new Vector2(tex.Width / 2, tex.Height / 2);
             scale = Vector2.One;
             color = Color.White;
         }

@@ -13,7 +13,7 @@ namespace GameManager
 
     public static class GameStateManager
     {
-        public static Dictionary<GameStates, GameState> States { get; } = new();
+        public static Dictionary<GameStates, GameState> States { get; } = new Dictionary<GameStates, GameState>();
 
         public static void Init(GameManager gm)
         {

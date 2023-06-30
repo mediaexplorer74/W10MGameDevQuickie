@@ -11,7 +11,7 @@ namespace GameManager
         private Point _dimensions;
         private const int CARD_SPACING = 10;
         private readonly Point _cardDistance;
-        public List<Card> Cards { get; } = new();
+        public List<Card> Cards { get; } = new List<Card>();
         public int CardsLeft { get; private set; }
         private readonly Texture2D _textureBack;
         public static readonly Texture2D[] CardTextures = new Texture2D[MAX_CARDS];
@@ -19,7 +19,7 @@ namespace GameManager
         public Board()
         {
             _textureBack = Glob.Content.Load<Texture2D>("Cards/back");
-            _cardDistance = new(_textureBack.Width + CARD_SPACING,
+            _cardDistance = new Point(_textureBack.Width + CARD_SPACING,
                 _textureBack.Height + CARD_SPACING);
 
             for (int i = 0; i < MAX_CARDS; i++)
@@ -33,20 +33,20 @@ namespace GameManager
             switch (difficulty)
             {
                 case Difficulty.Easy:
-                    _dimensions = new(4, 4);
+                    _dimensions = new Point(4, 4);
                     break;
                 case Difficulty.Medium:
-                    _dimensions = new(6, 4);
+                    _dimensions = new Point(6, 4);
                     break;
                 case Difficulty.Hard:
-                    _dimensions = new(6, 6);
+                    _dimensions = new Point(6, 6);
                     break;
             }
 
-            Point boardSize = new(
+            Point boardSize = new Point(
                 (_cardDistance.X * _dimensions.X) - CARD_SPACING,
                 (_cardDistance.Y * _dimensions.Y) - CARD_SPACING);
-            Point boardSpacing = new(
+            Point boardSpacing = new Point(
                 (Glob.Bounds.X - boardSize.X + _textureBack.Width) / 2, 
                 (Glob.Bounds.Y - boardSize.Y + _textureBack.Height) / 2);
 
@@ -60,7 +60,7 @@ namespace GameManager
                 var front = CardTextures[id];
                 var x = (_cardDistance.X * (i % _dimensions.X)) + boardSpacing.X;
                 var y = (_cardDistance.Y * (i / _dimensions.X)) + boardSpacing.Y;
-                Cards.Add(new(id, _textureBack, front, new(x, y)));
+                Cards.Add(new Card(id, _textureBack, front, new Vector2(x, y)));
             }
         }
 
@@ -106,7 +106,7 @@ namespace GameManager
 
         public void Shuffle()
         {
-            Random rand = new();
+            Random rand = new Random();
 
             for (int i = Cards.Count - 1; i > 0; i--)
             {

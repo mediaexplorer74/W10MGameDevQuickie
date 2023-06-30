@@ -51,10 +51,6 @@ namespace Microsoft.Xna.Framework.Graphics
             _parameters = parameterIndexes;
             _offsets = parameterOffsets;
 
-            //RnD
-            if (name == null)
-                name = "default";
-
             _name = name;
 
             PlatformInitialize();

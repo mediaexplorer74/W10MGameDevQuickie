@@ -9,29 +9,35 @@ namespace GameManager
 
     public class MenuState : GameState
     {
-        private readonly List<Button> _buttons = new();
-        private readonly List<RotatingSprite> _sprites = new();
+        private readonly List<Button> _buttons = new List<Button>();
+        private readonly List<RotatingSprite> _sprites = new List<RotatingSprite>();
 
+
+        private Button AddButton(Button button)
+        {
+            _buttons.Add(button);
+            return button;
+        }
         public MenuState(GameManager gm)
         {
             var r = new Random();
             var x = Glob.Bounds.X / 2;
             var y = Glob.Bounds.Y / 2;
 
-            AddButton(new(Glob.Content.Load<Texture2D>("Menu/easy"), 
-                new(x - 300, y))).OnClick
+            AddButton(new Button(Glob.Content.Load<Texture2D>("Menu/easy"), 
+                new Vector2(x - 300, y))).OnClick
                 += gm.StartEasy;
 
-            AddButton(new(Glob.Content.Load<Texture2D>("Menu/medium"), 
-                new(x, y))).OnClick 
+            AddButton(new Button(Glob.Content.Load<Texture2D>("Menu/medium"), 
+                new Vector2(x, y))).OnClick 
                 += gm.StartMedium;
 
-            AddButton(new(Glob.Content.Load<Texture2D>("Menu/hard"), 
-                new(x + 300, y))).OnClick
+            AddButton(new Button(Glob.Content.Load<Texture2D>("Menu/hard"), 
+                new Vector2(x + 300, y))).OnClick
                 += gm.StartHard;
 
-            AddButton(new(Glob.Content.Load<Texture2D>("Menu/youtube"), 
-                new(Glob.Bounds.X - 70, 50))).OnClick 
+            AddButton(new Button(Glob.Content.Load<Texture2D>("Menu/youtube"), 
+                new Vector2(Glob.Bounds.X - 70, 50))).OnClick 
                 += OpenYouTube;
 
             AddButton(SoundManager.MusicBtn);
@@ -41,14 +47,14 @@ namespace GameManager
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    Vector2 pos = new(r.Next(0, Glob.Bounds.X), 
+                    Vector2 pos = new Vector2(r.Next(0, Glob.Bounds.X), 
                         r.Next(0, Glob.Bounds.Y));
 
-                    Vector2 dir = new(((float)r.NextDouble() * 2) - 1, 
+                    Vector2 dir = new Vector2(((float)r.NextDouble() * 2) - 1, 
                         ((float)r.NextDouble() * 2) - 1);
 
                     dir.Normalize();
-                    _sprites.Add(new(item, pos, dir));
+                    _sprites.Add(new RotatingSprite(item, pos, dir));
                 }
             }
         }
@@ -62,11 +68,7 @@ namespace GameManager
                 = await Windows.System.Launcher.LaunchUriAsync(r_uri);
         }
 
-        private Button AddButton(Button button)
-        {
-            _buttons.Add(button);
-            return button;
-        }
+        
 
         public override void Update(GameManager gm)
         {

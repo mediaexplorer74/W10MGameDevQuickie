@@ -18,8 +18,8 @@ namespace GameManager
         public static bool Active { get; private set; }
         private const string _fileName = "highscores.dat";
         private static Difficulty _currentDifficulty;
-        public static Dictionary<Difficulty, int> HighScores { get; } = new();
-        public static Dictionary<Difficulty, Label> Labels { get; } = new();
+        public static Dictionary<Difficulty, int> HighScores { get; } = new Dictionary<Difficulty, int>();
+        public static Dictionary<Difficulty, Label> Labels { get; } = new Dictionary<Difficulty, Label>();
 
         public static void Init()
         {
@@ -31,16 +31,23 @@ namespace GameManager
             HighScores.Add(Difficulty.Medium, 0);
             HighScores.Add(Difficulty.Hard, 0);
 
-            Labels.Add(Difficulty.Easy, new(font, new(x - 300, y + 120)));
+            Labels.Add(Difficulty.Easy, new Label(font, new Vector2(x - 300, y + 120)));
             Labels[Difficulty.Easy].SetText(HighScores[Difficulty.Easy].ToString());
-            Labels.Add(Difficulty.Medium, new(font, new(x, y + 120)));
+            Labels.Add(Difficulty.Medium, new Label(font, new Vector2(x, y + 120)));
             Labels[Difficulty.Medium].SetText(HighScores[Difficulty.Medium].ToString());
-            Labels.Add(Difficulty.Hard, new(font, new(x + 300, y + 120)));
+            Labels.Add(Difficulty.Hard, new Label(font, new Vector2(x + 300, y + 120)));
             Labels[Difficulty.Hard].SetText(HighScores[Difficulty.Hard].ToString());
 
             _texture = new Texture2D(Glob.SpriteBatch.GraphicsDevice, 1, 1);
-            _texture.SetData(new Color[] { new(200, 80, 30) });
-            _rectangle = new(0, 0, Glob.Bounds.X, 20);
+
+            _texture.SetData(
+                new Color[] 
+                {
+                    new Color{ R = 200, G = 80, B = 30}
+                }
+                );
+
+            _rectangle = new Rectangle(0, 0, Glob.Bounds.X, 20);
             LoadScores();
         }
 
@@ -74,7 +81,7 @@ namespace GameManager
                 {
                     // Plan A 
                     binaryReader = 
-                        new(File.Open(storageFolder.Path + "\\" + _fileName, 
+                        new BinaryReader(File.Open(storageFolder.Path + "\\" + _fileName, 
                         FileMode.Open));
                 }
                 catch (Exception ex)
@@ -112,7 +119,7 @@ namespace GameManager
             try
             {
                 // Plan A
-                binaryWriter = new(File.Create(storageFolder.Path + "\\"+_fileName));
+                binaryWriter = new BinaryWriter(File.Create(storageFolder.Path + "\\"+_fileName));
             }
             catch (Exception ex)
             {
@@ -133,13 +140,32 @@ namespace GameManager
         public static void SetDifficulty(Difficulty difficulty)
         {
             _currentDifficulty = difficulty;
-            _firstRoundTime = difficulty switch
+            /*
+            _firstRoundTime = (float)difficulty switch
             {
                 Difficulty.Easy => 30,
                 Difficulty.Medium => 25,
                 Difficulty.Hard => 20,
                 _ => 20
             };
+            */
+
+            if (difficulty == Difficulty.Easy)
+            {
+                _firstRoundTime = 30;
+            }
+            else if (difficulty == Difficulty.Medium)
+            {
+                _firstRoundTime = 25;
+            }
+            else if (difficulty == Difficulty.Hard)
+            {
+                _firstRoundTime = 20;
+            }
+            else
+            {
+                _firstRoundTime = 20;
+            }
         }
 
         public static void Start()

@@ -6,7 +6,7 @@ namespace GameManager
 
     public static class CardPartsManager
     {
-        private static readonly List<CardPart> _parts = new();
+        private static readonly List<CardPart> _parts = new List<CardPart>();
 
         public static void AddParts(Card card)
         {
@@ -20,7 +20,7 @@ namespace GameManager
             
             foreach (var dir in cd/*Enum.GetValues<CardDirection>()*/)
             {
-                _parts.Add(new(card.Texture, dir, card.Position));
+                _parts.Add(new CardPart(card.Texture, dir, card.Position));
             }
         }
 

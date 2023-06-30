@@ -16,7 +16,7 @@ namespace GameManager
             _texture = Glob.Content.Load<Texture2D>("Menu/win");
             _font = Glob.Content.Load<SpriteFont>("Menu/font");
 
-            _position = new((Glob.Bounds.X - _texture.Width) / 2, 
+            _position = new Vector2((Glob.Bounds.X - _texture.Width) / 2, 
                 (Glob.Bounds.Y - _texture.Height) / 2);
         }
 
@@ -29,7 +29,7 @@ namespace GameManager
 
             _text = ScoreManager.Score.ToString();
             var size = _font.MeasureString(_text);
-            _textPosition = new((Glob.Bounds.X - size.X) / 2,
+            _textPosition = new Vector2((Glob.Bounds.X - size.X) / 2,
                 _position.Y + (_texture.Height / 4));
         }
 

@@ -9,7 +9,7 @@ namespace GameManager
 
             var card = gm.Board.GetClickedCard();
 
-            if (card is not null)
+            if (card != null) // is not
             {
                 card.Flip();
                 gm.FirstCard = card;

@@ -3,7 +3,6 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace Microsoft.Xna.Framework.Graphics
@@ -168,32 +167,10 @@ namespace Microsoft.Xna.Framework.Graphics
         private static void ConvertToABGR(int pixelHeight, int pixelWidth, int[] pixels)
         {
             int pixelCount = pixelWidth * pixelHeight;
-
-            //RnD
-            if (pixels == null)
-                pixels = new int[pixelCount];
-               
             for (int i = 0; i < pixelCount; ++i)
             {
-                //Dirty Hack
-                uint pixel = 1;
-
-                //RnD
-                try
-                {
-                    if (pixels != null)
-                    {
-                        pixel = (uint)pixels[i];
-                    }
-                }
-                catch (Exception ex)
-                {
-                   // Debug.WriteLine("[ex] Pixel bug: " + ex.Message);
-                }
-
-                pixels[i] = (int)((pixel & 0xFF00FF00)
-                    | ((pixel & 0x00FF0000) >> 16) 
-                    | ((pixel & 0x000000FF) << 16));
+                uint pixel = (uint)pixels[i];
+                pixels[i] = (int)((pixel & 0xFF00FF00) | ((pixel & 0x00FF0000) >> 16) | ((pixel & 0x000000FF) << 16));
             }
         }
 	}

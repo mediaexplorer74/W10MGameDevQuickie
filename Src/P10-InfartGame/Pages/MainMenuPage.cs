@@ -120,9 +120,9 @@ namespace GameManager.Pages
             else
             {
                 //RnD
-                if (true)//(_playDrawingInfos.HitBox((int)_playTextSize.X,
-                   // (int)_playTextSize.Y)
-                   // .Contains(touchPoint))
+                if (_playDrawingInfos.HitBox((int)_playTextSize.X,
+                   (int)_playTextSize.Y)
+                    .Contains(touchPoint))
                 {
                     orchestrator.SetGameState();
                 }

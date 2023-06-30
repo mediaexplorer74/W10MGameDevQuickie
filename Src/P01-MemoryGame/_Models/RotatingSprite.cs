@@ -22,16 +22,16 @@ namespace GameManager
             Position += _direction * Glob.Time * 75;
 
             if (Position.X + origin.X < 0) 
-                Position = new(Glob.Bounds.X + origin.X, Position.Y);
+                Position = new Vector2(Glob.Bounds.X + origin.X, Position.Y);
 
             if (Position.X - origin.X > Glob.Bounds.X) 
-                Position = new(-origin.X, Position.Y);
+                Position = new Vector2(-origin.X, Position.Y);
 
             if (Position.Y + origin.Y < 0) 
-                Position = new(Position.X, Glob.Bounds.Y + origin.Y);
+                Position = new Vector2(Position.X, Glob.Bounds.Y + origin.Y);
 
             if (Position.Y - origin.Y > Glob.Bounds.Y) 
-                Position = new(Position.X, -origin.Y);
+                Position = new Vector2(Position.X, -origin.Y);
         }
 
         public override void Draw()

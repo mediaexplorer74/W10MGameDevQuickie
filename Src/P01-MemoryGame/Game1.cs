@@ -22,9 +22,13 @@ namespace GameManager
         protected override void Initialize()
         {
             Glob.Game = this;
-            Glob.Bounds = new(/*1024*/Glob.WindowWidth, /*768*/Glob.WindowHeight);
+            Glob.Bounds = new Point(Glob.WindowWidth, Glob.WindowHeight); //new(Glob.WindowWidth, Glob.WindowHeight);
             _graphics.PreferredBackBufferWidth = Glob.Bounds.X;
             _graphics.PreferredBackBufferHeight = Glob.Bounds.Y;
+
+            //RnD
+            _graphics.IsFullScreen = true;
+
             _graphics.ApplyChanges();
             Window.Title = "GameDev Quickie: Memory Game";
 
@@ -37,7 +41,7 @@ namespace GameManager
             Glob.SpriteBatch = _spriteBatch;
             Glob.Content = Content;
 
-            _gameManager = new();
+            _gameManager = new GameManager(); //new()
         }
 
         protected override void Update(GameTime gameTime)

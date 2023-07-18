@@ -1,0 +1,3 @@
+Player: 20%
+Glow: 40%
+20 img

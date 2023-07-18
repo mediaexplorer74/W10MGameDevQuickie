@@ -1,0 +1,149 @@
+AuthorEmail	martin@suchan.cz	
+AuthorTwitter	http://twitter.com/martinsuchan	
+AuthorWeb	http://www.suchan.cz/	
+MarketplaceLink	http://windowsphone.com/s?appId={0}	
+
+About
+
+
+EN (Default)
+About	about	
+Author	author	
+Buy	Buy now	
+ErrorForget	Do not send	
+ErrorMessage	An error ocurred when the application "{0}" ran last time. Would you like to send an error report to the author and help him fix the problem?	
+ErrorReport	Send report	
+ErrorTitle	Error reporting	
+FeedbackMessage	Hi, I was using your app and ...	
+MoreApps	More cool apps!	
+Rate	Rate now	
+SendFeedback	report bugs/send feedback	
+Share	Share on Twitter, Facebook	
+ShareMessage	Great Windows Phone application :) #WP7	
+Twitter	follow me on Twitter	
+Version	version	
+
+
+RU
+About	о приложении	
+Author	автор	
+Buy	Купить	
+ErrorForget	Не отправлять	
+ErrorMessage	Во время прошлого запуска приложения "{0}"произошла ошибка. Хотите отправить отчет об ошибке и помочь автору устранить проблему?	
+ErrorReport	Отправить отчёт	
+ErrorTitle	Отчёт об ошибке	
+FeedbackMessage	Здравствуйте, при использовании вашего приложения	
+MoreApps	Больше классных приложений!	
+Rate	Оценить	
+SendFeedback	Отправить отчет об ошибках / Обратная связь	
+Share	Поделиться через Twitter, Facebook ...	
+ShareMessage	Отличное приложения для Windows Phone :) #WP7	
+Twitter	Следите за мной в Twitter / Зафолловить в Twitter	
+Version	версия	
+
+
+CZ
+About	o aplikaci	
+Author	autor	
+Buy	Koupit	
+ErrorForget	Neodesílat	
+ErrorMessage	Během posledního běhu aplikace "{0}" nastala nečekaná chyba. Přejete si poslat autorovi hlášení o chybě, které mu pomůže opravit aplikaci?	
+ErrorReport	Nahlášení chyby	
+ErrorTitle	Odeslat hlášení	
+FeedbackMessage	Zdravím, zaujala mě vaše aplikace a ...	
+MoreApps	Více skvělých aplikací!	
+Rate	Ohodnotit	
+SendFeedback	nahlásit chybu/poslat nápad	
+Share	Sdílet na Twitteru, Facebooku	
+ShareMessage	Windows Phone aplikace, která se mi líbí :) #WP7	
+Twitter	sledujte mě	
+Version	verze	
+
+DE
+About	über	
+Author	autor	
+Buy	Jetzt kaufen	
+ErrorForget	Nicht senden	
+ErrorMessage	Ein Fehler ist aufgetreten als die Anwendung "{0}" das letzte Mal genutzt wurde. Möchten Sie einen Fehlerbericht senden und dem Entwickler so helfen das Problem zu lösen?	
+ErrorReport	Bericht senden	
+ErrorTitle	fehler melden	
+FeedbackMessage	Hi, ich habe Deine App genutzt und ...	
+MoreApps	Mehr Apps	
+Rate	Jetzt bewerten	
+SendFeedback	fehler melden/feedback senden	
+Share	Auf Twitter, Facebook teilen	
+ShareMessage	Super Windows Phone App :) #WP7	
+Twitter	folge mir auf Twitter	
+Version	version	
+
+ES
+About	acerca de	
+Author	autor	
+Buy	Comprar	
+ErrorForget	No enviar	
+ErrorMessage	Ocurrió un error la última vez que la aplicación "{0}" fue ejecutada. ¿Te gustaría enviar un reporte del error al autor y ayudarlo a corregir el problema?	
+ErrorReport	Enviar reporte	
+ErrorTitle	Reportando error	
+FeedbackMessage	Hola, estaba utilizando su aplicación y ...	
+MoreApps	Más aplicaciones buenas!	
+Rate	Evaluar ahora	
+SendFeedback	reportar errores/enviar comentarios	
+Share	Compartir en Twitter, Facebook...	
+ShareMessage	Excelente aplicación para Windows Phone :) #WP7	
+Twitter	sígueme en Twitter	
+Version	versión	
+
+FR
+About	à propos	
+Author	auteur	
+Buy	Acheter	
+ErrorForget	Ne pas envoyer	
+ErrorMessage	Une erreur s'est produite lors du dernier lancement de l'application "{0}". Voulez-vous envoyer un rapport d'erreur à l'auteur afin de l'aider à résoudre le problème?	
+ErrorReport	Envoyer un rapport	
+ErrorTitle	Rapporter une erreur	
+FeedbackMessage	Bonjour, j'étais en train d'utiliser votre application lorsque ...	
+MoreApps	Plus d'applications amusantes!	
+Rate	Donner une note	
+SendFeedback	signaler un problème/envoyer une suggestion	
+Share	Partager sur Twitter, Facebook	
+ShareMessage	Super application Windows Phone :) #WP7	
+Twitter	suivez-nous sur Twitter	
+Version	version	
+
+IT
+About	a proposito di	
+Author	autore	
+Buy	Aquista	
+ErrorForget	Non inviare	
+ErrorMessage	C'é stato un'errore l'ultima volta che l'applicazione "{0}" é stata eseguita. Vuoi inviare un rapporto dell'errore all'autore e aiutarlo a correggere il problema?	
+ErrorReport	Inviare un rapporto	
+ErrorTitle	Segnalare un'errore	
+FeedbackMessage	Salve, stavo usando la sua applicatione e ...	
+MoreApps	Altre ottime applicazioni!	
+Rate	Valorare adesso	
+SendFeedback	segnalare errori/inviare commenti	
+Share	Compartire in Twitter, Facebook	
+ShareMessage	Eccellente applicazione per Windows Phone :) #WP7	
+Twitter	seguimi in Twitter	
+Version	versione	
+
+PT
+About	Sobre	
+Author	Autor	
+Buy	Comprar	
+ErrorForget	Não enviar	
+ErrorMessage	Aconteceu um erro quando a aplicação {0} foi executada pela ultima vez. Deseja enviar o relatório do erro para o autor e ajudá-lo a resolver o problema?	
+ErrorReport	Enviar relatório	
+ErrorTitle	Relatório de erro	
+FeedbackMessage	Olá, eu estava a usar a sua app e ...	
+MoreApps	Mais aplicações fixes!	
+Rate	Avalie agora	
+SendFeedback	Reporte erros/ envie comentários 	
+Share	Partilhe no Twitter, Facebook	
+ShareMessage	Grande aplicação para Windows Phone #WP7	
+Twitter	Siga-me no Twitter	
+Version	versão	
+
+
+
+

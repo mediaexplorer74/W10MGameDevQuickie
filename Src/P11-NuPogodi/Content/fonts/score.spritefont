@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file contains an xml description of a font, and will be read by the XNA
+Framework Content Pipeline. Follow the comments to customize the appearance
+of the font in your game, and to change the characters which are available to draw
+with.
+-->
+<XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics">
+  <Asset Type="Graphics:FontDescription">
+
+    <!--
+    Modify this string to change the font that will be imported.
+    -->
+    <FontName>Arial</FontName>
+
+    <!--
+    Size is a float value, measured in points. Modify this value to change
+    the size of the font.
+    -->
+    <Size>26</Size>
+
+    <!--
+    Spacing is a float value, measured in pixels. Modify this value to change
+    the amount of spacing in between characters.
+    -->
+    <Spacing>0</Spacing>
+
+    <!--
+    UseKerning controls the layout of the font. If this value is true, kerning information
+    will be used when placing characters.
+    -->
+    <UseKerning>true</UseKerning>
+
+    <!--
+    Style controls the style of the font. Valid entries are "Regular", "Bold", "Italic",
+    and "Bold, Italic", and are case sensitive.
+    -->
+    <Style>Regular</Style>
+
+    <!--
+    If you uncomment this line, the default character will be substituted if you draw
+    or measure text that contains characters which were not included in the font.
+    -->
+    <!-- <DefaultCharacter>*</DefaultCharacter> -->
+
+    <!--
+    CharacterRegions control what letters are available in the font. Every
+    character from Start to End will be built and made available for drawing. The
+    default range is from 32, (ASCII space), to 126, ('~'), covering the basic Latin
+    character set. The characters are ordered according to the Unicode standard.
+    See the documentation for more information.
+    -->
+    <CharacterRegions>
+      <CharacterRegion>
+        <Start>&#32;</Start>
+        <End>&#126;</End>
+      </CharacterRegion>
+      <!-- Addditional Czech characters. -->
+      <CharacterRegion><Start>&#193;</Start><End>&#193;</End></CharacterRegion> 
+      <CharacterRegion><Start>&#268;</Start><End>&#268;</End></CharacterRegion>
+      <CharacterRegion><Start>&#270;</Start><End>&#270;</End></CharacterRegion>
+      <CharacterRegion><Start>&#201;</Start><End>&#201;</End></CharacterRegion>
+      <CharacterRegion><Start>&#282;</Start><End>&#282;</End></CharacterRegion>
+      <CharacterRegion><Start>&#205;</Start><End>&#205;</End></CharacterRegion>
+      <CharacterRegion><Start>&#327;</Start><End>&#327;</End></CharacterRegion>
+      <CharacterRegion><Start>&#211;</Start><End>&#211;</End></CharacterRegion>
+      <CharacterRegion><Start>&#344;</Start><End>&#344;</End></CharacterRegion>
+      <CharacterRegion><Start>&#352;</Start><End>&#352;</End></CharacterRegion>
+      <CharacterRegion><Start>&#356;</Start><End>&#356;</End></CharacterRegion>
+      <CharacterRegion><Start>&#218;</Start><End>&#218;</End></CharacterRegion>
+      <CharacterRegion><Start>&#366;</Start><End>&#366;</End></CharacterRegion>
+      <CharacterRegion><Start>&#221;</Start><End>&#221;</End></CharacterRegion>
+      <CharacterRegion><Start>&#381;</Start><End>&#381;</End></CharacterRegion>
+      <CharacterRegion><Start>&#225;</Start><End>&#225;</End></CharacterRegion>
+      <CharacterRegion><Start>&#269;</Start><End>&#269;</End></CharacterRegion>
+      <CharacterRegion><Start>&#271;</Start><End>&#271;</End></CharacterRegion>
+      <CharacterRegion><Start>&#233;</Start><End>&#233;</End></CharacterRegion>
+      <CharacterRegion><Start>&#283;</Start><End>&#283;</End></CharacterRegion>
+      <CharacterRegion><Start>&#237;</Start><End>&#237;</End></CharacterRegion>
+      <CharacterRegion><Start>&#328;</Start><End>&#328;</End></CharacterRegion>
+      <CharacterRegion><Start>&#243;</Start><End>&#243;</End></CharacterRegion>
+      <CharacterRegion><Start>&#345;</Start><End>&#345;</End></CharacterRegion>
+      <CharacterRegion><Start>&#353;</Start><End>&#353;</End></CharacterRegion>
+      <CharacterRegion><Start>&#357;</Start><End>&#357;</End></CharacterRegion>
+      <CharacterRegion><Start>&#250;</Start><End>&#250;</End></CharacterRegion>
+      <CharacterRegion><Start>&#367;</Start><End>&#367;</End></CharacterRegion>
+      <CharacterRegion><Start>&#253;</Start><End>&#253;</End></CharacterRegion>
+      <CharacterRegion><Start>&#382;</Start><End>&#382;</End></CharacterRegion>
+    </CharacterRegions>
+  </Asset>
+</XnaContent>

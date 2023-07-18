@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{F91A1D27-8B68-4C88-9E32-40533CC73E2A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameManager</RootNamespace>
+    <AssemblyName>Starfall</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>InfartGame_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <LangVersion>latest</LangVersion>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <!--PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks-->
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AssetsWork\AssetsLoader.cs" />
+    <Compile Include="AssetsWork\GameScores.cs" />
+    <Compile Include="AssetsWork\GameStringsLoader.cs" />
+    <Compile Include="Backgrounds\FillViewportBackground.cs" />
+    <Compile Include="Backgrounds\HorizontalScrollingBackground.cs" />
+    <Compile Include="GameHUD.cs" />
+    <Compile Include="GameOrchestrator.cs" />
+    <Compile Include="GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gems\BadGem.cs" />
+    <Compile Include="Gems\BadGemFactory.cs" />
+    <Compile Include="Gems\Gem.cs" />
+    <Compile Include="Gems\GemsGenerators\BadGemPlayerStraightLineGenerator.cs" />
+    <Compile Include="Gems\GemsGenerators\BadGemPlayerStraightLineSequenceGenerator.cs" />
+    <Compile Include="Gems\GemsGenerators\BadGemScreenBorderStraightLineGenerator.cs" />
+    <Compile Include="Gems\GemsGenerators\GoodGemScaleGenerator.cs" />
+    <Compile Include="Gems\GemsGenerators\GoodGemStaticYGridGenerator.cs" />
+    <Compile Include="Gems\GemsGenerators\IBadGemBatchGenerator.cs" />
+    <Compile Include="Gems\GemsGenerators\IGoodGemBatchGenerator.cs" />
+    <Compile Include="Gems\GemsManager.cs" />
+    <Compile Include="Gems\GoodGem.cs" />
+    <Compile Include="Gems\GoodGemFactory.cs" />
+    <Compile Include="Glob.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Menu\GameOverPage.cs" />
+    <Compile Include="Menu\IncipitPage.cs" />
+    <Compile Include="Menu\MainMenuPage.cs" />
+    <Compile Include="Menu\ProtipsShower.cs" />
+    <Compile Include="Menu\ScorePage.cs" />
+    <Compile Include="Menu\ScoreRecordText.cs" />
+    <Compile Include="PlayerGemsInteractor.cs" />
+    <Compile Include="Players\CometParticleSystem.cs" />
+    <Compile Include="Players\JumpGemBar.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Players\States\IPlayerState.cs" />
+    <Compile Include="Players\States\JumpingState.cs" />
+    <Compile Include="Players\States\RunningState.cs" />
+    <Compile Include="Players\States\StatesManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StarfallBootstrap.cs" />
+    <Compile Include="StarfallGame.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 1.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 10.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 2.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 3.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 4.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 5.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 6.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 7.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 8.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\fulmine 9.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\glow_black.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\glow_green1.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\BadGlow\glow_green2.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\GoodGlow\glow_v2.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\GoodGlow\glow_v2a.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\GoodGlow\glow_v2b.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\death\esplosione.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\death\esplosione2.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\death\esplosione3.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4 sfocatura2.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_arto1.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_arto1B.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_ciglia_a.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_ciglia_b.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi1.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi2.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi_A_aperti.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi_A_chiusi.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi_B.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_occhi_B_chiusi.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_sfocatura.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_torso - Copia.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_v4_torso.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\STARDUST_corpo.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\STARDUST_gamba dx.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\STARDUST_gamba sx.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\STARDUST_occhi A.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\STARDUST_occhi_C.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Animations\STARDUST_testa.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_000.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_001.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_002.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_003.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_004.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_005.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_006.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_007.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_008.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_009.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_010.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_011.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_012.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_013.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_014.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_015.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_016.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_017.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_018.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\bad_glow_019.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_000.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_001.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_002.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_003.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_004.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_005.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_006.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_007.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_008.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_009.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_010.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_011.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_012.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_013.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_014.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_015.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_016.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_017.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_018.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\death_019.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_000.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_001.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_002.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_003.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_004.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_005.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_006.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_007.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_008.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_009.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_010.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_011.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_012.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_013.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_014.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_015.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_016.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_017.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_018.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\good_glow_019.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_000.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_001.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_002.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_003.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_004.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_005.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_006.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_007.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_008.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_009.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_010.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_011.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_012.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_013.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_014.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_015.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_016.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_017.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_018.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\jump_019.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_000.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_001.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_002.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_003.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_004.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_005.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_006.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_007.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_008.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_009.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_010.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_011.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_012.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_013.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_014.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_015.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_016.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_017.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_018.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Export\run_019.png" />
+    <Content Include="AssetsWork\_AnimationsProject\Parametri export.txt" />
+    <Content Include="AssetsWork\_TextureProject\Export\0.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\1a.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\1b.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\1c.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\2.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\3.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\4.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\5.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\6.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\7.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\cometParticle.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\gameover.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\glow-bianco.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\glow-omino.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\glow-rosso.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\glow-terra-omino.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\glow.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\incipitbg.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Export\manina.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\menuBackground.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Export\rewardArgento.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\rewardBronzo.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\rewardOro.png" />
+    <Content Include="AssetsWork\_TextureProject\Export\scorebg.jpg" />
+    <Content Include="AssetsWork\_TextureProject\icon.png" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIPS_glow.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIPS_life.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIPS_timejump.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIP_1.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIP_2.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIP_3.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Protips\TIP_4.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Screenshots\1.png" />
+    <Content Include="AssetsWork\_TextureProject\Screenshots\2.png" />
+    <Content Include="AssetsWork\_TextureProject\Screenshots\3.png" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s1.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s2.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s3.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s4.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s5.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s6.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s7.jpg" />
+    <Content Include="AssetsWork\_TextureProject\Slides\s8.jpg" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-125.png" />
+    <Content Include="Assets\Logo.scale-150.png" />
+    <Content Include="Assets\Logo.scale-200.png" />
+    <Content Include="Assets\Logo.scale-400.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-125.png" />
+    <Content Include="Assets\SmallLogo.scale-150.png" />
+    <Content Include="Assets\SmallLogo.scale-200.png" />
+    <Content Include="Assets\SmallLogo.scale-400.png" />
+    <Content Include="Assets\SmallLogo.targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.targetsize-24.png" />
+    <Content Include="Assets\SmallLogo.targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.targetsize-48.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\WideTile.scale-100.png" />
+    <Content Include="Assets\WideTile.scale-125.png" />
+    <Content Include="Assets\WideTile.scale-150.png" />
+    <Content Include="Assets\WideTile.scale-200.png" />
+    <Content Include="Assets\WideTile.scale-400.png" />
+    <Content Include="Content\Music\Die.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\menu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Running.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Slideshow.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\TakeGem.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Splashscreen\splashscreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SpriteSheets\backgrounds.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SpriteSheets\backgrounds.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SpriteSheets\others.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SpriteSheets\others.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SpriteSheets\protips.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SpriteSheets\protips.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FbonizziMonoGame\FbonizziMonoGame.csproj">
+      <Project>{7d2a5936-3ad5-4a7a-aa9c-ac269b2cf515}</Project>
+      <Name>FbonizziMonoGame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\Starfall-Regular.spritefont">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\Starfall-V3.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Effects.flp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Running.flp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Slideshow-Menu.flp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\StarfallContent.mgcb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="AssetsWork\_AnimationsProject\Animations\BadGlow\globo nero 1.autosave.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\BadGlow\globo nero 1.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\BadGlow\glow.psd" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\GoodGlow\glow_v2.autosave.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\GoodGlow\glow_v2.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_def3.autosave.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_def3.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\Player\STARDUST_V1B.autosave.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\STARDUST.psd" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\STARDUST_1.autosave.scml" />
+    <None Include="AssetsWork\_AnimationsProject\Animations\STARDUST_1.scml" />
+    <None Include="AssetsWork\_TextureProject\backgrounds.tps" />
+    <None Include="AssetsWork\_TextureProject\Icon.psd" />
+    <None Include="AssetsWork\_TextureProject\others.tps" />
+    <None Include="AssetsWork\_TextureProject\protips.tps" />
+    <None Include="Starfall_TemporaryKey.pfx" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!--Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" /-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

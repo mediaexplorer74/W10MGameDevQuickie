@@ -20,7 +20,7 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 ![TopDownShooter](Images/P02.png)
 ![Land](Images/P03.png)
 ![Infart](Images/P10.png)
-![NuPogodi(Images/P11.png)
+![NuPogodi](Images/P11.png)
 ![InfartonW10M](Images/W10M.png)
 
 
@@ -63,7 +63,7 @@ For a step-by-step walkthrough of the code, check out the [MonoGame 2D tutorial 
 - Refactor readme... and something else? 
 
 ## ..
-As is. No support. For Learning purposes only.
+As is. No support. For Learning purposes only / DIY
 
 ## References
 - https://www.youtube.com/@GameDevQuickie/videos LubiiiCZ's Monogame2D video-tutorials

@@ -8,7 +8,8 @@ namespace GameManager.AppLogic
 {
     public class SoundEffectManager
     {
-        private readonly Dictionary<string, SoundEffect> sounds = new Dictionary<string, SoundEffect>();
+        private readonly Dictionary<string, SoundEffect> 
+            sounds = new Dictionary<string, SoundEffect>();
 
         public SoundEffectManager(ContentManager contentManager)
         {

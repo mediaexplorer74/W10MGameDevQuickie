@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-//using System.Windows.Controls;
-//using System.Windows.Data;
-//using System.Windows.Markup;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 
 namespace Win8.Core.MultiBinding
 {
@@ -17,7 +17,7 @@ namespace Win8.Core.MultiBinding
     /// PropertyChanged events for the BindingSlae.Value property are handled, and the IMultiValueConveter
     /// is used to compute the converted value.
     /// </summary>
-    [ContentProperty("Bindings")]
+   // [ContentProperty("Bindings")]
     public class MultiBinding : Panel, INotifyPropertyChanged
     {
         /// <summary>
@@ -26,7 +26,6 @@ namespace Win8.Core.MultiBinding
         /// </summary>
         private bool updatingConvertedValue;
 
-        #region ConvertedValue dependency property
 
         public static readonly DependencyProperty ConvertedValueProperty =
             DependencyProperty.Register("ConvertedValue", typeof (object), typeof (MultiBinding),
@@ -75,9 +74,7 @@ namespace Win8.Core.MultiBinding
             }
         }
 
-        #endregion
-
-        #region CLR properties
+ 
 
         /// <summary>
         /// The BindingMode
@@ -104,7 +101,7 @@ namespace Win8.Core.MultiBinding
         /// </summary>
         public BindingCollection Bindings { get; set; }
 
-        #endregion
+   
 
         public MultiBinding()
         {
@@ -160,7 +157,7 @@ namespace Win8.Core.MultiBinding
             }
         }
 
-        #region INotifyPropertyChanged Members
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -172,7 +169,7 @@ namespace Win8.Core.MultiBinding
             }
         }
 
-        #endregion
+    
     }
 
     /// <summary>
@@ -181,7 +178,7 @@ namespace Win8.Core.MultiBinding
     /// </summary>
     public class BindingSlave : FrameworkElement, INotifyPropertyChanged
     {
-        #region Value
+    
 
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof (object), typeof (BindingSlave),
@@ -200,9 +197,9 @@ namespace Win8.Core.MultiBinding
             slave.OnPropertyChanged("Value");
         }
 
-        #endregion
+   
 
-        #region INotifyPropertyChanged Members
+     
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -214,7 +211,7 @@ namespace Win8.Core.MultiBinding
             }
         }
 
-        #endregion
+   
     }
 
     /// <summary>
@@ -239,7 +236,7 @@ namespace Win8.Core.MultiBinding
             // try to locate the named element
             ResolveElementNameBinding();
 
-            multiBindingTarget.LayoutUpdated += MultiBindingTargetLayoutUpdated;
+            //multiBindingTarget.LayoutUpdated += MultiBindingTargetLayoutUpdated;
         }
 
         /// <summary>

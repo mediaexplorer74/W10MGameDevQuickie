@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
-using Microsoft.Phone.Shell;
+using System.Reflection;
+using Microsoft.Xna.Framework;
 
 namespace Win8.Core.Tasks.Wp8Interop
 {
@@ -12,21 +12,21 @@ namespace Win8.Core.Tasks.Wp8Interop
 
         public static ShellTileData CreateFromStandardTile(StandardTileData standardtiledata, Uri smallBackgroundImage)
         {
-            return CreateFlipTile(standardtiledata.Title, standardtiledata.BackTitle, standardtiledata.BackContent, null,
-                standardtiledata.Count, smallBackgroundImage, standardtiledata.BackgroundImage, standardtiledata.BackBackgroundImage, null, null);
+            return default;//CreateFlipTile(standardtiledata.Title, standardtiledata.BackTitle, standardtiledata.BackContent, null,
+                //standardtiledata.Count, smallBackgroundImage, standardtiledata.BackgroundImage, standardtiledata.BackBackgroundImage, null, null);
         }
 
         public static ShellTileData CreateFromStandardTile(StandardTileData standardtiledata, Uri smallBackgroundImage,
             String wideBackContent, Uri wideBackgroundImage, Uri wideBackBackgroundImage)
         {
-            return CreateFlipTile(standardtiledata.Title, standardtiledata.BackTitle, standardtiledata.BackContent,
-                wideBackContent, standardtiledata.Count, smallBackgroundImage, standardtiledata.BackgroundImage,
-                standardtiledata.BackBackgroundImage, wideBackgroundImage, wideBackBackgroundImage);
+            return default;//CreateFlipTile(standardtiledata.Title, standardtiledata.BackTitle, standardtiledata.BackContent,
+                //wideBackContent, standardtiledata.Count, smallBackgroundImage, standardtiledata.BackgroundImage,
+                //standardtiledata.BackBackgroundImage, wideBackgroundImage, wideBackBackgroundImage);
         }
 
         #endregion
 
-        #region FlipTile
+ 
 
         public static ShellTileData CreateFlipTile(string title, string backTitle, string backContent, int? count,
             Uri smallBackgroundImage, Uri backgroundImage, Uri backBackgroundImage)
@@ -53,19 +53,22 @@ namespace Win8.Core.Tasks.Wp8Interop
             return (ShellTileData) mynewtile;
         }
 
-        #endregion
+      
 
         #region IconicTile
 
-        public static ShellTileData CreateIconicTile(string title, int? count, Color backgroundColor, Uri icon, Uri smallIcon)
+        public static ShellTileData CreateIconicTile(string title, int? count, 
+            Color backgroundColor, Uri icon, Uri smallIcon)
         {
             return CreateIconicTile(title, count, backgroundColor, icon, smallIcon, null, null, null);
         }
 
-        private static ShellTileData CreateIconicTile(string title, int? count, Color backgroundColor, Uri icon,
+        private static ShellTileData CreateIconicTile(string title, int? count, 
+            Color backgroundColor, Uri icon,
             Uri smallIcon, String wideTitle, String wideLine1, String wideLine2)
         {
-            object mynewtile = IconicTileData.IconicTileDataType.GetConstructor(new Type[] {}).Invoke(null);
+            object mynewtile = IconicTileData.IconicTileDataType.GetConstructor(
+                new Type[] {}).Invoke(null);
             Utils.SetProperty(mynewtile, "Title", title);
             Utils.SetProperty(mynewtile, "Count", count);
             Utils.SetProperty(mynewtile, "BackgroundColor", backgroundColor);

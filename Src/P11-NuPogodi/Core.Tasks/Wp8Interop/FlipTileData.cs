@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 //using Microsoft.Phone.Shell;
 
 namespace Win8.Core.Tasks.Wp8Interop

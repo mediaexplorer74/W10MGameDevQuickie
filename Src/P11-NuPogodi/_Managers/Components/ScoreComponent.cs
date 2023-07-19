@@ -37,7 +37,7 @@ namespace GameManager.AppLogic.Components
         {
             // load each font from the content pipeline
             spriteBatch = new SpriteBatch(device);
-            font = contentManager.Load<SpriteFont>("fonts/score");
+            font = contentManager.Load<SpriteFont>("TextFont");//("fonts/score");
         }
 
         public override void UnloadContent()
@@ -75,7 +75,6 @@ namespace GameManager.AppLogic.Components
             // intentionally left blank
         }
 
-        #region Internals
 
         private void DrawGame()
         {
@@ -95,6 +94,6 @@ namespace GameManager.AppLogic.Components
             spriteBatch.DrawString(font, sb.ToString(), new Vector2(300, 100), Color.Black);
         }
 
-        #endregion
+
     }
 }

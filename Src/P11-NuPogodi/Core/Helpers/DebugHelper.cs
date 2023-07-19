@@ -64,7 +64,7 @@ namespace Win8.Core.Helpers
         private static bool NotSensitive(PropertyInfo info, IList<string> sensitiveProperties)
         {
             bool sensitiveName = sensitiveProperties != null && sensitiveProperties.Contains(info.Name);
-            return info.GetCustomAttributes(typeof(SensitiveAttribute), false).Length == 0 && !sensitiveName;
+            return false;//info.GetCustomAttributes(typeof(SensitiveAttribute), false).Length == 0 && !sensitiveName;
         }
     }
 }

@@ -422,7 +422,7 @@ namespace Win8.Core.Tasks.Logging
                 {
                     messages.Add(sr.ReadLine());
                 }
-                sr.Close();
+                sr.Dispose();//.Close();
             }
         }
 
@@ -445,9 +445,9 @@ namespace Win8.Core.Tasks.Logging
                     using (StreamWriter sw = new StreamWriter(file))
                     {
                         messages.ForEach(sw.WriteLine);
-                        sw.Close();
+                        sw.Dispose();//.Close();
                     }
-                    file.Close();
+                    file.Dispose();//.Close();
                 }
 
                 LogModified(this, new EventArgs());
@@ -486,7 +486,7 @@ namespace Win8.Core.Tasks.Logging
                 FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
                 doNotRotate = file.Length <= maxLogLength;
-                file.Close();
+                file.Dispose();//.Close();
             }
             if (doNotRotate) return;
 

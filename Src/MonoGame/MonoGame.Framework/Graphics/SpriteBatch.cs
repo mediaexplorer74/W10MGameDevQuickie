@@ -40,10 +40,10 @@ namespace Microsoft.Xna.Framework.Graphics
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="graphicsDevice"/> is null.</exception>
         public SpriteBatch (GraphicsDevice graphicsDevice)
 		{
-			if (graphicsDevice == null)
+            if (graphicsDevice == null)
             {
-				throw new ArgumentNullException ("graphicsDevice", FrameworkResources.ResourceCreationWhenDeviceIsNull);
-			}	
+                throw new ArgumentNullException("graphicsDevice", FrameworkResources.ResourceCreationWhenDeviceIsNull);
+            }
 
 			this.GraphicsDevice = graphicsDevice;
 
@@ -158,7 +158,10 @@ namespace Microsoft.Xna.Framework.Graphics
             if (text == null)
                 throw new ArgumentNullException("text");
             if (!_beginCalled)
-                throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
+            {
+                //throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
+                return;
+            }
         }
 
         void CheckValid(SpriteFont spriteFont, StringBuilder text)

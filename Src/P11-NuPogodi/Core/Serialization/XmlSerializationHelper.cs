@@ -40,11 +40,11 @@ namespace Win8.Core.Serialization
         public static void SerializeToXml<T>(string file, T movies)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
-            using (TextWriter textWriter = new StreamWriter(file))
-            {
-                serializer.Serialize(textWriter, movies);
-                textWriter.Close();
-            }
+            //using (TextWriter textWriter = new StreamWriter(file))
+            //{
+            //    serializer.Serialize(textWriter, movies);
+            //    textWriter.Dispose();//.Close();
+            //}
         }
 
         /// <summary>
@@ -53,12 +53,14 @@ namespace Win8.Core.Serialization
         public static List<T> DeserializeFromXml<T>(string file)
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(List<T>));
-            using (TextReader textReader = new StreamReader(file))
-            {
-                List<T> data = (List<T>)deserializer.Deserialize(textReader);
-                textReader.Close();
-                return data;
-            }
+            //RnD
+            //using (TextReader textReader = new StreamReader(file))
+            //{
+            //    List<T> data = (List<T>)deserializer.Deserialize(textReader);
+            //    textReader.Dispose();//.Close();
+            //    return data;
+            //}
+            return default;
         }
     }
 }

@@ -1,11 +1,12 @@
+using System;
 using System.Reflection;
-using Microsoft.Xna.Framework.GamerServices;
+//using Microsoft.Xna.Framework.GamerServices;
 
 namespace GameManager.AppLogic
 {
     public static class Common
     {
-        #region Gameplay values
+        // Gameplay values
 
         /// <summary>
         /// Name of the asset with all graphics for this game.
@@ -23,15 +24,16 @@ namespace GameManager.AppLogic
         public static int UpdatesPerTurn = 5;
 
         public static int LastEggState = 4;
+
         public static int MaxBrokenEggs = 6;
 
         public static int TrialScoreLimit = 30;
 
-        #endregion
+       
 
-        #region Map and block sizes
+        // Map and block sizes
 
-        #region Dynamic values computed at the start of the game
+        //  Dynamic values computed at the start of the game
 
         /// <summary>
         /// Width of the game screen.
@@ -50,8 +52,8 @@ namespace GameManager.AppLogic
 
         static Common()
         {
-            string assembly = Assembly.GetCallingAssembly().FullName;
-            Version = assembly.Split('=')[1].Split(',')[0];
+            string assembly = default;//Assembly.GetCallingAssembly().FullName;
+            Version = "1.0";//assembly.Split('=')[1].Split(',')[0];
         }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace GameManager.AppLogic
             {
                 if (!isTrialMode.HasValue)
                 {
-                    isTrialMode = Guide.IsTrialMode;
+                    isTrialMode = false;//Guide.IsTrialMode;
                 }
                 return isTrialMode.Value;
             }
@@ -71,8 +73,6 @@ namespace GameManager.AppLogic
 
         private static bool? isTrialMode;
 
-        #endregion
-
-        #endregion
+       
     }
 }

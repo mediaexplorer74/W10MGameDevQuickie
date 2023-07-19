@@ -35,7 +35,11 @@ namespace GameManager.AppLogic.Components
         {
             spriteBatch = new SpriteBatch(device);
             dummyTexture1 = new Texture2D(device, 1, 1);
-            dummyTexture1.SetData(new[] { new Color(0, 255, 0, 32) });
+            dummyTexture1.SetData(new[] 
+            { 
+                new Color(255, 255, 255, 63)//(0, 255, 0, 32) 
+            }
+            );
         }
 
         public override void UnloadContent()
@@ -68,7 +72,10 @@ namespace GameManager.AppLogic.Components
 
         public bool IsTap(int x, int y)
         {
-            return Rectangle.X <= x && Rectangle.Y <= y && (Rectangle.X + Rectangle.Width) >= x && (Rectangle.Y + Rectangle.Height) >= y;
+            return Rectangle.X <= x 
+                && Rectangle.Y <= y 
+                && (Rectangle.X + Rectangle.Width) >= x 
+                && (Rectangle.Y + Rectangle.Height) >= y;
         }
     }
 }

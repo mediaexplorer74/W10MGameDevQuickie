@@ -57,7 +57,7 @@ namespace Win8.Core.Tasks
             set
             {
                 // Save the value to Isolated Storage
-                IsolatedStorageSettings.ApplicationSettings[name] = value;
+                //IsolatedStorageSettings.ApplicationSettings[name] = value;
                 this.value = value;
                 hasValue = true;
             }
@@ -86,9 +86,9 @@ namespace Win8.Core.Tasks
         {
             if (hasValue)
             {
-                IsolatedStorageSettings.ApplicationSettings[name] = value;
+                //IsolatedStorageSettings.ApplicationSettings[name] = value;
             }
-            IsolatedStorageSettings.ApplicationSettings.Save();
+            //IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
         /// <summary>

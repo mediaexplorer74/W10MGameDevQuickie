@@ -3,15 +3,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Markup;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Markup;
 
 namespace Win8.Core.MultiBinding
 {
     /// <summary>
     /// Manages the construction of multiple MultiBinding instances
     /// </summary>
-    [ContentProperty("Bindings")]
+   // [ContentProperty("Bindings")]
     public class MultiBindings : FrameworkElement
     {
         private FrameworkElement _targetElement;
@@ -77,11 +78,11 @@ namespace Win8.Core.MultiBinding
 
                 // bind the ConvertedValue of our MultiBinding instance to the target property
                 // of our targetElement
-                Binding binding = new Binding("ConvertedValue")
-                {
-                    Source = relay,
-                    Mode = relay.Mode
-                };
+                Binding binding = default;// new Binding("ConvertedValue")
+                //{
+                //    Source = relay,
+                //    Mode = relay.Mode
+                //};
                 targetElement.SetBinding(targetDependencyProperty, binding);
             }
         }

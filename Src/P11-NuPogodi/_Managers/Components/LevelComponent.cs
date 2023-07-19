@@ -99,8 +99,13 @@ namespace GameManager.AppLogic.Components
                 GameController.I.Turn();
             }
             nextTurnCount++;
+
+            //TODO
             //base.Update(gameTime);
+            //GameComponent.Update(gameTime); // del it
+            
         }
+
         private int nextTurnCount;
     }
 }

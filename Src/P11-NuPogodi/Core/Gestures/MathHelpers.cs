@@ -46,7 +46,7 @@ namespace Win8.Core.Gestures
         /// <returns>The point.</returns>
         public static Point ToPoint(this Microsoft.Xna.Framework.Vector2 v)
         {
-            return new Point(v.X, v.Y);
+            return new Point((int)Math.Round(v.X), (int)Math.Round(v.Y));
         } 
     }
 }

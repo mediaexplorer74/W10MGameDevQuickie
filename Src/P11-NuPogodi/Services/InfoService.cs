@@ -1,7 +1,6 @@
 ﻿using System;
 using GameManager.AppLogic;
 using GameManager.AppLogic.Resources;
-//using GameManager.Resources;
 using Win8.Core.Helpers;
 using Win8.Core.Services;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Phone.Tasks;
+//using Microsoft.Phone.Tasks;
 
 namespace Win8.Core.Helpers
 {
@@ -15,9 +15,9 @@ namespace Win8.Core.Helpers
         {
             WebBrowserTask browseWeb = new WebBrowserTask
             {
-                Uri = address
+                //Uri = address
             };
-            TaskHelper.SafeShow(browseWeb.Show);
+            //TaskHelper.SafeShow(browseWeb.Show);
         }
     }
 }

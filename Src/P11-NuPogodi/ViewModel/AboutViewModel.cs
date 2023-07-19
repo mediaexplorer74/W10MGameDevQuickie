@@ -2,8 +2,8 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Win8.Core.Helpers;
-using Win8.Core.Resources;
 using Win8.Core.Services;
+using Windows.UI.Xaml;
 
 namespace GameManager.ViewModel
 {
@@ -15,7 +15,6 @@ namespace GameManager.ViewModel
         }
         private AboutResources loc;
 
-        #region Info
 
         public string AppName
         {
@@ -52,8 +51,7 @@ namespace GameManager.ViewModel
             get { return AppHelper.IsTrial ? Visibility.Visible : Visibility.Collapsed; }
         }
 
-        #endregion
-
+ 
         private readonly IInfoService infoService;
 
         /// <summary>
@@ -66,7 +64,7 @@ namespace GameManager.ViewModel
             InitializeCommands();
         }
 
-        #region Commands
+       // Commands
 
         private void InitializeCommands()
         {
@@ -74,9 +72,11 @@ namespace GameManager.ViewModel
             BuyCmd = new RelayCommand(MarketplaceHelper.ShowApplicationOnMarketplace);
             RateCmd = new RelayCommand(MarketplaceHelper.ShowApplicationRating);
             MoreAppsCmd = new RelayCommand(() => MarketplaceHelper.ShowAuthorOnMarketplace(infoService.AuthorName));
-            FeedbackCmd = new RelayCommand(() => EmailHelper.Send(AuthorEmail, AppName, AboutResources.FeedbackMessage));
+            FeedbackCmd = new RelayCommand(() => EmailHelper.Send(AuthorEmail,
+                AppName, AboutResources.FeedbackMessage));
             ShowTwitterCmd = new RelayCommand(() => WebHelper.NavigateTo(infoService.AuthorTwitter));
-            ShareCmd = new RelayCommand(() => ShareHelper.ShareLink(infoService.AppMarketplaceLink, infoService.AppName, AboutResources.ShareMessage));
+            ShareCmd = new RelayCommand(() => ShareHelper.ShareLink(infoService.AppMarketplaceLink, infoService.AppName, 
+                AboutResources.ShareMessage));
         }
 
         // button commands
@@ -87,6 +87,5 @@ namespace GameManager.ViewModel
         public ICommand ShowTwitterCmd { get; private set; }
         public ICommand FeedbackCmd { get; private set; }
 
-        #endregion
     }
 }

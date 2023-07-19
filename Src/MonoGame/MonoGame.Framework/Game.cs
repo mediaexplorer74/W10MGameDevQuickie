@@ -244,7 +244,8 @@ namespace Microsoft.Xna.Framework
             set { _isFixedTimeStep = value; }
         }
 
-        public GameServiceContainer Services {
+        public GameServiceContainer Services 
+        {
             get { return _services; }
         }
 

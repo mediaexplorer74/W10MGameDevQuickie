@@ -14,7 +14,7 @@ namespace GameManager
 
         public GameManager()
         {
-            _font = Glob.Content.Load<SpriteFont>("font");
+            _font = Glob.Content.Load<SpriteFont>("TextFont");//("font");
 
             _timer = new(
                 Glob.Content.Load<Texture2D>("timer"),

@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Windows.Media;
-using Microsoft.Phone.Shell;
+using System.Reflection;
+//using System.Windows.Media;
+//using Microsoft.Phone.Shell;
+using Microsoft.Xna.Framework;
 
 namespace Win8.Core.Tasks.Wp8Interop
 {

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Threading;
+using Microsoft.Xna.Framework;
+//using System.Windows.Controls;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Threading;
 using Microsoft.Xna.Framework.Input.Touch;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace Win8.Core.Gestures
 {
@@ -41,10 +45,12 @@ namespace Win8.Core.Gestures
         private static bool _flicked;
         private static bool _isDragging;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification="Need static ctor for more than instantiation")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", 
+            Justification="Need static ctor for more than instantiation")]
         static GestureListener()
         {
-            Touch.FrameReported += OnTouchFrameReported; 
+            //Microsoft.Xna.Framework.Input.Touch.FrameReported += OnTouchFrameReported; 
             
             TouchPanel.EnabledGestures =
                 GestureType.Tap |
@@ -56,8 +62,16 @@ namespace Win8.Core.Gestures
                 GestureType.Pinch |
                 GestureType.PinchComplete;
 
-            _timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(100) };
+            _timer = new DispatcherTimer() 
+            { 
+                Interval = TimeSpan.FromMilliseconds(1000) // 100 
+            };
             _timer.Tick += OnTimerTick;
+        }
+
+        private static void OnTimerTick(object sender, object e)
+        {
+            //throw new NotImplementedException();
         }
 
         /// <summary>
@@ -65,11 +79,12 @@ namespace Win8.Core.Gestures
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void OnTouchFrameReported(object sender, TouchFrameEventArgs e)
+        private static void OnTouchFrameReported(object sender, EventArgs e)
         {
             bool newIsInTouch = false;
             Point gestureOrigin = new Point(0, 0);
 
+            /*
             foreach (TouchPoint point in e.GetTouchPoints(null))
             {
                 if (point.Action != TouchAction.Up)
@@ -79,6 +94,7 @@ namespace Win8.Core.Gestures
                     break;
                 }
             }
+            */
 
             if (!_isInTouch && newIsInTouch)
             {
@@ -114,13 +130,20 @@ namespace Win8.Core.Gestures
         /// </summary>
         private static void TouchStart()
         {
-            _cumulativeDelta.X = _cumulativeDelta.Y = _cumulativeDelta2.X = _cumulativeDelta2.Y = 0;
+            _cumulativeDelta.X = _cumulativeDelta.Y = 
+                _cumulativeDelta2.X = _cumulativeDelta2.Y = 0;
+
             _finalVelocity.X = _finalVelocity.Y = 0;
             _isDragging = _flicked = false;
-            _elements = new List<UIElement>(VisualTreeHelper.FindElementsInHostCoordinates(_gestureOrigin, Application.Current.RootVisual));
-            _gestureOriginChanged = false;
+           // _elements = new List<UIElement>(
+           //     VisualTreeHelper.FindElementsInHostCoordinates(
+           //         _gestureOrigin, /*Application.Current.RootVisual*/default));
+           // _gestureOriginChanged = false;
             
-            RaiseGestureEvent((helper) => helper.GestureBegin, () => new GestureEventArgs(_gestureOrigin, _gestureOrigin), false);
+            RaiseGestureEvent((helper) => helper.GestureBegin, () =>
+            {
+                return default;//new GestureEventArgs(_gestureOrigin, _gestureOrigin);
+            }, false);
             
             ProcessTouchPanelEvents();
             _timer.Start();
@@ -141,7 +164,10 @@ namespace Win8.Core.Gestures
         {
             ProcessTouchPanelEvents();
             
-            RaiseGestureEvent((helper) => helper.GestureCompleted, () => new GestureEventArgs(_gestureOrigin, _lastSamplePosition), false);
+            RaiseGestureEvent((helper) => helper.GestureCompleted, () =>
+            {
+                return default;//new GestureEventArgs(_gestureOrigin, _lastSamplePosition);
+            }, false);
 
             _elements = null;
             _gestureOrientation = null;
@@ -179,15 +205,19 @@ namespace Win8.Core.Gestures
                 Point samplePosition2 = sample.Position2.ToPoint();
 
                 Point sampleDelta = sample.Delta.ToPoint();
-                GetTranslatedDelta(ref deltaTransform, ref sampleDelta, ref _cumulativeDelta, sample.GestureType != GestureType.Flick);
+
+                GetTranslatedDelta(ref deltaTransform, ref sampleDelta, 
+                    ref _cumulativeDelta, sample.GestureType != GestureType.Flick);
                 Point sampleDelta2 = sample.Delta2.ToPoint();
-                GetTranslatedDelta(ref deltaTransform, ref sampleDelta2, ref _cumulativeDelta2, sample.GestureType != GestureType.Flick);
+
+                GetTranslatedDelta(ref deltaTransform, ref sampleDelta2, 
+                    ref _cumulativeDelta2, sample.GestureType != GestureType.Flick);
 
                 // Example: if a drag becomes a pinch, or vice-versa, we want to change the elements receiving the event
                 if (_elements == null || _gestureOriginChanged)
                 {
                     _gestureOrigin = samplePosition;
-                    _elements = new List<UIElement>(VisualTreeHelper.FindElementsInHostCoordinates(_gestureOrigin, Application.Current.RootVisual));
+                    //_elements = new List<UIElement>(VisualTreeHelper.FindElementsInHostCoordinates(_gestureOrigin, Application.Current.RootVisual));
                     _gestureOriginChanged = false;
                 }
 
@@ -293,13 +323,14 @@ namespace Win8.Core.Gestures
         {
             if (sampleDelta.X != 0 || sampleDelta.Y != 0)
             {
-                if (deltaTransform == null && Application.Current.RootVisual != null)
+                //RnD
+                if (false)//(deltaTransform == null && Application.Current.RootVisual != null)
                 {
                     deltaTransform = GetInverseRootTransformNoOffset();
                 }
                 if (deltaTransform != null)
                 {
-                    sampleDelta = deltaTransform.Transform(sampleDelta);
+                    //sampleDelta = deltaTransform.Transform(sampleDelta);
                     if (addToCumulative)
                     {
                         cumulativeDelta.X += sampleDelta.X;
@@ -311,14 +342,14 @@ namespace Win8.Core.Gestures
 
         private static GeneralTransform GetInverseRootTransformNoOffset()
         {
-            GeneralTransform transform = Application.Current.RootVisual.TransformToVisual(null).Inverse;
+            GeneralTransform transform = default;// Application.Current.RootVisual.TransformToVisual(null).Inverse;
 
             MatrixTransform matrixTransform = transform as MatrixTransform;
             if (matrixTransform != null)
             {
-                Matrix matrix = matrixTransform.Matrix; 
-                matrix.OffsetX = matrix.OffsetY = 0;
-                matrixTransform.Matrix = matrix;
+                //Matrix matrix = matrixTransform.Matrix; 
+                //matrix.OffsetX = matrix.OffsetY = 0;
+                //matrixTransform.Matrix = matrix;
             }
 
             return transform;
@@ -343,7 +374,7 @@ namespace Win8.Core.Gestures
             {
                 if (releaseMouseCapture)
                 {
-                    element.ReleaseMouseCapture();
+                    //element.ReleaseMouseCapture();
                 }
 
                 if (!handled)
@@ -353,7 +384,9 @@ namespace Win8.Core.Gestures
                         originalSource = element;
                     }
 
-                    GestureListener helper = Win8.Core.Gestures.GestureService.GetGestureListenerInternal(element, false);
+                    GestureListener helper = default;
+                        //Win8.Core.Gestures.GestureService.GetGestureListenerInternal(element, false);
+
                     if (helper != null)
                     {
                         SafeRaise.Raise(eventGetter(helper), element, () =>

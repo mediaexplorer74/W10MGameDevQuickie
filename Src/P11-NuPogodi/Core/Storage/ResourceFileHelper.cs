@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Resources;
+//using System.Windows.Resources;
 
 namespace Win8.Core.Storage
 {
@@ -19,7 +19,7 @@ namespace Win8.Core.Storage
             try
             {
                 // open the resource stream and execute action on it
-                StreamResourceInfo streamInfo = Application.GetResourceStream(path);
+                StreamResourceInfo streamInfo = default;//Application.GetResourceStream(path);
                 using (Stream fileStream = streamInfo.Stream)
                 {
                     action(fileStream);

@@ -3,13 +3,16 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+
 
 namespace Win8.Core.Helpers
 {
@@ -24,7 +27,7 @@ namespace Win8.Core.Helpers
     {
         private static bool visible;
         private static double opacity = 0.25;
-        private static Color color = Colors.Red;
+        private static Windows.UI.Color color = Colors.Red;
         private static List<Rectangle> squares;
         private static Grid grid;
 
@@ -45,7 +48,7 @@ namespace Win8.Core.Helpers
         /// <summary>
         /// Gets or sets the color to use for the grid's squares.
         /// </summary>
-        public static Color Color
+        public static Windows.UI.Color Color
         {
             get { return color; }
             set
@@ -79,11 +82,11 @@ namespace Win8.Core.Helpers
                 SolidColorBrush brush = new SolidColorBrush(color);
                 foreach (Rectangle square in squares)
                 {
-                    square.Fill = brush;
+                    //square.Fill = brush;
                 }
                 if (grid != null)
                 {
-                    grid.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+                    grid.Visibility = Visibility.Visible;//visible ? Visibility.Visible : Visibility.Collapsed;
                     grid.Opacity = opacity;
                 }
             }
@@ -100,10 +103,10 @@ namespace Win8.Core.Helpers
         {
             squares = new List<Rectangle>();
 
-            Frame frame = Application.Current.RootVisual as Frame;
+            Frame frame = default;//Application.Current.RootVisual as Frame;
             if (frame == null || VisualTreeHelper.GetChildrenCount(frame) == 0)
             {
-                Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
+                //Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
                 return;
             }
 
@@ -117,17 +120,17 @@ namespace Win8.Core.Helpers
                 UIElement content = childAsBorder.Child;
                 if (content == null)
                 {
-                    Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
+                    //Windows.Management.Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
                     return;
                 }
                 childAsBorder.Child = null;
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    Grid newGrid = new Grid();
-                    childAsBorder.Child = newGrid;
-                    newGrid.Children.Add(content);
-                    PrepareGrid(frame, newGrid);
-                });
+                //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                //{
+                 //   Grid newGrid = new Grid();
+                //    childAsBorder.Child = newGrid;
+                //    newGrid.Children.Add(content);
+                //    PrepareGrid(frame, newGrid);
+                //});
             }
             else if (childAsGrid != null)
             {
@@ -169,13 +172,13 @@ namespace Win8.Core.Helpers
                     {
                         Width = 25,
                         Height = 25,
-                        VerticalAlignment = VerticalAlignment.Top,
-                        HorizontalAlignment = HorizontalAlignment.Left,
-                        Margin = new Thickness(x, y, 0, 0),
-                        IsHitTestVisible = false,
-                        Fill = brush,
+                        //VerticalAlignment = VerticalAlignment.Top,
+                       // HorizontalAlignment = HorizontalAlignment.Left,
+                        //Margin = new Thickness(x, y, 0, 0),
+                        //IsHitTestVisible = false,
+                        //Fill = brush,
                     };
-                    grid.Children.Add(rect);
+                    //grid.Children.Add(rect);
                     squares.Add(rect);
                 }
             }

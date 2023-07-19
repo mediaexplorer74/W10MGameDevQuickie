@@ -20,7 +20,9 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 ![TopDownShooter](Images/P02.png)
 ![Land](Images/P03.png)
 ![Infart](Images/P10.png)
+![NuPogodi(Images/P11.png)
 ![InfartonW10M](Images/W10M.png)
+
 
 ## Features
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
@@ -32,7 +34,7 @@ Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 - P05 project is only in draft state/mode (not complete at all!)
 - P09 project is only some dirty experiments with TileSharp & tesserae for far future tile mapping deals :)
 - P10 added as *astoria + uwp + orchestrators* technics demo ( my fork of https://github.com/FrancescoBonizzi/InfartGame )
-- P11 added as *uwp + mvvmlight* technics rnd (draft at now)
+- P11 added as *uwp + mvvmlight* technics rnd (my "fork/port" of https://github.com/martinsuchan/WP.NuPogodi)
 - P12 added as *astoria + uwp + orchestrators* technics RnD (draft at now)
 
 ## Bugs / Errors

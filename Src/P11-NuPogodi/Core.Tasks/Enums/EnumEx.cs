@@ -17,7 +17,7 @@ namespace Win8.Core.Tasks.Enums
             where T : struct, IConvertible
         {
             Type type = typeof(T);
-            if (!type.IsEnum)
+            if (!type.GetTypeInfo().IsEnum)
             {
                 throw new InvalidOperationException("GetEnumValues");
             }
@@ -32,7 +32,7 @@ namespace Win8.Core.Tasks.Enums
         public static List<T> GetFlagsList<T>(int enums)
             where T : struct, IConvertible
         {
-            if (!typeof(T).IsEnum)
+            if (!typeof(T).GetTypeInfo().IsEnum)
             {
                 throw new Exception("Type given must be an Enum");
             }

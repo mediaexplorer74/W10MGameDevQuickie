@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using Microsoft.Phone.Shell;
 
 namespace Win8.Core.Tasks.Wp8Interop
 {
@@ -12,7 +11,8 @@ namespace Win8.Core.Tasks.Wp8Interop
 
         public static void Create(Uri uri, ShellTileData tiledata, bool usewide)
         {
-            MethodInfo createmethod = ShellTileType.GetMethod("Create", new[] { typeof(Uri), typeof(ShellTileData), typeof(bool) });
+            MethodInfo createmethod = ShellTileType.GetMethod("Create", new[] { 
+                typeof(Uri), typeof(ShellTileData), typeof(bool) });
             createmethod.Invoke(null, new object[] {uri, tiledata, usewide});
         }
 

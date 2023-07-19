@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Phone.Tasks;
+//using Microsoft.Phone.Tasks;
 
 namespace Win8.Core.Helpers
 {
@@ -16,13 +16,13 @@ namespace Win8.Core.Helpers
         /// <param name="message">Message content</param>
         public static void ShareLink(Uri linkUri, string title, string message)
         {
-            ShareLinkTask shareLinkTask = new ShareLinkTask
-            {
-                LinkUri = linkUri,
-                Title = title,
-                Message = message,
-            };
-            TaskHelper.SafeShow(shareLinkTask.Show);
+            //ShareLinkTask shareLinkTask = new ShareLinkTask
+            //{
+            //    LinkUri = linkUri,
+            //    Title = title,
+            //    Message = message,
+            //};
+            //TaskHelper.SafeShow(shareLinkTask.Show);
         }
 
         /// <summary>

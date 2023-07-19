@@ -1,15 +1,13 @@
-using Microsoft.Devices;
-using Microsoft.Practices.ServiceLocation;
+// GameController
+
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using GameManager.AppLogic.Model;
 using GameManager.AppLogic.Model.Enums;
-using GameManager.AppLogic.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Win8.Core.Helpers;
-using Win8.Core.Services;
+using System.Diagnostics;
 
 namespace GameManager.AppLogic
 {
@@ -62,7 +60,8 @@ namespace GameManager.AppLogic
 
         public void LoadAbout()
         {
-            ServiceLocator.Current.GetInstance<INavigationService>().NavigateTo(new Uri("/NuPogodi;component/Pages/AboutPage.xaml", UriKind.Relative));
+            //ServiceLocator.Current.GetInstance<INavigationService>().NavigateTo(
+            //    new Uri("/NuPogodi;component/Pages/AboutPage.xaml", UriKind.Relative));
         }
 
         public void ToggleSound()
@@ -133,7 +132,7 @@ namespace GameManager.AppLogic
             State = GameState.Running;
         }
 
-        #region Level manager
+        // Level manager
 
         readonly Random r = new Random();
         private int BrokenEggState;
@@ -202,8 +201,13 @@ namespace GameManager.AppLogic
                             sound = GameSounds.GameOver;
                             try
                             {
-                                Guide.BeginShowMessageBox(AppResources.TrialTitle, string.Format(AppResources.TrialMessage, Common.TrialScoreLimit),
-                                                          new[] { AppResources.TrialBuy, AppResources.TrialNotNow }, 0, MessageBoxIcon.Alert, TrialResult, null);
+                               // Guide.BeginShowMessageBox(AppResources.TrialTitle,
+                               //     string.Format(AppResources.TrialMessage,
+                               //     Common.TrialScoreLimit),
+                               //         new[] { 
+                               //             AppResources.TrialBuy,
+                               //             AppResources.TrialNotNow }, 0,
+                               //         MessageBoxIcon.Alert, TrialResult, null);
                             }
                             catch (Exception e)
                             {
@@ -221,7 +225,8 @@ namespace GameManager.AppLogic
                         EggDrops += Zajic ? 1 : 2;
                         EggDrops =  Math.Min(EggDrops, Common.MaxBrokenEggs);
                         Vejce.Clear();
-                        bool left = egg.Direction == Direction.UpperLeft || egg.Direction == Direction.BottomLeft;
+                        bool left = egg.Direction == Direction.UpperLeft 
+                            || egg.Direction == Direction.BottomLeft;
 
                         BrokenEgg = left ? -1 : 1;
                         BrokenEggState = 1;
@@ -290,10 +295,13 @@ namespace GameManager.AppLogic
 
         private List<Direction> GetrAvailableBooths()
         {
-            List<Direction> booths = new List<Direction>{Direction.UpperLeft, Direction.UpperRight, Direction.BottomRight, Direction.BottomLeft};
+            List<Direction> booths = new List<Direction>{
+                Direction.UpperLeft, Direction.UpperRight,
+                Direction.BottomRight, Direction.BottomLeft};
             foreach (Direction booth in booths.ToArray())
             {
-                if (booth == LastPickDirection || Vejce.Any(v => v.Direction == booth && (v.State == 0 || v.State == 1)))
+                if (booth == LastPickDirection || Vejce.Any(
+                    v => v.Direction == booth && (v.State == 0 || v.State == 1)))
                 {
                     booths.Remove(booth);
                 }
@@ -301,7 +309,8 @@ namespace GameManager.AppLogic
             // keep max 3 occupied booths in mode a
             if (Mode == GameMode.ModeA && booths.Count == 4)
             {
-                Direction booth = booths.FirstOrDefault(b => Vejce.Count(v => v.Direction == b) == 0);
+                Direction booth = booths.FirstOrDefault(
+                    b => Vejce.Count(v => v.Direction == b) == 0);
                 if (booth != null) booths.Remove(booth);
             }
             return booths;
@@ -370,14 +379,14 @@ namespace GameManager.AppLogic
 
         private void Vibrate(int ms)
         {
-            VibrateController.Default.Start(TimeSpan.FromMilliseconds(ms));
+           //VibrateController.Default.Start(TimeSpan.FromMilliseconds(ms));
         }
 
         private void TrialResult(IAsyncResult result)
         {
             try
             {
-                int? index = Guide.EndShowMessageBox(result);
+                int? index = default;//Guide.EndShowMessageBox(result);
 
                 // send email with error message
                 if (index.HasValue && index.Value == 0)
@@ -385,12 +394,12 @@ namespace GameManager.AppLogic
                     MarketplaceHelper.ShowApplicationOnMarketplace();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
+                Debug.WriteLine(ex);
             }
         }
 
-        #endregion
+      
     }
 }

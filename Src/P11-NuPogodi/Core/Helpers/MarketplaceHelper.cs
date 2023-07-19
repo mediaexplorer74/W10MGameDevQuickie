@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using Microsoft.Phone.Tasks;
+//using Microsoft.Phone.Tasks;
 
 namespace Win8.Core.Helpers
 {
@@ -79,8 +79,8 @@ namespace Win8.Core.Helpers
         {
             MarketplaceDetailTask marketplaceDetail = new MarketplaceDetailTask
             {
-                ContentType = MarketplaceContentType.Applications,
-                ContentIdentifier = searchQuery,
+                //ContentType = MarketplaceContentType.Applications,
+                //ContentIdentifier = searchQuery,
             };
             TaskHelper.SafeShow(marketplaceDetail.Show);
         }
@@ -92,7 +92,7 @@ namespace Win8.Core.Helpers
         {
             MarketplaceDetailTask marketplaceDetail = new MarketplaceDetailTask
             {
-                ContentType = MarketplaceContentType.Applications
+                //ContentType = MarketplaceContentType.Applications
             };
             TaskHelper.SafeShow(marketplaceDetail.Show);
         }

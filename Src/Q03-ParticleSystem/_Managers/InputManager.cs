@@ -14,7 +14,9 @@ namespace GameManager
         {
             var mouseState = Mouse.GetState();
 
-            HasClicked = mouseState.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released;
+            HasClicked = mouseState.LeftButton == ButtonState.Pressed 
+                && _lastMouseState.LeftButton == ButtonState.Released;
+
             MousePosition = mouseState.Position.ToVector2();
 
             _lastMouseState = mouseState;

@@ -13,13 +13,13 @@ namespace Win8.Core.Services
     /// <summary>
     /// Default implementation of the navigation service for Windows Phone 7.
     /// </summary>
-    public class NavigationService : INavigationService
+    public class NavigationService//: INavigationService
     {
         private Frame mainFrame;
 
         public event NavigatingCancelEventHandler Navigating;
 
-        event NavigatingCancelEventHandler INavigationService.Navigating
+        event NavigatingCancelEventHandler INavigationService
         {
             add
             {
@@ -32,11 +32,16 @@ namespace Win8.Core.Services
             }
         }
 
+      
+
         public void NavigateTo(Uri pageUri)
         {
             if (EnsureMainFrame())
             {
-                TaskHelper.SafeShow(() => mainFrame.Navigate(pageUri));
+                TaskHelper.SafeShow(() =>
+                {
+                    //mainFrame.Navigate(pageUri);
+                });
             }
         }
 
@@ -52,7 +57,7 @@ namespace Win8.Core.Services
         {
             if (EnsureMainFrame() && mainFrame.BackStack.Any())
             {
-                mainFrame.RemoveBackEntry();
+                //mainFrame.RemoveBackEntry();
                 return true;
             }
             return false;
@@ -65,7 +70,7 @@ namespace Win8.Core.Services
                 return true;
             }
 
-            mainFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+            mainFrame = default;//Application.Current.RootVisual as PhoneApplicationFrame;
 
             if (mainFrame != null)
             {

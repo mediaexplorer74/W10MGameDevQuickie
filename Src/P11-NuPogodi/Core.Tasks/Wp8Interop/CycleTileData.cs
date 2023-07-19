@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Phone.Shell;
+using System.Reflection;
+//using Microsoft.Phone.Shell;
 
 namespace Win8.Core.Tasks.Wp8Interop
 {
@@ -58,8 +59,10 @@ namespace Win8.Core.Tasks.Wp8Interop
         }
 
         public static readonly Type CycleTileDataType = Utils.IsWP8
-            ? Type.GetType("Microsoft.Phone.Shell.CycleTileData, Microsoft.Phone, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e")
-            : Type.GetType("Microsoft.Phone.Shell.CycleTileData, Microsoft.Phone");
+            ? Type.GetType(
+                "Microsoft.Phone.Shell.CycleTileData, Microsoft.Phone, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e")
+            : Type.GetType(
+                "Microsoft.Phone.Shell.CycleTileData, Microsoft.Phone");
 
         public CycleTileData()
         {

@@ -30,7 +30,7 @@ namespace Win8.Core.Storage
                 {
                     stream.Seek(0, SeekOrigin.Begin);
                     stream.CopyTo(fileStream);
-                    fileStream.Close();
+                    fileStream.Dispose();//.Close();
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
-using System.Windows.Data;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 
 namespace Win8.Core.MultiBinding
 {
@@ -8,14 +9,15 @@ namespace Win8.Core.MultiBinding
     /// </summary>
     public class BindingUtil
     {
-        #region DataContextPiggyBack attached property
+        //DataContextPiggyBack attached property
 
         /// <summary>
         /// DataContextPiggyBack Attached Dependency Property, used as a mechanism for exposing
         /// DataContext changed events
         /// </summary>
         public static readonly DependencyProperty DataContextPiggyBackProperty =
-            DependencyProperty.RegisterAttached("DataContextPiggyBack", typeof (object), typeof (BindingUtil),
+            DependencyProperty.RegisterAttached("DataContextPiggyBack", 
+                typeof (object), typeof (BindingUtil),
                 new PropertyMetadata(null, OnDataContextPiggyBackChanged));
 
         public static object GetDataContextPiggyBack(DependencyObject d)
@@ -31,7 +33,8 @@ namespace Win8.Core.MultiBinding
         /// <summary>
         /// Handles changes to the DataContextPiggyBack property.
         /// </summary>
-        private static void OnDataContextPiggyBackChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnDataContextPiggyBackChanged(DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement targetElement = d as FrameworkElement;
 
@@ -41,9 +44,9 @@ namespace Win8.Core.MultiBinding
             relay.SetDataContext(targetElement.DataContext);
         }
 
-        #endregion
+  
 
-        #region MultiBindings attached property
+        //MultiBindings attached property
 
         public static MultiBindings GetMultiBindings(DependencyObject obj)
         {
@@ -57,12 +60,14 @@ namespace Win8.Core.MultiBinding
 
         public static readonly DependencyProperty MultiBindingsProperty =
             DependencyProperty.RegisterAttached("MultiBindings",
-                typeof (MultiBindings), typeof (BindingUtil), new PropertyMetadata(null, OnMultiBindingsChanged));
+                typeof (MultiBindings), typeof (BindingUtil), 
+                new PropertyMetadata(null, OnMultiBindingsChanged));
 
         /// <summary>
         /// Invoked when the MultiBinding property is set on a framework element
         /// </summary>
-        private static void OnMultiBindingsChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs e)
+        private static void OnMultiBindingsChanged(DependencyObject depObj, 
+            DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement targetElement = depObj as FrameworkElement;
 
@@ -76,6 +81,6 @@ namespace Win8.Core.MultiBinding
             bindings.Initialize(targetElement);
         }
 
-        #endregion
+  
     }
 }

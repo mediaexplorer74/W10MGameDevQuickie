@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Windows.UI.Xaml;
 
 namespace Win8.Core.Gestures
 {

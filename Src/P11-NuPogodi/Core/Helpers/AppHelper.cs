@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Media;
+//using System.Windows.Media;
 using System.Xml.Linq;
-using Microsoft.Phone.Info;
-using Microsoft.Xna.Framework.GamerServices;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
+//using Microsoft.Phone.Info;
+//using Microsoft.Xna.Framework.GamerServices;
 
 namespace Win8.Core.Helpers
 {
@@ -31,7 +33,7 @@ namespace Win8.Core.Helpers
             {
                 if (!isBlackTheme.HasValue)
                 {
-                    SolidColorBrush bg = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
+                    SolidColorBrush bg = default;//Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
                     isBlackTheme = bg != null && bg.Color == Colors.Black;
                 }
                 return isBlackTheme.Value;
@@ -50,9 +52,9 @@ namespace Win8.Core.Helpers
                 {
 #if DEBUG
                     // NOTE trial mode emulation is broken on WP8, so we use fixed trial mode in Debug mode
-                    isTrial = true;
+                    isTrial = false;//true;
 #else
-                    isTrial = Guide.IsTrialMode;
+                    isTrial = false;//Guide.IsTrialMode;
 #endif
                 }
                 return isTrial.Value;
@@ -72,8 +74,8 @@ namespace Win8.Core.Helpers
                     try
                     {
                         // check the working set limit 
-                        long result = (long)DeviceExtendedProperties.GetValue("ApplicationWorkingSetLimit");
-                        isLowMemDevice = result < 94371840L;
+                        long result = 0;//(long)DeviceExtendedProperties.GetValue("ApplicationWorkingSetLimit");
+                        isLowMemDevice = false;//result < 94371840L;
                     }
                     catch (ArgumentOutOfRangeException)
                     {

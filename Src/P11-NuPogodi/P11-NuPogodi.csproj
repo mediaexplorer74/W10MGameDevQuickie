@@ -115,29 +115,29 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppLogic\Common.cs" />
-    <Compile Include="AppLogic\Components\BackgroundComponent.cs" />
-    <Compile Include="AppLogic\Components\ButtonComponent.cs" />
-    <Compile Include="AppLogic\Components\ChickenComponent.cs" />
-    <Compile Include="AppLogic\Components\EggComponent.cs" />
-    <Compile Include="AppLogic\Components\GameComponent.cs" />
-    <Compile Include="AppLogic\Components\ItemComponent.cs" />
-    <Compile Include="AppLogic\Components\LevelComponent.cs" />
-    <Compile Include="AppLogic\Components\LifeComponent.cs" />
-    <Compile Include="AppLogic\Components\ScoreComponent.cs" />
-    <Compile Include="AppLogic\Components\WolfComponent.cs" />
-    <Compile Include="AppLogic\Components\ZajicComponent.cs" />
-    <Compile Include="AppLogic\GameController.cs" />
-    <Compile Include="AppLogic\Model\Egg.cs" />
-    <Compile Include="AppLogic\Model\Enums\Direction.cs" />
-    <Compile Include="AppLogic\Model\Enums\GameMode.cs" />
-    <Compile Include="AppLogic\Model\Enums\GameState.cs" />
-    <Compile Include="AppLogic\Model\GameButtons.cs" />
-    <Compile Include="AppLogic\Model\GameSound.cs" />
-    <Compile Include="AppLogic\Model\Item.cs" />
-    <Compile Include="AppLogic\Resources\AppResources.Designer.cs" />
-    <Compile Include="AppLogic\Settings.cs" />
-    <Compile Include="AppLogic\SoundEffectManager.cs" />
+    <Compile Include="_Managers\Common.cs" />
+    <Compile Include="_Managers\Components\AppResources.cs" />
+    <Compile Include="_Managers\Components\BackgroundComponent.cs" />
+    <Compile Include="_Managers\Components\ButtonComponent.cs" />
+    <Compile Include="_Managers\Components\ChickenComponent.cs" />
+    <Compile Include="_Managers\Components\EggComponent.cs" />
+    <Compile Include="_Managers\Components\GameComponent.cs" />
+    <Compile Include="_Managers\Components\ItemComponent.cs" />
+    <Compile Include="_Managers\Components\LevelComponent.cs" />
+    <Compile Include="_Managers\Components\LifeComponent.cs" />
+    <Compile Include="_Managers\Components\ScoreComponent.cs" />
+    <Compile Include="_Managers\Components\WolfComponent.cs" />
+    <Compile Include="_Managers\Components\ZajicComponent.cs" />
+    <Compile Include="_Managers\GameController.cs" />
+    <Compile Include="_Models\Egg.cs" />
+    <Compile Include="_Models\Enums\Direction.cs" />
+    <Compile Include="_Models\Enums\GameMode.cs" />
+    <Compile Include="_Models\Enums\GameState.cs" />
+    <Compile Include="_Models\GameButtons.cs" />
+    <Compile Include="_Models\GameSound.cs" />
+    <Compile Include="_Models\Item.cs" />
+    <Compile Include="_Managers\Settings.cs" />
+    <Compile Include="_Managers\SoundEffectManager.cs" />
     <Compile Include="Core.Tasks\Attributes\AnnotationAttributes.cs" />
     <Compile Include="Core.Tasks\Attributes\SensitiveAttribute.cs" />
     <Compile Include="Core.Tasks\Enums\DateTimeEx.cs" />
@@ -155,7 +155,10 @@
     <Compile Include="Core.Tasks\Wp8Interop\CycleTileData.cs" />
     <Compile Include="Core.Tasks\Wp8Interop\FlipTileData.cs" />
     <Compile Include="Core.Tasks\Wp8Interop\IconicTileData.cs" />
+    <Compile Include="Core.Tasks\Wp8Interop\ShellTile.cs" />
+    <Compile Include="Core.Tasks\Wp8Interop\ShellTileData.cs" />
     <Compile Include="Core.Tasks\Wp8Interop\ShellTileExt.cs" />
+    <Compile Include="Core.Tasks\Wp8Interop\StandardTileData.cs" />
     <Compile Include="Core.Tasks\Wp8Interop\TilesCreator.cs" />
     <Compile Include="Core.Tasks\Wp8Interop\Utils.cs" />
     <Compile Include="Core\Converters\BooleanNegationConverter.cs" />
@@ -169,15 +172,23 @@
     <Compile Include="Core\Gestures\GestureService.cs" />
     <Compile Include="Core\Gestures\MathHelpers.cs" />
     <Compile Include="Core\Gestures\SafeRaise.cs" />
+    <Compile Include="Core\Gestures\TouchPoint.cs" />
     <Compile Include="Core\Helpers\AppHelper.cs" />
     <Compile Include="Core\Helpers\AppLaunchType.cs" />
     <Compile Include="Core\Helpers\DebugHelper.cs" />
+    <Compile Include="Core\Helpers\EmailComposeTask.cs" />
     <Compile Include="Core\Helpers\EmailHelper.cs" />
+    <Compile Include="Core\Helpers\MarketplaceDetailTask.cs" />
     <Compile Include="Core\Helpers\MarketplaceHelper.cs" />
+    <Compile Include="Core\Helpers\MarketplaceReviewTask.cs" />
+    <Compile Include="Core\Helpers\MarketplaceSearchTask.cs" />
     <Compile Include="Core\Helpers\MetroGridHelper.cs" />
     <Compile Include="Core\Helpers\ShareHelper.cs" />
+    <Compile Include="Core\Helpers\ShareStatusTask.cs" />
+    <Compile Include="Core\Helpers\SmsComposeTask.cs" />
     <Compile Include="Core\Helpers\SMSHelper.cs" />
     <Compile Include="Core\Helpers\TaskHelper.cs" />
+    <Compile Include="Core\Helpers\WebBrowserTask.cs" />
     <Compile Include="Core\Helpers\WebHelper.cs" />
     <Compile Include="Core\MultiBinding\BindingUtil.cs" />
     <Compile Include="Core\MultiBinding\IMultiValueConverter.cs" />
@@ -193,6 +204,7 @@
     <Compile Include="Core\Services\ViewModelHelper.cs" />
     <Compile Include="Core\Storage\IsolatedStorageFileHelper.cs" />
     <Compile Include="Core\Storage\ResourceFileHelper.cs" />
+    <Compile Include="Core\Storage\StreamResourceInfo.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -200,8 +212,12 @@
     <Compile Include="Glob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\InfoService.cs" />
+    <Compile Include="ViewModel\AboutResources.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="_Managers\GameManager.cs" />
+    <Compile Include="_Managers\InputManager.cs" />
+    <Compile Include="_Models\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -291,25 +307,28 @@
     <Content Include="Content\images\zajic.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\egg_catch.mp3">
+    <Content Include="Content\sound\egg_catch.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\egg_drop.mp3">
+    <Content Include="Content\sound\egg_drop.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\egg_move1.mp3">
+    <Content Include="Content\sound\egg_move1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\egg_move2.mp3">
+    <Content Include="Content\sound\egg_move2.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\egg_move3.mp3">
+    <Content Include="Content\sound\egg_move3.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\egg_move4.mp3">
+    <Content Include="Content\sound\egg_move4.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sound\game_over.mp3">
+    <Content Include="Content\sound\game_over.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\timer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.bmp">
@@ -359,6 +378,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fonts\font.spritefont">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Content\Content.mgcb" />
+    <Content Include="Content\TextFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="P11-NuPogodi_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

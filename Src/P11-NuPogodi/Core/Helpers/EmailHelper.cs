@@ -1,4 +1,4 @@
-using Microsoft.Phone.Tasks;
+//using Microsoft.Phone.Tasks;
 
 namespace Win8.Core.Helpers
 {

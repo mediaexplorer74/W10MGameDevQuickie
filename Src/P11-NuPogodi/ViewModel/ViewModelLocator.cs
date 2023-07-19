@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Ioc;
+//using Microsoft.Practices.ServiceLocation;
 using GameManager.Services;
 using Win8.Core.Services;
 
@@ -24,7 +25,8 @@ namespace GameManager.ViewModel
 
             SimpleIoc.Default.Register<IInfoService, InfoService>();
 
-            SimpleIoc.Default.Register<INavigationService, NavigationService>();
+            //RnD
+            //SimpleIoc.Default.Register<INavigationService, NavigationService>();
 
             SimpleIoc.Default.Register<AboutViewModel>();
         }

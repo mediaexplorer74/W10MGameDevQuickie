@@ -112,10 +112,11 @@ namespace FbonizziMonoGame.Extensions
             Sprite sprite,
             Color? color = null)
         {
+            //RnD
             spriteBatch.Draw(
-                sprite.Sheet,
+                default,//sprite.Sheet,
                 Vector2.Zero,
-                sprite.SourceRectangle,
+                default,//sprite.SourceRectangle,
                 color ?? Color.White);
         }
 
@@ -140,7 +141,11 @@ namespace FbonizziMonoGame.Extensions
                 spatialObject.Rotation,
                 spatialObject.Origin,
                 spatialObject.Scale,
-                spatialObject.IsFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+                spatialObject.IsFlipped 
+                  ? 
+                  SpriteEffects.FlipHorizontally 
+                  : 
+                  SpriteEffects.None,
                 spatialObject.LayerDepth);
 
             if (isDebugModeEnabled)

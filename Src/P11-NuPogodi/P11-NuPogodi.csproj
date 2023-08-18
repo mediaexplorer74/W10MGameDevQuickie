@@ -26,10 +26,14 @@
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
-    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
-    <PackageCertificateThumbprint>A2C3A1AB698534BA652AAFB7D3B56E03E3FB73B8</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <!--PackageCertificateThumbprint>
     </PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>

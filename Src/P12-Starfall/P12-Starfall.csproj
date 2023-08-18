@@ -45,6 +45,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks-->
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -159,7 +160,7 @@
     <Compile Include="Players\States\RunningState.cs" />
     <Compile Include="Players\States\StatesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StarfallBootstrap.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="StarfallGame.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -401,22 +402,46 @@
     <Content Include="Assets\WideTile.scale-150.png" />
     <Content Include="Assets\WideTile.scale-200.png" />
     <Content Include="Assets\WideTile.scale-400.png" />
-    <Content Include="Content\Music\Die.mp3">
+    <Content Include="Content\buildings_back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Music\menu.mp3">
+    <Content Include="Content\buildings_ground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Music\Running.mp3">
+    <Content Include="Content\buildings_mid.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Music\Slideshow.mp3">
+    <Content Include="Content\gameoverBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Music\TakeGem.mp3">
+    <Content Include="Content\gameTitle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Splashscreen\splashscreen.png">
+    <Content Include="Content\manina.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menuBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Die.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\menu.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Running.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\Slideshow.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\TakeGem.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\scoreBackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\splashscreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SpriteSheets\backgrounds.png">
@@ -435,6 +460,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SpriteSheets\protips.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\textures.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.bmp">
@@ -483,12 +511,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Fonts\Starfall-Regular.spritefont">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fonts\Starfall-V3.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Music\Effects.flp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -516,8 +538,12 @@
     <None Include="AssetsWork\_TextureProject\Icon.psd" />
     <None Include="AssetsWork\_TextureProject\others.tps" />
     <None Include="AssetsWork\_TextureProject\protips.tps" />
+    <Content Include="Content\TextFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Starfall_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

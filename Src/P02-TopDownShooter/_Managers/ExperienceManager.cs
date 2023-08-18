@@ -17,7 +17,7 @@ namespace GameManager
         public static void Init(Texture2D tex)
         {
             _texture = tex;
-            _font = Glob.Content.Load<SpriteFont>("font");
+            _font = Glob.Content.Load<SpriteFont>("TextFont");//("font");
             _position = new(Glob.Bounds.X - (2 * _texture.Width), 0);
         }
 

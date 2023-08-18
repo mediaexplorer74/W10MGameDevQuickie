@@ -159,9 +159,8 @@ namespace Microsoft.Xna.Framework.Graphics
                 throw new ArgumentNullException("text");
             if (!_beginCalled)
             {
-                //throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
-                return;
-            }
+                throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
+                            }
         }
 
         void CheckValid(SpriteFont spriteFont, StringBuilder text)

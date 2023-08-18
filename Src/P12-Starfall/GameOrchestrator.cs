@@ -53,6 +53,15 @@ namespace GameManager
         private Action _afterTransitionAction;
 
         private RenderTarget2D _renderTarget;
+        private Func<GameHUD> gameFactory;
+        private Func<MainMenuPage> menuFactory;
+        private Func<ScorePage> scoreFactory;
+        private GraphicsDevice graphicsDevice;
+        private AssetsLoader assetsLoader;
+        private ISettingsRepository settingsRepository;
+        private IScreenTransformationMatrixProvider matrixScaleProvider;
+        private IWebPageOpener webPageOpener;
+        private ILocalizedStringsRepository localizedStringsRepository;
         private readonly IScreenTransformationMatrixProvider _matrixScaleProvider;
 
         public bool ShouldEndApplication { get; private set; }
@@ -79,7 +88,7 @@ namespace GameManager
             _incipitFactory = incipitFactory ?? throw new ArgumentNullException(nameof(incipitFactory));
             _scoreFactory = scoreFactory ?? throw new ArgumentNullException(nameof(scoreFactory));
             _proTipsShower = proTipsShower ?? throw new ArgumentNullException(nameof(proTipsShower));
-            _webPageOpener = webPageOpener ?? throw new ArgumentNullException(nameof(webPageOpener));
+            _webPageOpener = webPageOpener;// ?? throw new ArgumentNullException(nameof(webPageOpener));
             _localizedStringsRepository = localizedStringsRepository ?? throw new ArgumentNullException(nameof(localizedStringsRepository));
             _graphicsDevice = graphicsDevice ?? throw new ArgumentNullException(nameof(graphicsDevice));
 
@@ -97,6 +106,19 @@ namespace GameManager
 
             _stateTransition = new FadeObject(_fadeDuration, Color.White);
             _stateTransition.FadeOutCompleted += _stateTransition_FadeOutCompleted;
+        }
+
+        public GameOrchestrator(Func<GameHUD> gameFactory, Func<MainMenuPage> menuFactory, Func<ScorePage> scoreFactory, GraphicsDevice graphicsDevice, AssetsLoader assetsLoader, ISettingsRepository settingsRepository, IScreenTransformationMatrixProvider matrixScaleProvider, IWebPageOpener webPageOpener, ILocalizedStringsRepository localizedStringsRepository)
+        {
+            this.gameFactory = gameFactory;
+            this.menuFactory = menuFactory;
+            this.scoreFactory = scoreFactory;
+            this.graphicsDevice = graphicsDevice;
+            this.assetsLoader = assetsLoader;
+            this.settingsRepository = settingsRepository;
+            this.matrixScaleProvider = matrixScaleProvider;
+            this.webPageOpener = webPageOpener;
+            this.localizedStringsRepository = localizedStringsRepository;
         }
 
         private void GameOrchestrator_ScaleMatrixChanged(object sender, EventArgs e)

@@ -57,7 +57,8 @@ namespace GameManager.Menu
             _matrixScaleProvider = matrixScaleProvider;
             _rateMeDialog = rateMeDialog ?? throw new ArgumentNullException(nameof(rateMeDialog));
 
-            _background = assets.Sprites["menuBackground"];
+            //RnD
+            _background = default;//assets.Sprites["menuBackground"];
             _titleText = "Starfall";
             _playText = localizedStringsRepository.Get(GameStringsLoader.PlayButtonString);
             _incipitText = localizedStringsRepository.Get(GameStringsLoader.IncipitButtonString);

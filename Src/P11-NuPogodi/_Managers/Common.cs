@@ -21,7 +21,7 @@ namespace GameManager.AppLogic
         /// <summary>
         /// Time in updates between game turns.
         /// </summary>
-        public static int UpdatesPerTurn = 5;
+        public static int UpdatesPerTurn = 50;
 
         public static int LastEggState = 4;
 

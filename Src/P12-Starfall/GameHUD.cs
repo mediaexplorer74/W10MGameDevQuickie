@@ -81,7 +81,8 @@ namespace GameManager
         {
             _jumpGemBar.Update(elapsed);
 
-            if (!_lastAliveTimeRecordNotified && _game.CurrentPlayingTime.Elapsed > _lastAliveTimeRecord && _lastAliveTimeRecord != default(TimeSpan))
+            if (!_lastAliveTimeRecordNotified 
+                && _game.CurrentPlayingTime.Elapsed > _lastAliveTimeRecord && _lastAliveTimeRecord != default(TimeSpan))
             {
                 _aliveTimeRecord = new PopupText()
                 {
@@ -168,6 +169,7 @@ namespace GameManager
 
             if (_aliveTimeRecord != null)
                 spriteBatch.DrawString(_font, _aliveTimeRecord.Text, _aliveTimeRecord.DrawingInfos);
+           
             if (_jumpTimeRecord != null)
                 spriteBatch.DrawString(_font, _jumpTimeRecord.Text, _jumpTimeRecord.DrawingInfos);
         }

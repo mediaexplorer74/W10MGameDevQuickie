@@ -10,6 +10,6 @@
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        string LoadFile(string filePath);
+        public string LoadFile(string filePath);
     }
 }

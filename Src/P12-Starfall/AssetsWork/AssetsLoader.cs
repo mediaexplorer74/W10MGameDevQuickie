@@ -11,9 +11,12 @@ namespace GameManager.Assets
 {
     public class AssetsLoader
     {
-        public IDictionary<AnimationsNames, SpriteAnimation> Animations { get; } = new Dictionary<AnimationsNames, SpriteAnimation>();
-        public IDictionary<string, Sprite> Sprites { get; } = new Dictionary<string, Sprite>();
-        public IDictionary<SoundsNames, SoundEffect> Sounds { get; } = new Dictionary<SoundsNames, SoundEffect>();
+        public IDictionary<AnimationsNames, SpriteAnimation> Animations { get; }
+            = new Dictionary<AnimationsNames, SpriteAnimation>();
+        public IDictionary<string, Sprite> Sprites { get; } 
+            = new Dictionary<string, Sprite>();
+        public IDictionary<SoundsNames, SoundEffect> Sounds { get; } 
+            = new Dictionary<SoundsNames, SoundEffect>();
         public SpriteFont Font { get; private set; }
 
         public enum AnimationsNames
@@ -36,42 +39,60 @@ namespace GameManager.Assets
 
         private readonly CustomSpriteImporter _textureImporter;
         private readonly ContentManager _contentManager;
-        
+        private ContentManager content;
+
         public AssetsLoader(
             ContentManager contentManager,
             ITextFileLoader fileLoader)
         {
-            if (fileLoader == null)
-                throw new ArgumentNullException(nameof(fileLoader));
+            //RnD 
+            //if (fileLoader == null)
+            //    throw new ArgumentNullException(nameof(fileLoader));
 
-            _contentManager = contentManager ?? throw new ArgumentNullException(nameof(contentManager));
-            _textureImporter = new CustomSpriteImporter(fileLoader);
+            _contentManager = contentManager ?? 
+                throw new ArgumentNullException(nameof(contentManager));
+
+            //RnD
+            _textureImporter = new CustomSpriteImporter(/*fileLoader*/default);
+        }
+
+        public AssetsLoader(ContentManager contentManager)
+        {
+            _contentManager = contentManager ??
+                throw new ArgumentNullException(nameof(contentManager));
+
+            //_textureImporter = new CustomSpriteImporter(fileLoader);
         }
 
         public void LoadResources()
         {
-            Font = _contentManager.Load<SpriteFont>("Font/Starfall-Regular");
+            Font = _contentManager.Load<SpriteFont>("TextFont");//("Font/Starfall-Regular");
             CreateSprites();
-            CreateAnimations();
+            //RnD
+            //CreateAnimations();
             CreateSounds();
         }
 
         private void CreateSprites()
         {
             const string backgroundSpriteSheetName = "backgrounds";
-            var backroundSpriteSheet = _contentManager.Load<Texture2D>("SpriteSheets/backgrounds");
+            var backroundSpriteSheet = _contentManager.Load<Texture2D>(
+                "SpriteSheets/backgrounds");
+
             //RnD
             IDictionary<string, SpriteDescription> backgroundSpritesDescriptions =
                 _textureImporter.Import("Content/SpriteSheets/backgrounds.txt");
 
             const string othersSpriteSheetName = "others";
-            var othersSpriteSheet = _contentManager.Load<Texture2D>($"SpriteSheets/{othersSpriteSheetName}");
+            var othersSpriteSheet = _contentManager.Load<Texture2D>(
+                $"SpriteSheets/{othersSpriteSheetName}");
             
             IDictionary<string, SpriteDescription> othersSpritesDescriptions =
                 default;//_textureImporter.Import($"Content/SpriteSheets/{othersSpriteSheetName}.txt");
 
             const string protipsSpriteSheetName = "protips";
-            var protipsSpriteSheet = _contentManager.Load<Texture2D>($"SpriteSheets/{protipsSpriteSheetName}");
+            var protipsSpriteSheet = _contentManager.Load<Texture2D>(
+                $"SpriteSheets/{protipsSpriteSheetName}");
             
             IDictionary<string, SpriteDescription> protipsSpritesDescription =
                 default;//_textureImporter.Import($"Content/SpriteSheets/{protipsSpriteSheetName}.txt");
@@ -223,11 +244,15 @@ namespace GameManager.Assets
             IDictionary<string, SpriteDescription> textureDictionary,
             Texture2D spriteSheet)
         {
-            foreach (var texture in textureDictionary)
+            //RnD
+            if (textureDictionary != null)
             {
-                Sprites.Add(texture.Key, new Sprite(
-                    texture.Value,
-                    spriteSheet));
+                foreach (KeyValuePair<string, SpriteDescription> texture in textureDictionary)
+                {
+                    Sprites.Add(texture.Key, new Sprite(
+                        texture.Value,
+                        spriteSheet));
+                }
             }
         }
 

@@ -2,6 +2,7 @@
 using FbonizziMonoGame.PlatformAbstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace FbonizziMonoGame.Assets
@@ -20,7 +21,15 @@ namespace FbonizziMonoGame.Assets
         /// <param name="txtFileImporter">A text file loader</param>
         public CustomSpriteImporter(ITextFileLoader txtFileImporter)
         {
-            _txtFileImporter = txtFileImporter ?? throw new ArgumentNullException(nameof(txtFileImporter));
+            try
+            {
+                _txtFileImporter = txtFileImporter;
+                //?? throw new ArgumentNullException(nameof(txtFileImporter));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] CustomSpriteImporterException : " + ex.Message);
+            }
         }
 
         /// <summary>
@@ -33,6 +42,8 @@ namespace FbonizziMonoGame.Assets
             if (string.IsNullOrWhiteSpace(spriteSheetDescriptionFilePath))
                 throw new ArgumentNullException(nameof(spriteSheetDescriptionFilePath));
 
+            //RnD
+            /*
             return _txtFileImporter
                 .LoadFile(spriteSheetDescriptionFilePath)
                 .Split(new string[] { Environment.NewLine }, StringSplitOptions.None)
@@ -41,6 +52,8 @@ namespace FbonizziMonoGame.Assets
                 .ToDictionary(
                     s => s.Name,
                     s => s);
+            */
+            return default;
         }
 
         /// <summary>

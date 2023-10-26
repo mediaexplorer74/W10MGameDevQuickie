@@ -131,7 +131,8 @@ namespace Microsoft.Xna.Framework.Content
 		{
 			if (serviceProvider == null)
 			{
-				throw new ArgumentNullException("serviceProvider");
+                Debug.WriteLine("[ex] ContentManager - serviceProvider - ArgumentNullException");
+				//throw new ArgumentNullException("serviceProvider");
 			}
 			this.serviceProvider = serviceProvider;
             AddContentManager(this);

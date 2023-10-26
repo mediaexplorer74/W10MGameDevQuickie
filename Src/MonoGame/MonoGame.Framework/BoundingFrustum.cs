@@ -342,8 +342,16 @@ namespace Microsoft.Xna.Framework
         /// <param name="corners">The array which values will be replaced to corner values of this instance. It must have size of <see cref="BoundingFrustum.CornerCount"/>.</param>
 		public void GetCorners(Vector3[] corners)
         {
-			if (corners == null) throw new ArgumentNullException("corners");
-		    if (corners.Length < CornerCount) throw new ArgumentOutOfRangeException("corners");
+            if (corners == null)
+            {
+                throw new 
+                    ("corners");
+            }
+
+            if (corners.Length < CornerCount)
+            {
+                throw new ArgumentOutOfRangeException("corners");
+            }
 
             this._corners.CopyTo(corners, 0);
         }
@@ -471,7 +479,7 @@ namespace Microsoft.Xna.Framework
                     result = 0.0f;
                     return;
                 case ContainmentType.Intersects:
-                    
+
                     // TODO: Needs additional test for not 0.0 and null results.
 
                     result = null;
@@ -531,7 +539,10 @@ namespace Microsoft.Xna.Framework
 
                     return;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    {
+                        Debug.WriteLine("[ex] Bug: Intersects - Out of Range");
+                        throw new ArgumentOutOfRangeException();
+                    }
             }
         } 
 

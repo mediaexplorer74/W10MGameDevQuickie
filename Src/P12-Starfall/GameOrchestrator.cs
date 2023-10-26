@@ -41,7 +41,7 @@ namespace GameManager
         private ProtipsShower _proTipsShower;
         
         private readonly AssetsLoader _assets;
-        private readonly ISettingsRepository _settingsRepository;
+        private readonly ISettingsRepository _settingsRepository = default;
         private readonly IWebPageOpener _webPageOpener;
         private readonly ILocalizedStringsRepository _localizedStringsRepository;
         private readonly GraphicsDevice _graphicsDevice;
@@ -83,22 +83,32 @@ namespace GameManager
             IWebPageOpener webPageOpener,
             ILocalizedStringsRepository localizedStringsRepository)
         {
-            _gameFactory = gameFactory ?? throw new ArgumentNullException(nameof(gameFactory));
-            _menuFactory = menuFactory ?? throw new ArgumentNullException(nameof(menuFactory));
-            _incipitFactory = incipitFactory ?? throw new ArgumentNullException(nameof(incipitFactory));
-            _scoreFactory = scoreFactory ?? throw new ArgumentNullException(nameof(scoreFactory));
-            _proTipsShower = proTipsShower ?? throw new ArgumentNullException(nameof(proTipsShower));
-            _webPageOpener = webPageOpener;// ?? throw new ArgumentNullException(nameof(webPageOpener));
-            _localizedStringsRepository = localizedStringsRepository ?? throw new ArgumentNullException(nameof(localizedStringsRepository));
-            _graphicsDevice = graphicsDevice ?? throw new ArgumentNullException(nameof(graphicsDevice));
+            _gameFactory = gameFactory;// ?? throw new ArgumentNullException(nameof(gameFactory));
+            _menuFactory = menuFactory;// ?? throw new ArgumentNullException(nameof(menuFactory));
+            _incipitFactory = incipitFactory;// ?? throw new ArgumentNullException(nameof(incipitFactory));
+           
+            _scoreFactory = scoreFactory;// ?? throw new ArgumentNullException(nameof(scoreFactory));
+            
+            _proTipsShower = proTipsShower;// ?? throw new ArgumentNullException(nameof(proTipsShower));
 
-            _assets = assets ?? throw new ArgumentNullException(nameof(assets));
-            _settingsRepository = settingsRepository;
+            _webPageOpener = default;//webPageOpener ?? throw new ArgumentNullException(nameof(webPageOpener));
 
-            _matrixScaleProvider = matrixScaleProvider ?? throw new ArgumentNullException(nameof(matrixScaleProvider));
+            _graphicsDevice = graphicsDevice;
+            //  ?? throw new ArgumentNullException(nameof(graphicsDevice));
+
+            _assets = assets;// ?? throw new ArgumentNullException(nameof(assets));
+
+            //RnD
+            _settingsRepository = default;// settingsRepository ?? throw new ArgumentNullException(nameof(settingsRepository));
+            _localizedStringsRepository = localizedStringsRepository;// ?? throw new ArgumentNullException(nameof(localizedStringsRepository));
+
+            _matrixScaleProvider = matrixScaleProvider 
+                ?? throw new ArgumentNullException(nameof(matrixScaleProvider));
+
             if (_matrixScaleProvider is DynamicScalingMatrixProvider)
             {
-                (_matrixScaleProvider as DynamicScalingMatrixProvider).ScaleMatrixChanged += GameOrchestrator_ScaleMatrixChanged;
+                (_matrixScaleProvider as DynamicScalingMatrixProvider).ScaleMatrixChanged 
+                    += GameOrchestrator_ScaleMatrixChanged;
             }
             RegenerateRenderTarget();
 
@@ -108,21 +118,12 @@ namespace GameManager
             _stateTransition.FadeOutCompleted += _stateTransition_FadeOutCompleted;
         }
 
-        public GameOrchestrator(Func<GameHUD> gameFactory, Func<MainMenuPage> menuFactory, Func<ScorePage> scoreFactory, GraphicsDevice graphicsDevice, AssetsLoader assetsLoader, ISettingsRepository settingsRepository, IScreenTransformationMatrixProvider matrixScaleProvider, IWebPageOpener webPageOpener, ILocalizedStringsRepository localizedStringsRepository)
-        {
-            this.gameFactory = gameFactory;
-            this.menuFactory = menuFactory;
-            this.scoreFactory = scoreFactory;
-            this.graphicsDevice = graphicsDevice;
-            this.assetsLoader = assetsLoader;
-            this.settingsRepository = settingsRepository;
-            this.matrixScaleProvider = matrixScaleProvider;
-            this.webPageOpener = webPageOpener;
-            this.localizedStringsRepository = localizedStringsRepository;
-        }
+      
 
         private void GameOrchestrator_ScaleMatrixChanged(object sender, EventArgs e)
-            => RegenerateRenderTarget();
+        {
+            RegenerateRenderTarget();
+        }
 
         public void Start()
         {
@@ -137,10 +138,13 @@ namespace GameManager
                 _graphicsDevice,
                 _matrixScaleProvider.VirtualWidth,
                 _matrixScaleProvider.VirtualHeight);
+
         }
 
         private void _stateTransition_FadeOutCompleted(object sender, EventArgs e)
-            => _afterTransitionAction();
+        {
+            _afterTransitionAction();
+        }
 
         public void SetScoreState()
         {
@@ -220,7 +224,11 @@ namespace GameManager
         }
 
         public void SetAboutState()
-            => _webPageOpener.OpenWebpage(_aboutUri);
+        {
+            //RnD
+            //_webPageOpener.OpenWebpage(_aboutUri);
+
+        }
 
         public void SetGameState()
         {

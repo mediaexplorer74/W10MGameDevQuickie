@@ -8,7 +8,8 @@ namespace Microsoft.Xna.Framework.Graphics
 {
     public abstract partial class Texture
     {
-        internal SharpDX.Direct3D11.Resource _texture;
+        //internal 
+        public SharpDX.Direct3D11.Resource _texture;
 
         private SharpDX.Direct3D11.ShaderResourceView _resourceView;
 
@@ -27,6 +28,7 @@ namespace Microsoft.Xna.Framework.Graphics
 
         internal abstract SharpDX.Direct3D11.Resource CreateTexture();
 
+        
         internal SharpDX.Direct3D11.Resource GetTexture()
         {
             if (_texture == null)

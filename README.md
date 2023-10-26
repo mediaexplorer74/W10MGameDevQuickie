@@ -22,6 +22,7 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 ![Infart](Images/P10.png)
 ![NuPogodi](Images/P11.png)
 ![InfartonW10M](Images/W10M.png)
+![StarfallW10M](Images/P12.png)
 ![Contest](Images/S02.png)
 
 
@@ -36,7 +37,7 @@ Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 - P09 project is only some dirty experiments with TileSharp & tesserae for far future tile mapping deals :)
 - P10 added as *astoria + uwp + orchestrators* technics demo ( my fork of https://github.com/FrancescoBonizzi/InfartGame )
 - P11 added as *uwp + mvvmlight* technics rnd (my "fork/port" of https://github.com/martinsuchan/WP.NuPogodi)
-- P12 added as *astoria + uwp + orchestrators* technics RnD (draft at now)
+- P12 added as *astoria + uwp + orchestrators* technics RnD (my fork of https://github.com/FrancescoBonizzi/StarfallGame)
 - S01-02 added as "game synthez from some game parts" technics RnD (draft at now)
 
 ## Bugs / Errors
@@ -63,14 +64,16 @@ For a step-by-step walkthrough of the code, check out the [MonoGame 2D tutorial 
 - Create Wiki.
 - Refactor game control for better W10M support :)
 - Refactor readme... and something else? 
+- Create your own small and sweet retro-games for Windows 10 Mobile os! )))
 
 ## ..
-As is. No support. For Learning purposes only / DIY
+As is. No support. For Learning purposes only / DIY :)
 
 ## References
 - https://www.youtube.com/@GameDevQuickie/videos LubiiiCZ's Monogame2D video-tutorials
 - https://github.com/LubiiiCZ/DevQuickie The original GameDevQuickie
 - https://github.com/LubiiiCZ LubiiiCZ, GameDevQuickie's creator/developer
+- https://github.com/FrancescoBonizzi/ Francesco Bonizzi, InFart & StarFall game developer
 
 ## .
 [m][e] 2023

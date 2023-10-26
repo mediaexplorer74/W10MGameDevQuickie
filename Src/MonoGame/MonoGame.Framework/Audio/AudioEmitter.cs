@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Microsoft.Xna.Framework.Audio
@@ -40,7 +41,10 @@ namespace Microsoft.Xna.Framework.Audio
             set
             {
                 if (value < 0.0f)
-                    throw new ArgumentOutOfRangeException("AudioEmitter.DopplerScale must be greater than or equal to 0.0f");
+                {
+                    Debug.WriteLine("[ex] AudioEmitter.DopplerScale must be greater than or equal to 0.0f");
+                    //throw new ArgumentOutOfRangeException("AudioEmitter.DopplerScale must be greater than or equal to 0.0f");
+                }
 
                 _dopplerScale = value;
             }

@@ -35,7 +35,8 @@ namespace GameManager.Assets
 
         public AssetsLoader(ContentManager contentManager)
         {
-            _contentManager = contentManager ?? throw new ArgumentNullException(nameof(contentManager));
+            _contentManager = contentManager;
+              // ?? throw new ArgumentNullException(nameof(contentManager));
         }
 
         public void LoadResources()

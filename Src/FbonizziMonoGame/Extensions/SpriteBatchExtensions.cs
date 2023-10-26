@@ -109,14 +109,20 @@ namespace FbonizziMonoGame.Extensions
         /// <param name="color"></param>
         public static void Draw(
             this SpriteBatch spriteBatch,
-            Sprite sprite,
+            Sprite sprite = default, // TEMP
             Color? color = null)
         {
-            //RnD
+            //RnD - mine
+            //spriteBatch.Draw(
+            //    default,//sprite.Sheet,
+            //    Vector2.Zero,
+            //    default,//sprite.SourceRectangle,
+            //    color ?? Color.White);
+            //RnD : initial
             spriteBatch.Draw(
-                default,//sprite.Sheet,
+                sprite.Sheet,
                 Vector2.Zero,
-                default,//sprite.SourceRectangle,
+                sprite.SourceRectangle,
                 color ?? Color.White);
         }
 

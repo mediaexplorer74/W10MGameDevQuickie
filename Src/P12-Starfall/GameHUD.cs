@@ -52,13 +52,13 @@ namespace GameManager
             SpriteFont font,
             JumpGemBar jumpGemBar)
         {
-            _font = font ?? throw new ArgumentNullException(nameof(font));
-            _game = game ?? throw new ArgumentNullException(nameof(game));
-            _player = player ?? throw new ArgumentNullException(nameof(player));
-            _jumpGemBar = jumpGemBar ?? throw new ArgumentNullException(nameof(jumpGemBar));
+            _font = font;// ?? throw new ArgumentNullException(nameof(font));
+            _game = game;// ?? throw new ArgumentNullException(nameof(game));
+            _player = player;// ?? throw new ArgumentNullException(nameof(player));
+            _jumpGemBar = jumpGemBar;// ?? throw new ArgumentNullException(nameof(jumpGemBar));
 
-            _lastAliveTimeRecord = settingsRepository.GetOrSetTimeSpan(GameScores.BestAliveTimeScoreKey, default(TimeSpan));
-            _lastJumpTimeRecord = settingsRepository.GetOrSetTimeSpan(GameScores.BestJumpScoreKey, default(TimeSpan));
+            _lastAliveTimeRecord = new TimeSpan(){ };//settingsRepository.GetOrSetTimeSpan(GameScores.BestAliveTimeScoreKey, default(TimeSpan));
+            _lastJumpTimeRecord = new TimeSpan() { }; //settingsRepository.GetOrSetTimeSpan(GameScores.BestJumpScoreKey, default(TimeSpan));
 
             _aliveTimeTimerDrawingInfos = new DrawingInfos()
             {

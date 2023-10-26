@@ -8,6 +8,23 @@ namespace Microsoft.Xna.Framework.Graphics
 {
     partial struct VertexElement
     {
+        private int v1;
+        private int v2;
+        private VertexElementFormat vector3;
+        private object @default;
+        private VertexElementUsage position;
+        private int v3;
+
+        public VertexElement(int v1, int v2, VertexElementFormat vector3, object @default, VertexElementUsage position, int v3) : this()
+        {
+            this.v1 = v1;
+            this.v2 = v2;
+            this.vector3 = vector3;
+            this.@default = @default;
+            this.position = position;
+            this.v3 = v3;
+        }
+
         /// <summary>
         /// Gets the DirectX <see cref="SharpDX.Direct3D11.InputElement"/>.
         /// </summary>

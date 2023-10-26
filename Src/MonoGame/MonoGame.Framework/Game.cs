@@ -182,7 +182,13 @@ namespace Microsoft.Xna.Framework
             set
             {
                 if (value < TimeSpan.Zero)
-                    throw new ArgumentOutOfRangeException("The time must be positive.", default(Exception));
+                {
+                    Debug.WriteLine("[ex] The time must be positive.");
+                    //throw new ArgumentOutOfRangeException("The time must be positive.",
+                    //    default(Exception));
+                    //RnD
+                    value = default;
+                }
 
                 _inactiveSleepTime = value;
             }
@@ -198,9 +204,15 @@ namespace Microsoft.Xna.Framework
             set
             {
                 if (value < TimeSpan.Zero)
-                    throw new ArgumentOutOfRangeException("The time must be positive.", default(Exception));
+                {
+                    Debug.WriteLine("[ex] Game - The time must be positive.");
+                    //throw new ArgumentOutOfRangeException("The time must be positive.", default(Exception));
+                }
                 if (value < _targetElapsedTime)
-                    throw new ArgumentOutOfRangeException("The time must be at least TargetElapsedTime", default(Exception));
+                {
+                    Debug.WriteLine("The time must be at least TargetElapsedTime.");
+                    //throw new ArgumentOutOfRangeException("The time must be at least TargetElapsedTime", default(Exception));
+                }
 
                 _maxElapsedTime = value;
             }
@@ -227,8 +239,11 @@ namespace Microsoft.Xna.Framework
                 value = Platform.TargetElapsedTimeChanging(value);
 
                 if (value <= TimeSpan.Zero)
-                    throw new ArgumentOutOfRangeException(
-                        "The time must be positive and non-zero.", default(Exception));
+                {
+                    Debug.WriteLine("[ex] Game - The time must be at least TargetElapsedTime!");
+                    //throw new ArgumentOutOfRangeException(
+                    //    "The time must be positive and non-zero.", default(Exception));
+                }
 
                 if (value != _targetElapsedTime)
                 {
@@ -255,7 +270,10 @@ namespace Microsoft.Xna.Framework
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException();
+                {
+                    Debug.WriteLine("[ex] Game - ContentManager Content - ArgumentNullException");
+                    //throw new ArgumentNullException();
+                }
 
                 _content = value;
             }

@@ -39,7 +39,7 @@ namespace GameManager
 
         private SplashScreenLoader _splashScreenAssetsLoader;
 
-        private readonly ITextFileLoader _textFileAssetsLoader;
+        private readonly CTextFileLoader _textFileAssetsLoader;
         private readonly ISettingsRepository _settingsRepository;
         private readonly IWebPageOpener _webPageOpener;
         private List<IInputListener> _inputListeners;
@@ -55,7 +55,7 @@ namespace GameManager
 
         private GameOrchestrator _orchestrator;
         private SoundManager _soundManager;
-        private readonly bool _isPc; // readonly ?
+        private readonly bool _isPc = true; // TRUE - for TEST
 
         private readonly ILocalizedStringsRepository _localizedStringsRepository;
 
@@ -71,7 +71,7 @@ namespace GameManager
             int? deviceHeight = 800;//480;
 
             //RnD
-            bool _isFullScreen = true;//false;   // set it as "true" for W10M        
+            bool _isFullScreen = false; //!!! "false" for Desktop: set it as "true" for W10M !!!       
             
 
             Window.Title = GameName;

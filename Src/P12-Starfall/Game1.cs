@@ -17,6 +17,7 @@ using GameManager.Menu;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using FbonizziMonoGame.Implementations;
 namespace GameManager
 {
 
@@ -38,29 +39,29 @@ namespace GameManager
 
         private SplashScreenLoader _splashScreenLoader;
 
-        //private readonly ITextFileLoader _textFileAssetsLoader;
-        private readonly ITextFileLoader _textFileLoader;
+       
         private readonly ISettingsRepository _settingsRepository;
         private readonly IWebPageOpener _webPageOpener;
         private IEnumerable<IInputListener> _inputListeners;
 
         private readonly CultureInfo _gameCulture;
-        
-        private readonly InMemoryLocalizedStringsRepository _localizedStringsRepository;
 
-
-
-        private GameOrchestrator _orchestrator;
-        private SoundManager _soundManager;
-        private readonly bool _isPc; // readonly ?
-
-        
         public event EventHandler ExitGameRequested;
+        private AssetsLoader _assetsLoader;
 
-        
         private IScreenTransformationMatrixProvider _dynamicScaleMatrixProvider;
 
         private Sprite _mousePointer;
+
+        private GameOrchestrator _orchestrator;
+       
+        private bool _isPc = true; // // TRUE - for TEST
+
+
+        WindowsTextFileImporter _textFileAssetsLoader = new WindowsTextFileImporter();
+      
+        private readonly InMemoryLocalizedStringsRepository _localizedStringsRepository;
+
 
         // Just for MonoGame.Framework.WindowsUniversal bootstrapping requirement
         public Game1() 
@@ -68,12 +69,11 @@ namespace GameManager
             //RnD
             //********************
 
-            int? deviceWidth = 1280;//640;
-            int? deviceHeight = 800;//480;
+            int? deviceWidth  = 640; //1280
+            int? deviceHeight = 480; //800
 
             //RnD
-            bool _isFullScreen = true;//false;   // set it as "true" for W10M        
-
+            bool _isFullScreen = true;  //!!! "false" for Desktop: set it as "true" for W10M !!!              
 
             Window.Title = GameName;
 
@@ -81,24 +81,26 @@ namespace GameManager
             _rateMeUri = default;//rateMeUri;
             _currentState = RunningStates.Splashscreen;
 
-            ITextFileLoader _tFAL = default;//new ITextFileLoader.LoadFile(default);
-
-            _textFileLoader = _tFAL;//textFileAssetsLoader;
+            //RnD             
             _settingsRepository = default;//settingsRepository;
             _webPageOpener = default;//webPageOpener;
+
             _gameCulture = new CultureInfo("en-US"); ;//gameCulture;
+
             GraphicsDeviceManager = new GraphicsDeviceManager(this)
             {
                 SupportedOrientations = DisplayOrientation.LandscapeLeft
                 | DisplayOrientation.Portrait,//| DisplayOrientation.LandscapeLeft,
-                IsFullScreen = false//_isFullScreen
+                IsFullScreen = _isFullScreen
             };
 
             if (deviceWidth != null && deviceHeight != null)
             {
                 GraphicsDeviceManager.PreferredBackBufferWidth = deviceWidth.Value;
                 GraphicsDeviceManager.PreferredBackBufferHeight = deviceHeight.Value;
-            }
+        
+       
+          }
 
             _localizedStringsRepository = new InMemoryLocalizedStringsRepository
             (
@@ -107,82 +109,26 @@ namespace GameManager
 
             Content.RootDirectory = "Content";
 
-            //RnD
+            //RnD (Remark it to hide)
             //IsMouseVisible = true;
-            //********************
-        }
-
-        public Game1(
-           ITextFileLoader textFileAssetsLoader,
-           ISettingsRepository settingsRepository,
-           IWebPageOpener webPageOpener,
-           CultureInfo gameCulture,
-           bool isFullScreen,
-           Uri rateMeUri,
-           int? deviceWidth = null,
-           int? deviceHeight = null)
-        {
-            _isPc = true;
-            _rateMeUri = rateMeUri;
-            _currentState = RunningStates.Splashscreen;
-
-            _rateMeUri = rateMeUri;
-            _textFileLoader = textFileAssetsLoader;
-            _settingsRepository = settingsRepository;
-            
-            //_gameCulture = new CultureInfo("en-US"); 
-            _gameCulture = gameCulture;
-            
-            _webPageOpener = webPageOpener;
-
-            GraphicsDeviceManager = new GraphicsDeviceManager(this)
-            {
-                SupportedOrientations = DisplayOrientation.LandscapeLeft
-               | DisplayOrientation.Portrait,//| DisplayOrientation.LandscapeLeft,
-                IsFullScreen = isFullScreen//true
-            };
-
-            if (deviceWidth != null && deviceHeight != null)
-            {
-                GraphicsDeviceManager.PreferredBackBufferWidth = deviceWidth.Value;
-                GraphicsDeviceManager.PreferredBackBufferHeight = deviceHeight.Value;
-            }
-
-            _localizedStringsRepository = new InMemoryLocalizedStringsRepository
-            (
-                new Dictionary<string, string>()
-            );
-
-            Content.RootDirectory = "Content";
-            /*
-            GraphicsDeviceManager = new GraphicsDeviceManager(this)
-            {
-                SupportedOrientations = DisplayOrientation.LandscapeLeft
-                | DisplayOrientation.LandscapeRight,
-                IsFullScreen = isFullScreen
-            };
-
-            if (deviceWidth != null && deviceHeight != null)
-            {
-                GraphicsDeviceManager.PreferredBackBufferWidth = deviceWidth.Value;
-                GraphicsDeviceManager.PreferredBackBufferHeight = deviceHeight.Value;
-            }
-
+         
+            //RnD
             _localizedStringsRepository = new InMemoryLocalizedStringsRepository(
                 new Dictionary<string, string>());
-            */
         }
 
+       
         protected override void Initialize()
         {
             _dynamicScaleMatrixProvider = new DynamicScalingMatrixProvider(
                 new GameWindowScreenSizeChangedNotifier(Window),
                 GraphicsDeviceManager.GraphicsDevice,
-                800,
-                480,
+                800, 480,
                 true);
 
-            IsMouseVisible = false;
+            //RnD (Remark it to hide)
+            //IsMouseVisible = false;
+
             base.Initialize();
         }
 
@@ -190,39 +136,41 @@ namespace GameManager
         {
             new GameStringsLoader(_localizedStringsRepository, _gameCulture);
 
-            AssetsLoader loader = new AssetsLoader(
-                Content,
-                _textFileLoader);
+            //RnD : PLAN A
+            AssetsLoader _assetsLoader = new AssetsLoader(Content, _textFileAssetsLoader);
+            _assetsLoader.LoadResources();
+            _mousePointer = _assetsLoader.Sprites["manina"];
 
-            loader.LoadResources();
+            //RnD: PLAN B
+            //_assetsLoader = new AssetsLoader(Content);
+            //_assetsLoader.LoadResources();
+            //_mousePointer = _assetsLoader.OtherSprites["manina"];
+            //_soundManager = new SoundManager(_assetsLoader); //?
 
-            //RnD
-            //_mousePointer = loader.Sprites["manina"];
 
             var gameFactory = new Func<StarfallGame>(
                 () => new StarfallGame(
                     _dynamicScaleMatrixProvider,
-                    loader,
+                    _assetsLoader,
                     _settingsRepository,
                     _orchestrator));
 
             var dialogDefinition = new Rectangle(
-                _dynamicScaleMatrixProvider.VirtualWidth / 2 - 350,
-                24,
-                700,
+                _dynamicScaleMatrixProvider.VirtualWidth / 2 - 350, 24, 700,
                 _dynamicScaleMatrixProvider.VirtualHeight - 60);
 
-            var rateMeDialog = new RateMeDialog(
+            RateMeDialog rateMeDialog = new RateMeDialog(
                 launchesUntilPrompt: 2,
                 maxRateShowTimes: 2,
                 rateAppUri: _rateMeUri,
                 dialogDefinition: dialogDefinition,
-                font: loader.Font,
+                font: _assetsLoader.Font,
                 localizedStringsRepository: _localizedStringsRepository,
                 rateMeDialogStrings: _gameCulture.TwoLetterISOLanguageName == "it"
                 ? new DefaultItalianRateMeDialogStrings(GameName)
                 : (RateMeDialogStrings)new DefaultEnglishRateMeDialogStrings(GameName),
                 webPageOpener: _webPageOpener,
+                //RnD
                 settingsRepository: _settingsRepository,
                 buttonADefinition: new Rectangle(
                     dialogDefinition.X + 150,
@@ -244,7 +192,7 @@ namespace GameManager
 
             var menuFactory = new Func<MainMenuPage>(
                 () => new MainMenuPage(
-                    loader,
+                    _assetsLoader,
                     rateMeDialog,
                     _settingsRepository,
                     _dynamicScaleMatrixProvider,
@@ -252,7 +200,7 @@ namespace GameManager
 
             var textsShowFactory = new Func<IncipitPage>(
                 () => new IncipitPage(
-                    loader,
+                    _assetsLoader,
                     new List<string>()
                      {
                           _localizedStringsRepository.Get(
@@ -275,101 +223,103 @@ namespace GameManager
 
             var scoreFactory = new Func<ScorePage>(
                 () => new ScorePage(
-                    loader,
+                    _assetsLoader,
                     _settingsRepository,
                     _dynamicScaleMatrixProvider,
                     _localizedStringsRepository));
 
             var protipPosition = new Vector2(50f, _dynamicScaleMatrixProvider.VirtualHeight
                 - 50);
+
             const float protipTextScale = 0.4f;
+            
             _orchestrator = new GameOrchestrator(
                 gameFactory,
                 menuFactory,
                 textsShowFactory,
                 scoreFactory,
                 new ProtipsShower(
-                    loader.Font,
+                    _assetsLoader.Font,
                     new List<Protip>()
                     {
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIP_1"],
+                            Image = _assetsLoader.Sprites["TIP_1"],
                             Text = _localizedStringsRepository.Get(GameStringsLoader.ProTip1),
                             TextDrawingInfos = new DrawingInfos()
                             { Position = protipPosition,
                                 Scale = protipTextScale,
-                                Origin = new Vector2(0f, loader.Font.GetTextCenter(
+                                Origin = new Vector2(0f, _assetsLoader.Font.GetTextCenter(
                                     _localizedStringsRepository.Get(
                                         GameStringsLoader.ProTip1)).Y)}
                         },
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIP_2"],
+                            Image = _assetsLoader.Sprites["TIP_2"],
                             Text = _localizedStringsRepository.Get(GameStringsLoader.ProTip2),
                             TextDrawingInfos = new DrawingInfos() {
                                 Position = protipPosition, Scale = protipTextScale,
                                 Origin = new Vector2(0f,
-                                loader.Font.GetTextCenter(_localizedStringsRepository.Get(
+                                _assetsLoader.Font.GetTextCenter(_localizedStringsRepository.Get(
                                     GameStringsLoader.ProTip2)).Y)}
                         },
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIP_3"], 
+                            Image = _assetsLoader.Sprites["TIP_3"], 
                             Text = _localizedStringsRepository.Get(GameStringsLoader.ProTip3),
                             TextDrawingInfos = new DrawingInfos() { 
                                 Position = protipPosition, Scale = protipTextScale,
-                                Origin = new Vector2(0f, loader.Font.GetTextCenter(
+                                Origin = new Vector2(0f, _assetsLoader.Font.GetTextCenter(
                                     _localizedStringsRepository.Get(
                                         GameStringsLoader.ProTip3)).Y)}
                         },
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIP_4"], 
+                            Image = _assetsLoader.Sprites["TIP_4"], 
                             Text = _localizedStringsRepository.Get(GameStringsLoader.ProTip4),
                             TextDrawingInfos = new DrawingInfos() { 
                                 Position = protipPosition, Scale = protipTextScale,
-                                Origin = new Vector2(0f, loader.Font.GetTextCenter(
+                                Origin = new Vector2(0f, _assetsLoader.Font.GetTextCenter(
                                     _localizedStringsRepository.Get(
                                         GameStringsLoader.ProTip4)).Y)}
                         },
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIPS_glow"], 
+                            Image = _assetsLoader.Sprites["TIPS_glow"], 
                             Text = _localizedStringsRepository.Get(
                                 GameStringsLoader.ProTipGlow),
                             TextDrawingInfos = new DrawingInfos()
                             { Position = protipPosition, Scale = protipTextScale,
                                 Origin = new Vector2(0f,
-                                loader.Font.GetTextCenter(_localizedStringsRepository.Get(
+                                _assetsLoader.Font.GetTextCenter(_localizedStringsRepository.Get(
                                     GameStringsLoader.ProTipGlow)).Y) }
                         },
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIPS_life"], 
+                            Image = _assetsLoader.Sprites["TIPS_life"], 
                             Text = _localizedStringsRepository.Get(GameStringsLoader.ProTipLife),
                             TextDrawingInfos = new DrawingInfos() {
                                 Position = protipPosition + new Vector2(300, 0), 
                                 Scale = protipTextScale,
-                                Origin = new Vector2(0f, loader.Font.GetTextCenter(
+                                Origin = new Vector2(0f, _assetsLoader.Font.GetTextCenter(
                                     _localizedStringsRepository.Get(
                                         GameStringsLoader.ProTipLife)).Y)}
                         },
                         new Protip()
                         {
-                            Image = default,//loader.Sprites["TIPS_timejump"], 
+                            Image = _assetsLoader.Sprites["TIPS_timejump"], 
                             Text = _localizedStringsRepository.Get(
                                 GameStringsLoader.ProTipTimeJump),
                             TextDrawingInfos = new DrawingInfos() {
                                 Position = protipPosition, Scale = protipTextScale,
                                 Origin = new Vector2(
-                                    0f, loader.Font.GetTextCenter(
+                                    0f, _assetsLoader.Font.GetTextCenter(
                                         _localizedStringsRepository.Get(
                                             GameStringsLoader.ProTipTimeJump)).Y)}
                         }
                     }),
                 _spriteBatch.GraphicsDevice,
-                loader,
+                _assetsLoader,
                 _settingsRepository,
                 _dynamicScaleMatrixProvider,
                 _webPageOpener,
@@ -394,7 +344,7 @@ namespace GameManager
                 keyboardListener,
                 gamepadListener
             };
-        }
+        }//
 
         private void GamepadListener_ButtonDown(object sender, GamePadEventArgs e)
         {
@@ -465,16 +415,18 @@ namespace GameManager
 
         protected override void LoadContent()
         {
-            Content.RootDirectory = "Content";
+ Content.RootDirectory = "Content";
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _splashScreenLoader = new SplashScreenLoader(
                 LoadGameAssets,
                 Content,
-                "splashscreen");//"Splashscreen/splashscreen"
+                "Splashscreen");
             _splashScreenLoader.Load();
+
             _splashScreenLoader.Completed += SplashScreenLoader_Completed;
         }
+
 
         private void SplashScreenLoader_Completed(object sender, EventArgs e)
         {
@@ -483,10 +435,14 @@ namespace GameManager
         }
 
         public void Pause()
-            => _orchestrator?.Pause();
+        {
+            _orchestrator?.Pause();
+        }
 
         public void Resume()
-            => _orchestrator?.Resume();
+        {
+            _orchestrator?.Resume();
+        }
 
         protected override void Update(GameTime gameTime)
         {
@@ -519,6 +475,7 @@ namespace GameManager
                 return;
             }
 
+            //if (_currentState == RunningStates.Splashscreen)
             if (_splashScreenLoader != null)
             {
                 GraphicsDevice.Clear(Color.Black);
@@ -530,392 +487,8 @@ namespace GameManager
 
             _orchestrator.Draw(_spriteBatch, GraphicsDevice);
 
-            if (!_orchestrator.IsPaused)
-            {
-                var mouseState = Mouse.GetState();
-                var mousePosition = new Vector2(mouseState.X - 32, mouseState.Y);
-                if (mouseState.X != 0 && mouseState.Y != 0)
-                {
-                    _spriteBatch.Begin();
-                    _spriteBatch.Draw(_mousePointer.Sheet, mousePosition, _mousePointer.SourceRectangle, Color.White);
-                    _spriteBatch.End();
-                }
-            }
-
-            base.Draw(gameTime);
-        }
-
-    }
-}
-
-
-/*
-using FbonizziMonoGame.Assets;
-using FbonizziMonoGame.Drawing;
-using FbonizziMonoGame.Drawing.Abstractions;
-using FbonizziMonoGame.Extensions;
-using FbonizziMonoGame.Input;
-using FbonizziMonoGame.Input.Abstractions;
-using FbonizziMonoGame.PlatformAbstractions;
-using FbonizziMonoGame.Sprites;
-using FbonizziMonoGame.StringsLocalization;
-using FbonizziMonoGame.StringsLocalization.Abstractions;
-using FbonizziMonoGame.UI.RateMe;
-using GameManager.Assets;
-using GameManager.Menu;
-//using GameManager.Pages;
-//using GameManager.ParticleSystem;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
-namespace GameManager
-{
-    
-    public class Game1 : Game, IFbonizziGame
-    {
-        private const string GameName = "STARFALL";
-
-        private enum RunningStates
-        {
-            Splashscreen,
-            Running
-        }
-
-        private readonly Uri _rateMeUri;
-        private RunningStates _currentState;
-
-        public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
-        private SpriteBatch _spriteBatch;
-
-        private SplashScreenLoader _splashScreenAssetsLoader;
-
-        private readonly ITextFileLoader _textFileAssetsLoader;
-        private readonly ISettingsRepository _settingsRepository;
-        private readonly IWebPageOpener _webPageOpener;
-        private List<IInputListener> _inputListeners;
-
-        private readonly CultureInfo _gameCulture;
-
-        public event EventHandler ExitGameRequested;
-
-        private AssetsLoader _assetsLoader;
-        private IScreenTransformationMatrixProvider _matrixScaleProvider;
-
-        private Sprite _mousePointer;
-
-        private GameOrchestrator _orchestrator;
-        private SoundManager _soundManager;
-        private readonly bool _isPc; // readonly ?
-
-        private readonly ILocalizedStringsRepository _localizedStringsRepository;
-
-        
-        // Just for MonoGame.Framework.WindowsUniversal bootstrapping requirement
-        public Game1() 
-        {
-
-            //RnD
-            //********************
-
-            int? deviceWidth = 1280;//640;
-            int? deviceHeight = 800;//480;
-
-            //RnD
-            bool _isFullScreen = true;//false;   // set it as "true" for W10M        
-            
-
-            Window.Title = GameName;
-
-            _isPc = true;
-            _rateMeUri = default;//rateMeUri;
-            _currentState = RunningStates.Splashscreen;
-
-            _textFileAssetsLoader = default;//textFileAssetsLoader;
-            _settingsRepository = default;//settingsRepository;
-            _webPageOpener = default;//webPageOpener;
-            _gameCulture = new CultureInfo("en-US"); ;//gameCulture;
-            GraphicsDeviceManager = new GraphicsDeviceManager(this)
-            {
-                SupportedOrientations = DisplayOrientation.LandscapeLeft
-                | DisplayOrientation.Portrait,//| DisplayOrientation.LandscapeLeft,
-                IsFullScreen = _isFullScreen
-            };
-
-            if (deviceWidth != null && deviceHeight != null)
-            {
-                GraphicsDeviceManager.PreferredBackBufferWidth = deviceWidth.Value;
-                GraphicsDeviceManager.PreferredBackBufferHeight = deviceHeight.Value;
-            }
-
-            _localizedStringsRepository = new InMemoryLocalizedStringsRepository
-            (
-                new Dictionary<string, string>()
-            );
-
-            Content.RootDirectory = "Content";
-            
-            //RnD
-            //IsMouseVisible = true;
-            //********************
-        }
-
-  
-        protected override void Initialize()
-        {
-            //RnD
-            _matrixScaleProvider = new DynamicScalingMatrixProvider(
-                  new GameWindowScreenSizeChangedNotifier(Window),
-                  GraphicsDeviceManager.GraphicsDevice,
-                  800, 480,
-                  true);
-            base.Initialize();
-        }
-
-        private void LoadGameAssets()
-        {
-            new GameStringsLoader(_localizedStringsRepository, _gameCulture);
-            
-            _assetsLoader = new AssetsLoader(Content, default);
-            _assetsLoader.LoadResources();
-
-            //RnD
-            _mousePointer = default;//_assetsLoader.OtherSprites["manina"];
-            _soundManager = new SoundManager(_assetsLoader);
-
-            var gameFactory = new Func<GameHUD>
-            (
-                () => new GameHUD
-            (
-                    default,
-                    default,
-                    default,
-                    default,
-                    default,
-                    default
-                    //_assetsLoader,
-                    //_soundManager,
-                    //_orchestrator,
-                    //_settingsRepository,
-                    //_localizedStringsRepository
-            )
-            );
-
-            var dialogDefinition = new Rectangle(
-                _matrixScaleProvider.VirtualWidth / 2 - 350, 24, 700, 
-                _matrixScaleProvider.VirtualHeight - 60);
-
-            var rateMeDialog = new RateMeDialog(
-                launchesUntilPrompt: 2,
-                maxRateShowTimes: 2,
-                rateAppUri: _rateMeUri,
-                dialogDefinition: dialogDefinition,
-                font: _assetsLoader.Font,
-                localizedStringsRepository: _localizedStringsRepository,
-                rateMeDialogStrings: _gameCulture.TwoLetterISOLanguageName == "it" 
-                    ? (RateMeDialogStrings)new DefaultItalianRateMeDialogStrings(GameName) 
-                    : (RateMeDialogStrings)new DefaultEnglishRateMeDialogStrings(GameName),
-                webPageOpener: _webPageOpener,
-                settingsRepository: _settingsRepository,
-                buttonADefinition: new Rectangle(
-                    dialogDefinition.X + 150,
-                    dialogDefinition.Y + 350,
-                    140, 40),
-                buttonBDefinition: new Rectangle(
-                    dialogDefinition.X + dialogDefinition.Width - 140 - 150,
-                    dialogDefinition.Y + 350,
-                    140, 40),
-                backgroundColor: Color.DarkGray.WithAlpha(1f),
-                buttonsBackgroundColor: (new Color(255, 18, 67)).WithAlpha(1f),
-                buttonsShadowColor: Color.Black,
-                backgroundShadowColor: Color.Black.WithAlpha(1f),
-                titleColor: Color.Black,
-                buttonsTextColor: new Color(255, 234, 135),
-                titlePositionOffset: new Vector2(dialogDefinition.Width / 2, 80f),
-                buttonTextPadding: 40f,
-                titlePadding: 160f);
-
-            //RnD
-            var menuFactory = new Func<MainMenuPage>(
-                () => new MainMenuPage(
-                    _assetsLoader,
-                    rateMeDialog,
-                    default,//_soundManager,
-                    _matrixScaleProvider,
-                    _localizedStringsRepository));
-
-            var scoreFactory = new Func<ScorePage>(
-                () => new ScorePage(
-                    _assetsLoader,
-                    _settingsRepository,
-                    _matrixScaleProvider,
-                    _localizedStringsRepository));
-
-            _orchestrator = new GameOrchestrator(
-                gameFactory,
-                menuFactory,
-                scoreFactory,
-                GraphicsDevice,
-                _assetsLoader,
-                _settingsRepository,
-                _matrixScaleProvider,
-                _webPageOpener,
-                _localizedStringsRepository);
-
-            _inputListeners = new List<IInputListener>();
-
             //if (_isPc)
             //{
-                var mouseListener = new MouseListener(_matrixScaleProvider);
-               mouseListener.MouseDown += MouseListener_MouseClicked;
-                _inputListeners.Add(mouseListener);
-            //}
-            //else
-            {
-                var touchListener = new TouchListener(_matrixScaleProvider);
-                touchListener.TouchStarted += TouchListener_TouchEnded;
-
-                var gamepadListener = new GamePadListener();
-                gamepadListener.ButtonDown += GamepadListener_ButtonDown;
-
-                _inputListeners.Add(touchListener);
-                _inputListeners.Add(gamepadListener);
-            }
-
-            var keyboardListener = new KeyboardListener();
-            keyboardListener.KeyPressed += KeyboardListener_KeyPressed;
-            _inputListeners.Add(keyboardListener);
-        }
-
-        private void GamepadListener_ButtonDown(object sender, GamePadEventArgs e)
-        {
-            if (e.Button == Buttons.Back)
-            {
-                _orchestrator.Back();
-                if (_orchestrator.ShouldEndApplication)
-                {
-                    if (ExitGameRequested != null)
-                        ExitGameRequested(this, EventArgs.Empty);
-                    else
-                        Exit();
-                }
-            }
-        }
-
-        private void KeyboardListener_KeyPressed(object sender, KeyboardEventArgs e)
-        {
-            if (e.Key == Keys.Escape)
-            {
-                _orchestrator.Back();
-                if (_orchestrator.ShouldEndApplication)
-                {
-                    if (ExitGameRequested != null)
-                        ExitGameRequested(this, EventArgs.Empty);
-                    else
-                        Exit();
-                }
-            }
-            else if (e.Key == Keys.Back)
-            {
-                _orchestrator.Back();
-                if (_orchestrator.ShouldEndApplication)
-                {
-                    if (ExitGameRequested != null)
-                        ExitGameRequested(this, EventArgs.Empty);
-                    else
-                        Exit();
-                }
-            }
-            else
-            {
-                _orchestrator.HandleInput(null);
-            }
-        }
-
-        private void TouchListener_TouchEnded(object sender, TouchEventArgs e)
-        {
-            _orchestrator.HandleInput(e.Position);
-        }
-
-        private void MouseListener_MouseClicked(object sender, MouseEventArgs e)
-        {
-            _orchestrator.HandleInput(e.Position);
-        }
-
-        protected override void LoadContent()
-        {
-            Content.RootDirectory = "Content";
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            _splashScreenAssetsLoader = new SplashScreenLoader(
-                LoadGameAssets,
-                Content,
-                "Splashscreen");
-            _splashScreenAssetsLoader.Load();
-
-            _splashScreenAssetsLoader.Completed += _splashScreenAssetsLoader_Completed;
-        }
-
-        private void _splashScreenAssetsLoader_Completed(object sender, EventArgs e)
-        {
-            _splashScreenAssetsLoader = null;
-            _orchestrator.SetMenuState();
-            _currentState = RunningStates.Running;
-        }
-
-        public void Pause()
-        {
-            _orchestrator?.Pause();
-        }
-
-        public void Resume()
-        {
-            _orchestrator?.Resume();
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            if (!IsActive)
-                return;
-
-            var elapsed = gameTime.ElapsedGameTime;
-
-            if (_currentState == RunningStates.Splashscreen)
-            {
-                _splashScreenAssetsLoader.Update(elapsed);
-                return;
-            }
-
-            foreach (var listener in _inputListeners)
-            {
-                listener.Update(gameTime);
-            }
-
-            _orchestrator.Update(elapsed);
-            base.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            if (!IsActive)
-                return;
-
-            if (_currentState == RunningStates.Splashscreen)
-            {
-                GraphicsDevice.Clear(Color.Black);
-                _spriteBatch.Begin(transformMatrix: _matrixScaleProvider.ScaleMatrix);
-                _splashScreenAssetsLoader.Draw(_spriteBatch);
-                _spriteBatch.End();
-                return;
-            }
-
-            _orchestrator.Draw(_spriteBatch, GraphicsDevice);
-
-            if (_isPc)
-            {
                 if (!_orchestrator.IsPaused)
                 {
                     var mouseState = Mouse.GetState();
@@ -923,16 +496,16 @@ namespace GameManager
                     if (mouseState.X != 0 && mouseState.Y != 0)
                     {
                         _spriteBatch.Begin();
-                        _spriteBatch.Draw(_mousePointer.Sheet, 
-                            mousePosition, _mousePointer.SourceRectangle, Color.White);
+                        _spriteBatch.Draw(_mousePointer.Sheet, mousePosition, 
+                            _mousePointer.SourceRectangle, Color.White);
                         _spriteBatch.End();
                     }
                 }
-            }
+            //}
 
             base.Draw(gameTime);
         }
+
     }
-    
 }
-*/
+

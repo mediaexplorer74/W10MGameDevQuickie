@@ -794,7 +794,8 @@ namespace Microsoft.Xna.Framework.Graphics
                 || vertexBuffer == null && vertexOffset != 0
                 || vertexBuffer != null && vertexOffset >= vertexBuffer.VertexCount)
             {
-                throw new ArgumentOutOfRangeException("vertexOffset");
+                Debug.WriteLine("[ex] GraphicsDevice -ArgumentOutOfRangeException - vertexOffset");
+                //throw new ArgumentOutOfRangeException("vertexOffset");
             }
 
             _vertexBuffersDirty |= (vertexBuffer == null)
@@ -812,8 +813,12 @@ namespace Microsoft.Xna.Framework.Graphics
             {
                 if (vertexBuffers.Length > _maxVertexBufferSlots)
                 {
-                    var message = string.Format(CultureInfo.InvariantCulture, "Max number of vertex buffers is {0}.", _maxVertexBufferSlots);
-                    throw new ArgumentOutOfRangeException("vertexBuffers", message);
+                    string message = string.Format(CultureInfo.InvariantCulture, 
+                        "Max number of vertex buffers is {0}.", _maxVertexBufferSlots);
+
+                    Debug.WriteLine("[ex] GameDevice - Max number of vertex buffers is { 0 }.", 
+                        _maxVertexBufferSlots);
+                    //throw new ArgumentOutOfRangeException("vertexBuffers", message);
                 }
 
                 _vertexBuffersDirty |= _vertexBuffers.Set(vertexBuffers);
@@ -897,7 +902,13 @@ namespace Microsoft.Xna.Framework.Graphics
                 throw new InvalidOperationException("Index buffer must be set before calling DrawIndexedPrimitives.");
 
             if (primitiveCount <= 0)
-                throw new ArgumentOutOfRangeException("primitiveCount");
+            {
+                Debug.WriteLine("[ex] GameDevice - ArgumentOutOfRangeException - primitiveCount");
+                //throw new ArgumentOutOfRangeException("primitiveCount");
+
+                //RnD
+                primitiveCount = 0;
+            }
 
             PlatformDrawIndexedPrimitives(primitiveType, baseVertex, startIndex, primitiveCount);
 
@@ -966,12 +977,18 @@ namespace Microsoft.Xna.Framework.Graphics
             }
         }
 
-        public void DrawUserIndexedPrimitives<T>(PrimitiveType primitiveType, T[] vertexData, int vertexOffset, int numVertices, short[] indexData, int indexOffset, int primitiveCount) where T : struct, IVertexType
+        public void DrawUserIndexedPrimitives<T>(PrimitiveType primitiveType,
+            T[] vertexData, int vertexOffset, int numVertices, short[] indexData,
+            int indexOffset, int primitiveCount) where T : struct, IVertexType
         {
-            DrawUserIndexedPrimitives<T>(primitiveType, vertexData, vertexOffset, numVertices, indexData, indexOffset, primitiveCount, VertexDeclarationCache<T>.VertexDeclaration);
+            DrawUserIndexedPrimitives<T>(primitiveType, vertexData, 
+                vertexOffset, numVertices, indexData, indexOffset, primitiveCount,
+                VertexDeclarationCache<T>.VertexDeclaration);
         }
 
-        public void DrawUserIndexedPrimitives<T>(PrimitiveType primitiveType, T[] vertexData, int vertexOffset, int numVertices, short[] indexData, int indexOffset, int primitiveCount, VertexDeclaration vertexDeclaration) where T : struct
+        public void DrawUserIndexedPrimitives<T>(PrimitiveType primitiveType,
+            T[] vertexData, int vertexOffset, int numVertices, short[] indexData,
+            int indexOffset, int primitiveCount, VertexDeclaration vertexDeclaration) where T : struct
         {
             // These parameter checks are a duplicate of the checks in the int[] overload of DrawUserIndexedPrimitives.
             // Inlined here for efficiency.
@@ -1103,5 +1120,6 @@ namespace Microsoft.Xna.Framework.Graphics
         {
             return PlatformGetHighestSupportedGraphicsProfile(graphicsDevice);
         }
+
     }
 }

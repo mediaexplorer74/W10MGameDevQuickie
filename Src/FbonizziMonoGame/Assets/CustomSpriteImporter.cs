@@ -13,18 +13,18 @@ namespace FbonizziMonoGame.Assets
     /// </summary>
     public class CustomSpriteImporter : ISpriteImporter
     {
-        private readonly ITextFileLoader _txtFileImporter;
+        public CTextFileLoader _txtFileImporter;
 
         /// <summary>
         /// An implementation of a simple sprite importer given a file
         /// </summary>
         /// <param name="txtFileImporter">A text file loader</param>
-        public CustomSpriteImporter(ITextFileLoader txtFileImporter)
+        public CustomSpriteImporter(CTextFileLoader txtFileImporter)
         {
             try
             {
                 _txtFileImporter = txtFileImporter;
-                //?? throw new ArgumentNullException(nameof(txtFileImporter));
+                 // ?? throw new ArgumentNullException(nameof(txtFileImporter));
             }
             catch (Exception ex)
             {
@@ -42,8 +42,10 @@ namespace FbonizziMonoGame.Assets
             if (string.IsNullOrWhiteSpace(spriteSheetDescriptionFilePath))
                 throw new ArgumentNullException(nameof(spriteSheetDescriptionFilePath));
 
-            //RnD
-            /*
+            // fix (re-target) content path
+            spriteSheetDescriptionFilePath = "Starfall/Assets/ContentBuilder/" + spriteSheetDescriptionFilePath;
+
+            //RnD            
             return _txtFileImporter
                 .LoadFile(spriteSheetDescriptionFilePath)
                 .Split(new string[] { Environment.NewLine }, StringSplitOptions.None)
@@ -52,7 +54,7 @@ namespace FbonizziMonoGame.Assets
                 .ToDictionary(
                     s => s.Name,
                     s => s);
-            */
+            
             return default;
         }
 

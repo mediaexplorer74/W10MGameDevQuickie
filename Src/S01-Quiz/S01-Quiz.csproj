@@ -186,7 +186,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Button_TemporaryKey.pfx" />
     <None Include="Content\Content.mgcb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

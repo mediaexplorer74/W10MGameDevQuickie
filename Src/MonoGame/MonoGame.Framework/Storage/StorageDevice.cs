@@ -72,6 +72,8 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 
 #if WINRT
 using Windows.Storage;
@@ -504,6 +506,7 @@ namespace Microsoft.Xna.Framework.Storage
             }
             catch (AggregateException ex)
             {
+                Debug.WriteLine(ex.Message);
                 throw;
             }
 #endif
@@ -559,6 +562,7 @@ namespace Microsoft.Xna.Framework.Storage
             }
             catch (AggregateException ex)
             {
+                Debug.WriteLine(ex.Message);
                 throw;
             }
 #endif

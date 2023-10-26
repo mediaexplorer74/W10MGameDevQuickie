@@ -65,27 +65,29 @@ namespace GameManager
              IWebPageOpener webPageOpener,
              ILocalizedStringsRepository localizedStringsRepository)
         {
-            _gameFactory = gameFactory ?? 
-                throw new ArgumentNullException(nameof(gameFactory));
-            _menuFactory = menuFactory ?? 
-                throw new ArgumentNullException(nameof(menuFactory));
-            _scoreFactory = scoreFactory ?? 
-                throw new ArgumentNullException(nameof(scoreFactory));
+            _gameFactory = gameFactory;// ?? 
+                                       // throw new ArgumentNullException(nameof(gameFactory));
+            _menuFactory = menuFactory;// ?? 
+                                       // throw new ArgumentNullException(nameof(menuFactory));
+
+            _scoreFactory = scoreFactory; //??throw new ArgumentNullException(nameof(scoreFactory));
 
             //RnD
             _webPageOpener = default;//webPageOpener ?? throw new ArgumentNullException(nameof(webPageOpener));
-            _graphicsDevice = graphicsDevice ?? throw new ArgumentNullException(nameof(graphicsDevice));
+            _graphicsDevice = graphicsDevice;// ?? throw new ArgumentNullException(nameof(graphicsDevice));
 
-            _assets = assets ?? throw new ArgumentNullException(nameof(assets));
+            _assets = assets;// ?? throw new ArgumentNullException(nameof(assets));
 
             //RnD
             _settingsRepository = default;// settingsRepository ?? throw new ArgumentNullException(nameof(settingsRepository));
-            _localizedStringsRepository = localizedStringsRepository ?? throw new ArgumentNullException(nameof(localizedStringsRepository));
+            _localizedStringsRepository = localizedStringsRepository;// ?? throw new ArgumentNullException(nameof(localizedStringsRepository));
 
-            _matrixScaleProvider = matrixScaleProvider ?? throw new ArgumentNullException(nameof(matrixScaleProvider));
+            _matrixScaleProvider = matrixScaleProvider;// ?? throw new ArgumentNullException(nameof(matrixScaleProvider));
+            
             if (_matrixScaleProvider is DynamicScalingMatrixProvider)
             {
-                (_matrixScaleProvider as DynamicScalingMatrixProvider).ScaleMatrixChanged += GameOrchestrator_ScaleMatrixChanged;
+                (_matrixScaleProvider as DynamicScalingMatrixProvider)
+                    .ScaleMatrixChanged += GameOrchestrator_ScaleMatrixChanged;
             }
             RegenerateRenderTarget();
 

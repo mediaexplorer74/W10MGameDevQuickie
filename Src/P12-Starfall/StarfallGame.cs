@@ -52,7 +52,7 @@ namespace GameManager
             ISettingsRepository settingsRepository,
             GameOrchestrator gameOrchestrator)
         {
-            _settingsRepository = settingsRepository ?? throw new ArgumentNullException(nameof(settingsRepository));
+            _settingsRepository = default;//settingsRepository ?? throw new ArgumentNullException(nameof(settingsRepository));
             _gameOrchestrator = gameOrchestrator ?? throw new ArgumentNullException(nameof(gameOrchestrator));
 
             _backgroundMusic = assets.Sounds[AssetsLoader.SoundsNames.running].CreateInstance();
@@ -84,7 +84,8 @@ namespace GameManager
                 _gemsManager,
                 _jumpGemBar,
                 _camera,
-                _settingsRepository.GetOrSetInt(GameScores.MaxGlowsTakenScoreKey, default(int)));
+                1//_settingsRepository.GetOrSetInt(GameScores.MaxGlowsTakenScoreKey, default(int))
+             );
 
             GemsInteractor.GameOver += _interactor_GameOver;
 
@@ -120,7 +121,9 @@ namespace GameManager
 
             _layer1 = new HorizontalScrollingBackground(
                 matrixScaleProvider,
-                new List<Sprite>() { assets.Sprites["1a"], assets.Sprites["1b"], assets.Sprites["1c"] },
+                new List<Sprite>() { assets.Sprites["1a"], 
+                    assets.Sprites["1b"], 
+                    assets.Sprites["1c"] },
                 0.8f * multiplier);
 
             _layer0 = new HorizontalScrollingBackground(
@@ -145,14 +148,14 @@ namespace GameManager
             _backgroundMusic.Stop();
             CurrentPlayingTime.Stop();
 
-            var gameStartGlowsTakenFromStorage = _settingsRepository.GetOrSetInt("TotalGlowsTaken", 0);
-            _settingsRepository.SetInt("TotalGlowsTaken", gameStartGlowsTakenFromStorage + GemsInteractor.CurrentGemsNumber);
+            int gameStartGlowsTakenFromStorage = 0;// _settingsRepository.GetOrSetInt("TotalGlowsTaken", 0);
+           // _settingsRepository.SetInt("TotalGlowsTaken", gameStartGlowsTakenFromStorage + GemsInteractor.CurrentGemsNumber);
 
-            var gameStartJumpsNumberTakenFromStorage = _settingsRepository.GetOrSetInt("TotalJumpsNumber", 0);
-            _settingsRepository.SetInt("TotalJumpsNumber", gameStartGlowsTakenFromStorage + _jumpGemBar.TotalJumps);
+            int gameStartJumpsNumberTakenFromStorage = 0;// _settingsRepository.GetOrSetInt("TotalJumpsNumber", 0);
+           // _settingsRepository.SetInt("TotalJumpsNumber", gameStartGlowsTakenFromStorage + _jumpGemBar.TotalJumps);
 
-            var gameStartTotalGameTime = _settingsRepository.GetOrSetTimeSpan("TotalGameTime", TimeSpan.FromSeconds(0));
-            _settingsRepository.SetTimeSpan("TotalGameTime", gameStartTotalGameTime + CurrentPlayingTime.Elapsed);
+            TimeSpan gameStartTotalGameTime = new TimeSpan() { };//_settingsRepository.GetOrSetTimeSpan("TotalGameTime", TimeSpan.FromSeconds(0));
+           // _settingsRepository.SetTimeSpan("TotalGameTime", gameStartTotalGameTime + CurrentPlayingTime.Elapsed);
 
             _gameOrchestrator.SetGameOverState(
                 _player.GetBestJumpThisPlay(),
@@ -181,7 +184,8 @@ namespace GameManager
         public void Update(TimeSpan elapsed)
         {
             _camera.Position = new Vector2(
-                MathHelper.Lerp(_camera.Position.X, _player.DrawingInfos.Position.X - _cameraOffsetFromPlayer.X, 0.8f),
+                MathHelper.Lerp(_camera.Position.X, 
+                _player.DrawingInfos.Position.X - _cameraOffsetFromPlayer.X, 0.8f),
                 _camera.Position.Y);
 
             _player.Update(elapsed);

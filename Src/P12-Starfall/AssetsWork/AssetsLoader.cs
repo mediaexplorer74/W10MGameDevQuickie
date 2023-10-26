@@ -1,24 +1,51 @@
 ﻿using FbonizziMonoGame.Assets;
 using FbonizziMonoGame.PlatformAbstractions;
 using FbonizziMonoGame.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GameManager.Assets
 {
     public class AssetsLoader
     {
+        private readonly ContentManager _contentManager;
+
+        public Texture2D Textures { get; private set; }
+        public Texture2D TexturesBuildingsBack { get; private set; }
+        public Texture2D TexturesBuildingsMid { get; private set; }
+        public Texture2D TexturesBuildingsGround { get; private set; }
+        public List<Rectangle> PlayerRunRects { get; private set; }
+        public List<Rectangle> PlayerIdleRects { get; private set; }
+        public List<Rectangle> PlayerFallRects { get; private set; }
+        public List<Rectangle> PlayerFartRects { get; private set; }
+        public List<Rectangle> PlayerMerdaRects { get; private set; }
+
+        // In this class there are two different ways to load textures/sprites,
+        // because this is an old project that I reworked to make it build with MonoGame
+
+        public IDictionary<string, Sprite> OtherSprites { get; private set; }
+
+        public SpriteFont Font { get; private set; }
+
+        // Reserved
+        public IDictionary<string, SoundEffect> EnvironmentalSounds { get; private set; }
+        public IDictionary<string, SoundEffect> SpecialSounds { get; private set; }
+        public IDictionary<string, Rectangle> TexturesRectangles { get; private set; }
+
+
         public IDictionary<AnimationsNames, SpriteAnimation> Animations { get; }
             = new Dictionary<AnimationsNames, SpriteAnimation>();
         public IDictionary<string, Sprite> Sprites { get; } 
             = new Dictionary<string, Sprite>();
         public IDictionary<SoundsNames, SoundEffect> Sounds { get; } 
             = new Dictionary<SoundsNames, SoundEffect>();
-        public SpriteFont Font { get; private set; }
-
+        
+       
         public enum AnimationsNames
         {
             PlayerRun,
@@ -38,28 +65,30 @@ namespace GameManager.Assets
         }
 
         private readonly CustomSpriteImporter _textureImporter;
-        private readonly ContentManager _contentManager;
+     
         private ContentManager content;
 
-        public AssetsLoader(
-            ContentManager contentManager,
-            ITextFileLoader fileLoader)
+        // PLAN A
+        public AssetsLoader(ContentManager contentManager, CTextFileLoader fileLoader)
         {
             //RnD 
-            //if (fileLoader == null)
-            //    throw new ArgumentNullException(nameof(fileLoader));
+            if (fileLoader == null)
+            {
+                Debug.WriteLine("AssetsLoader -- fileLoader bug:  ArgumentNullException");
+                throw new ArgumentNullException(nameof(fileLoader));
+            }
 
             _contentManager = contentManager ?? 
                 throw new ArgumentNullException(nameof(contentManager));
 
-            //RnD
-            _textureImporter = new CustomSpriteImporter(/*fileLoader*/default);
+            //Experimental
+            _textureImporter = new CustomSpriteImporter(fileLoader);
         }
 
+        // PLAN B
         public AssetsLoader(ContentManager contentManager)
         {
-            _contentManager = contentManager ??
-                throw new ArgumentNullException(nameof(contentManager));
+            _contentManager = contentManager; //??throw new ArgumentNullException(nameof(contentManager));
 
             //_textureImporter = new CustomSpriteImporter(fileLoader);
         }
@@ -67,35 +96,50 @@ namespace GameManager.Assets
         public void LoadResources()
         {
             Font = _contentManager.Load<SpriteFont>("TextFont");//("Font/Starfall-Regular");
+
+            //RnD
+            Textures = _contentManager.Load<Texture2D>("textures");
+
+            //RnD
+            TexturesBuildingsBack = _contentManager.Load<Texture2D>("buildings_back");
+            TexturesBuildingsMid = _contentManager.Load<Texture2D>("buildings_mid");
+            TexturesBuildingsGround = _contentManager.Load<Texture2D>("buildings_ground");
+
+            //RnD
+            OtherSprites = new Dictionary<string, Sprite>();
+
+
             CreateSprites();
             //RnD
-            //CreateAnimations();
+            CreateAnimations();
+
             CreateSounds();
         }
 
         private void CreateSprites()
         {
-            const string backgroundSpriteSheetName = "backgrounds";
-            var backroundSpriteSheet = _contentManager.Load<Texture2D>(
-                "SpriteSheets/backgrounds");
+            // RnD txt content
 
-            //RnD
+            //const string backgroundSpriteSheetName = "backgrounds";
+            var backroundSpriteSheet = _contentManager.Load<Texture2D>(
+                "SpriteSheets/backgrounds.png");
+
             IDictionary<string, SpriteDescription> backgroundSpritesDescriptions =
-                _textureImporter.Import("Content/SpriteSheets/backgrounds.txt");
+                _textureImporter.Import("SpriteSheets/backgrounds.txt");
 
             const string othersSpriteSheetName = "others";
             var othersSpriteSheet = _contentManager.Load<Texture2D>(
-                $"SpriteSheets/{othersSpriteSheetName}");
+                $"SpriteSheets/others.png");
             
             IDictionary<string, SpriteDescription> othersSpritesDescriptions =
-                default;//_textureImporter.Import($"Content/SpriteSheets/{othersSpriteSheetName}.txt");
+                _textureImporter.Import("SpriteSheets/others.txt");
 
             const string protipsSpriteSheetName = "protips";
             var protipsSpriteSheet = _contentManager.Load<Texture2D>(
-                $"SpriteSheets/{protipsSpriteSheetName}");
+                $"SpriteSheets/protips.png");
             
             IDictionary<string, SpriteDescription> protipsSpritesDescription =
-                default;//_textureImporter.Import($"Content/SpriteSheets/{protipsSpriteSheetName}.txt");
+                _textureImporter.Import("SpriteSheets/protips.txt");
 
             AddSpritesFromDictionary(backgroundSpritesDescriptions, backroundSpriteSheet);
             AddSpritesFromDictionary(othersSpritesDescriptions, othersSpriteSheet);
@@ -104,11 +148,11 @@ namespace GameManager.Assets
 
         private void CreateSounds()
         {
-            Sounds.Add(SoundsNames.running, _contentManager.Load<SoundEffect>("Music/Running"));
-            Sounds.Add(SoundsNames.menu, _contentManager.Load<SoundEffect>("Music/menu"));
-            Sounds.Add(SoundsNames.slideshow, _contentManager.Load<SoundEffect>("Music/Slideshow"));
-            Sounds.Add(SoundsNames.takegem, _contentManager.Load<SoundEffect>("Music/TakeGem"));
-            Sounds.Add(SoundsNames.die, _contentManager.Load<SoundEffect>("Music/Die"));
+            Sounds.Add(SoundsNames.running, _contentManager.Load<SoundEffect>("Music/Running.wav"));
+            Sounds.Add(SoundsNames.menu, _contentManager.Load<SoundEffect>("Music/menu.wav"));
+            Sounds.Add(SoundsNames.slideshow, _contentManager.Load<SoundEffect>("Music/Slideshow.wav"));
+            Sounds.Add(SoundsNames.takegem, _contentManager.Load<SoundEffect>("Music/TakeGem.wav"));
+            Sounds.Add(SoundsNames.die, _contentManager.Load<SoundEffect>("Music/Die.wav"));
         }
 
         private void CreateAnimations()
@@ -233,11 +277,16 @@ namespace GameManager.Assets
                 Sprites["death_019"]
             };
 
-            Animations[AnimationsNames.PlayerRun] = new SpriteAnimation(runAnimation, TimeSpan.FromMilliseconds(20));
-            Animations[AnimationsNames.PlayerJump] = new SpriteAnimation(jumpAnimation, TimeSpan.FromMilliseconds(0.6));
-            Animations[AnimationsNames.GoodGlow] = new SpriteAnimation(goodGlowAnimation, TimeSpan.FromMilliseconds(400));
-            Animations[AnimationsNames.BadGlow] = new SpriteAnimation(badGlowAnimation, TimeSpan.FromMilliseconds(100));
-            Animations[AnimationsNames.PlayerDeath] = new SpriteAnimation(playerDeathAnimation, TimeSpan.FromMilliseconds(30), false);
+            Animations[AnimationsNames.PlayerRun] = 
+                new SpriteAnimation(runAnimation, TimeSpan.FromMilliseconds(20));
+            Animations[AnimationsNames.PlayerJump] = 
+                new SpriteAnimation(jumpAnimation, TimeSpan.FromMilliseconds(0.6));
+            Animations[AnimationsNames.GoodGlow] = 
+                new SpriteAnimation(goodGlowAnimation, TimeSpan.FromMilliseconds(400));
+            Animations[AnimationsNames.BadGlow] = 
+                new SpriteAnimation(badGlowAnimation, TimeSpan.FromMilliseconds(100));
+            Animations[AnimationsNames.PlayerDeath] = 
+                new SpriteAnimation(playerDeathAnimation, TimeSpan.FromMilliseconds(30), false);
         }
 
         private void AddSpritesFromDictionary(

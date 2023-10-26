@@ -56,8 +56,8 @@ namespace GameManager.Pages
         {
             _font = assets.Font;
             _matrixScaleProvider = matrixScaleProvider;
-            _rateMeDialog = rateMeDialog ?? throw new ArgumentNullException(nameof(rateMeDialog));
-            _soundManager = soundManager ?? throw new ArgumentNullException(nameof(soundManager));
+            _rateMeDialog = rateMeDialog;// ?? throw new ArgumentNullException(nameof(rateMeDialog));
+            _soundManager = soundManager;// ?? throw new ArgumentNullException(nameof(soundManager));
 
             _background = assets.OtherSprites["menuBackground"];
             _playText = localizedStringsRepository.Get(GameStringsLoader.PlayButtonString);

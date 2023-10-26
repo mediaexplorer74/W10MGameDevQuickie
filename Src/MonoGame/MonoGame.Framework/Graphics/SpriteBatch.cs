@@ -3,6 +3,7 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace Microsoft.Xna.Framework.Graphics
@@ -146,15 +147,26 @@ namespace Microsoft.Xna.Framework.Graphics
         void CheckValid(Texture2D texture)
         {
             if (texture == null)
+            {
+                Debug.WriteLine("[ex] SpriteBatch - texture - ArgumentNullException");
                 throw new ArgumentNullException("texture");
+            }
             if (!_beginCalled)
-                throw new InvalidOperationException("Draw was called, but Begin has not yet been called. Begin must be called successfully before you can call Draw.");
+            {
+                Debug.WriteLine("[ex] SpriteBatch - Draw was called, " +
+                    "but Begin has not yet been called. " + 
+                    "Begin must be called successfully before you can call Draw.");
+                throw new InvalidOperationException(
+                    "Draw was called, but Begin has not yet been called. " +
+                    "Begin must be called successfully before you can call Draw.");
+            }
         }
 
         void CheckValid(SpriteFont spriteFont, string text)
         {
             if (spriteFont == null)
                 throw new ArgumentNullException("spriteFont");
+
             if (text == null)
                 throw new ArgumentNullException("text");
             if (!_beginCalled)
@@ -167,8 +179,10 @@ namespace Microsoft.Xna.Framework.Graphics
         {
             if (spriteFont == null)
                 throw new ArgumentNullException("spriteFont");
+
             if (text == null)
                 throw new ArgumentNullException("text");
+
             if (!_beginCalled)
                 throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
         }
@@ -618,6 +632,11 @@ namespace Microsoft.Xna.Framework.Graphics
             }
             base.Dispose(disposing);
         }
-	}
+
+        public void Begin(SpriteSortMode none, SpriteSortMode immediate, SamplerState saveState)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 

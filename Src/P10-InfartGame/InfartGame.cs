@@ -625,7 +625,8 @@ namespace GameManager
 
             _scoreString.Clear();
             _scoreString.AppendNumber(ScoreMetri).Append(_metriString);
-            spriteBatch.DrawString(_font, _scoreString, _scoreStringPosition, Color.DarkBlue, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(_font, _scoreString, _scoreStringPosition, 
+                Color.DarkBlue, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 1f);
             _statusBar.Draw(spriteBatch);
 
             if (_jalapenoPopup != null)
@@ -655,7 +656,8 @@ namespace GameManager
         {
             Matrix cameraTransformation = _playerCamera.GetTransformation();
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, cameraTransformation);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, 
+                null, null, null, null, cameraTransformation);
 
             _background.Draw(spriteBatch);
             _ground.Draw(spriteBatch);
@@ -670,12 +672,14 @@ namespace GameManager
 
             if (!_deadExplosion.Started)
             {
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, null, null, null, null, cameraTransformation);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, 
+                    null, null, null, null, cameraTransformation);
                 Player.DrawParticles(spriteBatch);
                 spriteBatch.End();
             }
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, cameraTransformation);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, 
+                null, null, null, null, cameraTransformation);
 
             if (!_deadExplosion.Started)
             {

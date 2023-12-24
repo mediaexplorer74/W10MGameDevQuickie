@@ -130,18 +130,18 @@
     <Compile Include="Engines\PlayerEngine.cs" />
     <Compile Include="Engines\SkyboxEngine.cs" />
     <Compile Include="Engines\VertexElementMethod.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Glob.cs" />
     <Compile Include="HTTPRequest.cs" />
-    <Compile Include="InfiniminerGame.cs" />
+    <Compile Include="Game1.cs" />
     <Compile Include="KeyMap.cs" />
     <Compile Include="NetBuffer.cs" />
     <Compile Include="NetChannel.cs" />
     <Compile Include="NetClient.cs" />
     <Compile Include="NetConfiguration.cs" />
+    <Compile Include="NetConnection.cs" />
     <Compile Include="NetConnectionStatus.cs" />
     <Compile Include="NetMessageType.cs" />
     <Compile Include="Player.cs" />
@@ -196,129 +196,375 @@
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\WideTile.scale-100.png" />
     <Content Include="Assets\WideTile.scale-200.png" />
-    <Content Include="Content\blocks\tex_block_bank_back_blue.png" />
-    <Content Include="Content\blocks\tex_block_bank_back_red.png" />
-    <Content Include="Content\blocks\tex_block_bank_blue.png" />
-    <Content Include="Content\blocks\tex_block_bank_front_blue.png" />
-    <Content Include="Content\blocks\tex_block_bank_front_red.png" />
-    <Content Include="Content\blocks\tex_block_bank_left_blue.png" />
-    <Content Include="Content\blocks\tex_block_bank_left_red.png" />
-    <Content Include="Content\blocks\tex_block_bank_red.png" />
-    <Content Include="Content\blocks\tex_block_bank_right_blue.png" />
-    <Content Include="Content\blocks\tex_block_bank_right_red.png" />
-    <Content Include="Content\blocks\tex_block_bank_top_blue.png" />
-    <Content Include="Content\blocks\tex_block_bank_top_red.png" />
-    <Content Include="Content\blocks\tex_block_beacon_top_blue.png" />
-    <Content Include="Content\blocks\tex_block_beacon_top_red.png" />
-    <Content Include="Content\blocks\tex_block_blue.png" />
-    <Content Include="Content\blocks\tex_block_diamond.png" />
-    <Content Include="Content\blocks\tex_block_dirt.png" />
-    <Content Include="Content\blocks\tex_block_dirt_sign.png" />
-    <Content Include="Content\blocks\tex_block_explosive.png" />
-    <Content Include="Content\blocks\tex_block_home_blue.png" />
-    <Content Include="Content\blocks\tex_block_home_red.png" />
-    <Content Include="Content\blocks\tex_block_home_top.png" />
-    <Content Include="Content\blocks\tex_block_jump.png" />
-    <Content Include="Content\blocks\tex_block_jump_top.png" />
-    <Content Include="Content\blocks\tex_block_ladder.png" />
-    <Content Include="Content\blocks\tex_block_ladder_top.png" />
-    <Content Include="Content\blocks\tex_block_lava.png" />
-    <Content Include="Content\blocks\tex_block_mechanism.png" />
-    <Content Include="Content\blocks\tex_block_metal.png" />
-    <Content Include="Content\blocks\tex_block_ore.png" />
-    <Content Include="Content\blocks\tex_block_red.png" />
-    <Content Include="Content\blocks\tex_block_road.png" />
-    <Content Include="Content\blocks\tex_block_rock.png" />
-    <Content Include="Content\blocks\tex_block_silver.png" />
-    <Content Include="Content\blocks\tex_block_spikes.png" />
-    <Content Include="Content\blocks\tex_block_teleporter_a.png" />
-    <Content Include="Content\blocks\tex_block_teleporter_b.png" />
-    <Content Include="Content\blocks\tex_block_teleporter_bottom.png" />
-    <Content Include="Content\blocks\tex_block_teleporter_top.png" />
-    <Content Include="Content\blocks\tex_block_trans_blue.png" />
-    <Content Include="Content\blocks\tex_block_trans_red.png" />
-    <Content Include="Content\BloomCombine.fx" />
-    <Content Include="Content\BloomExtract.fx" />
-    <Content Include="Content\effect_basic.fx" />
-    <Content Include="Content\effect_particle.fx" />
-    <Content Include="Content\effect_skyplane.fx" />
-    <Content Include="Content\effect_spritemodel.fx" />
-    <Content Include="Content\GaussianBlur.fx" />
-    <Content Include="Content\hero.png" />
-    <Content Include="Content\icons\tex_icon_bank_blue.png" />
-    <Content Include="Content\icons\tex_icon_bank_red.png" />
-    <Content Include="Content\icons\tex_icon_beacon.png" />
-    <Content Include="Content\icons\tex_icon_deconstruction.png" />
-    <Content Include="Content\icons\tex_icon_explosive.png" />
-    <Content Include="Content\icons\tex_icon_jump.png" />
-    <Content Include="Content\icons\tex_icon_ladder.png" />
-    <Content Include="Content\icons\tex_icon_road.png" />
-    <Content Include="Content\icons\tex_icon_solid_blue.png" />
-    <Content Include="Content\icons\tex_icon_solid_red.png" />
-    <Content Include="Content\icons\tex_icon_spikes.png" />
-    <Content Include="Content\icons\tex_icon_teleporter.png" />
-    <Content Include="Content\icons\tex_icon_translucent_blue.png" />
-    <Content Include="Content\icons\tex_icon_translucent_red.png" />
-    <Content Include="Content\menus\tex_menu_class_blue.png" />
-    <Content Include="Content\menus\tex_menu_class_red.png" />
-    <Content Include="Content\menus\tex_menu_help.png" />
-    <Content Include="Content\menus\tex_menu_loading.png" />
-    <Content Include="Content\menus\tex_menu_server.png" />
-    <Content Include="Content\menus\tex_menu_team.png" />
-    <Content Include="Content\menus\tex_menu_title.png" />
-    <Content Include="Content\menus\tex_menu_title_old.png" />
-    <Content Include="Content\song_title.mp3" />
-    <Content Include="Content\sounds\build.wav" />
-    <Content Include="Content\sounds\cash.wav" />
-    <Content Include="Content\sounds\click-loud.wav" />
-    <Content Include="Content\sounds\click-quiet.wav" />
-    <Content Include="Content\sounds\death.wav" />
-    <Content Include="Content\sounds\dig-dirt.wav" />
-    <Content Include="Content\sounds\dig-metal.wav" />
-    <Content Include="Content\sounds\drill.wav" />
-    <Content Include="Content\sounds\explosion.wav" />
-    <Content Include="Content\sounds\hitground.wav" />
-    <Content Include="Content\sounds\jumpblock.wav" />
-    <Content Include="Content\sounds\ping.wav" />
-    <Content Include="Content\sounds\radar-high.wav" />
-    <Content Include="Content\sounds\radar-low.wav" />
-    <Content Include="Content\sounds\switch.wav" />
-    <Content Include="Content\sounds\teleport.wav" />
-    <Content Include="Content\sprites\tex_sprite_blue_construction.png" />
-    <Content Include="Content\sprites\tex_sprite_blue_detonator.png" />
-    <Content Include="Content\sprites\tex_sprite_blue_drill.png" />
-    <Content Include="Content\sprites\tex_sprite_blue_pickaxe.png" />
-    <Content Include="Content\sprites\tex_sprite_blue_radar.png" />
-    <Content Include="Content\sprites\tex_sprite_red_construction.png" />
-    <Content Include="Content\sprites\tex_sprite_red_detonator.png" />
-    <Content Include="Content\sprites\tex_sprite_red_drill.png" />
-    <Content Include="Content\sprites\tex_sprite_red_pickaxe.png" />
-    <Content Include="Content\sprites\tex_sprite_red_radar.png" />
-    <Content Include="Content\testgeometryrenderer.fx" />
-    <Content Include="Content\tile.png" />
-    <Content Include="Content\tools\tex_tool_build.png" />
-    <Content Include="Content\tools\tex_tool_build_blast.png" />
-    <Content Include="Content\tools\tex_tool_build_charge.png" />
-    <Content Include="Content\tools\tex_tool_build_smoke.png" />
-    <Content Include="Content\tools\tex_tool_detonator_down_blue.png" />
-    <Content Include="Content\tools\tex_tool_detonator_down_red.png" />
-    <Content Include="Content\tools\tex_tool_detonator_up_blue.png" />
-    <Content Include="Content\tools\tex_tool_detonator_up_red.png" />
-    <Content Include="Content\tools\tex_tool_radar_blue.png" />
-    <Content Include="Content\tools\tex_tool_radar_flash.png" />
-    <Content Include="Content\tools\tex_tool_radar_led.png" />
-    <Content Include="Content\tools\tex_tool_radar_pointer.png" />
-    <Content Include="Content\tools\tex_tool_radar_red.png" />
-    <Content Include="Content\tools\tex_tool_radar_screen_diamond.png" />
-    <Content Include="Content\tools\tex_tool_radar_screen_gold.png" />
-    <Content Include="Content\ui\tex_radar_background.png" />
-    <Content Include="Content\ui\tex_radar_foreground.png" />
-    <Content Include="Content\ui\tex_radar_north.png" />
-    <Content Include="Content\ui\tex_radar_player_above.png" />
-    <Content Include="Content\ui\tex_radar_player_below.png" />
-    <Content Include="Content\ui\tex_radar_player_ping.png" />
-    <Content Include="Content\ui\tex_radar_player_same.png" />
-    <Content Include="Content\ui\tex_ui_crosshair.png" />
+    <Content Include="Content\blocks\tex_block_bank_back_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_back_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_front_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_front_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_left_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_left_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_right_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_right_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_top_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_bank_top_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_beacon_top_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_beacon_top_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_diamond.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_dirt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_dirt_sign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_explosive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_home_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_home_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_home_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_jump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_jump_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_ladder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_ladder_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_lava.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_mechanism.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_metal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_ore.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_road.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_rock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_silver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_spikes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_teleporter_a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_teleporter_b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_teleporter_bottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_teleporter_top.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_trans_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blocks\tex_block_trans_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BloomCombine.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BloomExtract.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\effect_basic.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\effect_particle.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\effect_skyplane.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\effect_spritemodel.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GaussianBlur.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\hero.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_bank_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_bank_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_beacon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_deconstruction.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_explosive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_jump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_ladder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_road.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_solid_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_solid_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_spikes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_teleporter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_translucent_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\icons\tex_icon_translucent_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_class_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_class_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_loading.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_server.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_team.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_title.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menus\tex_menu_title_old.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\song_title.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\build.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\cash.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\click-loud.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\click-quiet.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\death.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\dig-dirt.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\dig-metal.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\drill.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\explosion.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\hitground.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\jumpblock.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\ping.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\radar-high.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\radar-low.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\switch.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sounds\teleport.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_blue_construction.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_blue_detonator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_blue_drill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_blue_pickaxe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_blue_radar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_red_construction.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_red_detonator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_red_drill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_red_pickaxe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprites\tex_sprite_red_radar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\testgeometryrenderer.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_build.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_build_blast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_build_charge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_build_smoke.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_detonator_down_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_detonator_down_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_detonator_up_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_detonator_up_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_flash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_led.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_pointer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_screen_diamond.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\tools\tex_tool_radar_screen_gold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_foreground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_north.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_player_above.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_player_below.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_player_ping.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_radar_player_same.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\tex_ui_crosshair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -367,14 +613,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\TextFont.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\04b03b.spritefont" />
-    <None Include="Content\04b08.spritefont" />
-    <None Include="Content\Content.contentproj" />
+    <Content Include="Content\04b03b.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\04b08.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Net.WindowsUAP.csproj">
+      <Project>{9ce2fa93-3d41-4025-b228-3d9d81f19be0}</Project>
+      <Name>MonoGame.Framework.Net.WindowsUAP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
       <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
       <Name>MonoGame.Framework.WindowsUAP</Name>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Infiniminer
+namespace GameManager
 {
     internal class ResolveTexture2D
     {

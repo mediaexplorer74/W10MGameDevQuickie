@@ -7,7 +7,7 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-namespace Infiniminer
+namespace GameManager
 {
     /// <summary>
     /// Class holds all the settings used to tweak the bloom effect.

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
-using Lidgren.Network;
+//using Lidgren.Network;
 
-namespace Infiniminer
+namespace GameManager
 {
     public class ServerInformation
     {
@@ -17,8 +17,8 @@ namespace Infiniminer
 
         public ServerInformation(NetBuffer netBuffer)
         {
-            ipEndPoint = netBuffer.ReadIPEndPoint();
-            serverName = ipEndPoint.Address.ToString();
+            ipEndPoint = default;//netBuffer.ReadIPEndPoint();
+            serverName = default;//ipEndPoint.Address.ToString();
             lanServer = true;
         }
 

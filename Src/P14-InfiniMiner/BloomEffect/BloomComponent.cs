@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 #endregion
 
-namespace Infiniminer
+namespace GameManager
 {
     public class BloomComponent
     {
@@ -97,8 +97,8 @@ namespace Infiniminer
             width /= 4;
             height /= 4;
 
-            renderTarget1 = new RenderTarget2D(GraphicsDevice, width, height, 1, format);
-            renderTarget2 = new RenderTarget2D(GraphicsDevice, width, height, 1, format);
+            renderTarget1 = new RenderTarget2D(GraphicsDevice, width, height, true, format, default);
+            renderTarget2 = new RenderTarget2D(GraphicsDevice, width, height, true, format, default);
         }
 
 

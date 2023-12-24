@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices; 
 using System.Reflection;
-using Infiniminer;
+using GameManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -24,7 +24,7 @@ namespace StateMasher
         public static extern int GetForegroundWindow(); 
 
         public GraphicsDeviceManager graphicsDeviceManager;
-        public Infiniminer.PropertyBag propertyBag = null;
+        public GameManager.PropertyBag propertyBag = null;
 
         private string currentStateType = "";
         public string CurrentStateType

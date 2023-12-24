@@ -915,20 +915,27 @@ namespace Microsoft.Xna.Framework.Graphics
         {
 #if WINDOWS_STOREAPP || WINDOWS_UAP
             // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
-            // in certain scenarios.  In this sample, however, we do not utilize those features.
-            var parameters = new SharpDX.DXGI.PresentParameters();
+            // in certain scenarios.  In this sample, however, we do not utilize those features.            
             
             try
             {
+                var parameters = new SharpDX.DXGI.PresentParameters();
+
                 // TODO: Hook in PresentationParameters here!
 
                 // The first argument instructs DXGI to block until VSync, putting the application
                 // to sleep until the next VSync. This ensures we don't waste any cycles rendering
                 // frames that will never be displayed to the screen.
                 lock (_d3dContext)
-                    _swapChain.Present(1, PresentFlags.None, parameters);
+                {
+                    try
+                    {
+                        _swapChain.Present(1, PresentFlags.None, parameters);
+                    }
+                    catch { }
+                }
             }
-            catch (SharpDX.SharpDXException)
+            catch (Exception ex)//(SharpDX.SharpDXException)
             {
                 // TODO: How should we deal with a device lost case here?
                 /*               
@@ -940,26 +947,37 @@ namespace Microsoft.Xna.Framework.Graphics
                 else
                     throw;
                 */
+                Debug.WriteLine("[ex] DirectX error: " + ex.Message);
             }
 
 #endif
-#if WINDOWS
 
+
+#if WINDOWS
             try
             {
                 var syncInterval = PresentationParameters.PresentationInterval.GetFrameLatency();
 
                 // The first argument instructs DXGI to block n VSyncs before presenting.
                 lock (_d3dContext)
-                    _swapChain.Present(syncInterval, PresentFlags.None);
+                {
+                    try
+                    {
+                        _swapChain.Present(syncInterval, PresentFlags.None);
+                    }
+                    catch { }
+                }
             }
-            catch (SharpDX.SharpDXException)
+            catch (Exception ex)//(SharpDX.SharpDXException)
             {
                 // TODO: How should we deal with a device lost case here?
             }
 #endif
-        }
 
+        }//PlatformPresent
+
+
+        // PlatformSetViewport
         private void PlatformSetViewport(ref Viewport value)
         {
             if (_d3dContext != null)

@@ -1,4 +1,4 @@
-﻿namespace Infiniminer
+﻿namespace GameManager
 {
     public enum NetMessageType : byte
     {

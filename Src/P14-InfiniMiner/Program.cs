@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 
-namespace Infiniminer
+namespace GameManager
 {
+    /*
     static class Program
     {
         /// <summary>
@@ -11,7 +12,7 @@ namespace Infiniminer
         [STAThread]
         static void Main(string[] args)
         {
-            using (InfiniminerGame game = new InfiniminerGame(args))
+            using (Game1 game = new Game1(args))
             {
                 try
                 {
@@ -24,6 +25,8 @@ namespace Infiniminer
                 }
             }
         }
+    
     }
+    */
 }
 

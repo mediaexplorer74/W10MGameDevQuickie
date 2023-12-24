@@ -18,6 +18,8 @@ namespace GameManager
         public GameManager(GraphicsDeviceManager graphics)
         {
             _canvas = new(graphics.GraphicsDevice, 64 * Map.Size.X, 64 * (Map.Size.Y + 1));
+            
+            /*
             _map = new();
             _hero = new Hero(Glob.Content.Load<Texture2D>("hero"), Vector2.Zero);
             _monsterTex = Glob.Content.Load<Texture2D>("hero");
@@ -32,6 +34,7 @@ namespace GameManager
 
             _button = new Button(_monsterTex, new Vector2(32, 13 * 64 - 32));
             _button.OnTap += (e, a) => SpawnMonster();
+            */
         }
 
         public void SpawnMonster()

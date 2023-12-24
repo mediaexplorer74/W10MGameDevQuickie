@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace Infiniminer
+namespace GameManager
 {
     internal class SaveStateMode
     {

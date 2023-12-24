@@ -29,7 +29,8 @@ namespace Microsoft.Xna.Framework.Graphics
         internal abstract SharpDX.Direct3D11.Resource CreateTexture();
 
         
-        internal SharpDX.Direct3D11.Resource GetTexture()
+        //Experimental
+        public SharpDX.Direct3D11.Resource GetTexture()
         {
             if (_texture == null)
                 _texture = CreateTexture();

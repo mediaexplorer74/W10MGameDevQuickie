@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Infiniminer
+namespace GameManager
 {
     /* Loads in a datafile consisting of key/value pairs, in the format of
      * "key = value", which can be read out through the Data dictionary.
@@ -35,10 +35,10 @@ namespace Infiniminer
                     line = sr.ReadLine();
                 }
 
-                sr.Close();
-                file.Close();
+                sr.Dispose();
+                file.Dispose();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
             }

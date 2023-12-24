@@ -2,6 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
+using SharpDX.Direct2D1;
+using SharpDX.DirectWrite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -162,6 +164,13 @@ namespace Microsoft.Xna.Framework.Graphics
         }
 
         internal GraphicsMetrics _graphicsMetrics;
+        public VertexDeclaration VertexDeclaration;
+
+        // Experimental
+        public VertexDeclaration[] Vertices;
+
+        //Experimental
+        public RState RenderState;
 
         /// <summary>
         /// The rendering information for debugging and profiling.
@@ -506,7 +515,12 @@ namespace Microsoft.Xna.Framework.Graphics
         public void Present()
         {
             _graphicsMetrics = new GraphicsMetrics();
-            PlatformPresent();
+
+            try
+            {
+                PlatformPresent();
+            }
+            catch { }
         }
 
         /*

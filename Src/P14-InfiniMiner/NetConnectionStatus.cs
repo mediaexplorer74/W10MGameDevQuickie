@@ -1,6 +1,6 @@
-﻿namespace Infiniminer
+﻿namespace GameManager
 {
-    internal class NetConnectionStatus
+    public class NetConnectionStatus
     {
         internal static object Disconnected;
         internal static object Connected;

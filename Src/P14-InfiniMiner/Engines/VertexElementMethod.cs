@@ -1,4 +1,4 @@
-﻿namespace Infiniminer
+﻿namespace GameManager
 {
     internal class VertexElementMethod
     {

@@ -8,17 +8,17 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer
+namespace GameManager
 {
     public class PlayerEngine
     {
-        InfiniminerGame gameInstance;
+        Game1 gameInstance;
         PropertyBag _P;
 
-        public PlayerEngine(InfiniminerGame gameInstance)
+        public PlayerEngine(Game1 gameInstance)
         {
             this.gameInstance = gameInstance;
         }
@@ -48,7 +48,7 @@ namespace Infiniminer
             // If we don't have _P, grab it from the current gameInstance.
             // We can't do this in the constructor because we are created in the property bag's constructor!
             if (_P == null)
-                _P = gameInstance.propertyBag;
+                _P = Game1.propertyBag;
 
             foreach (Player p in _P.playerList.Values)
             {
@@ -70,7 +70,7 @@ namespace Infiniminer
             // If we don't have _P, grab it from the current gameInstance.
             // We can't do this in the constructor because we are created in the property bag's constructor!
             if (_P == null)
-                _P = gameInstance.propertyBag;
+                _P = Game1.propertyBag;
 
             foreach (Player p in _P.playerList.Values)
             {

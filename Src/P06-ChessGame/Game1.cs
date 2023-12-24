@@ -114,10 +114,11 @@ namespace ChessGame
             btnEndRestart = Content.Load<Texture2D>("restart");
             btnPaus = Content.Load<Texture2D>("pausedbutton");
             btnPausGame = Content.Load<Texture2D>("pausebutton");
-            player1time = Content.Load<SpriteFont>("player1timer");
-            player2time = Content.Load<SpriteFont>("player2timer");
-            pausedGame = Content.Load<SpriteFont>("paused");
-            match = Content.Load<SpriteFont>("history");
+
+            player1time = Content.Load<SpriteFont>("TextFont");//("player1timer");
+            player2time = Content.Load<SpriteFont>("TextFont");//("player2timer");
+            pausedGame = Content.Load<SpriteFont>("TextFont");//("paused");
+            match = Content.Load<SpriteFont>("TextFont");//("history");
 
             chess.Board.LoadContent(Content);
             foreach (Square square in chess.Board.Squares)

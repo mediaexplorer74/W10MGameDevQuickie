@@ -11,10 +11,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer.States
+namespace GameManager.States
 {
     public class DebugState : State
     {
@@ -36,11 +36,11 @@ namespace Infiniminer.States
             return null;
         }
 
-        public override void OnRenderAtEnter(GraphicsDeviceManager graphicsDevice)
+        public /*override*/ void OnRenderAtEnter(GraphicsDeviceManager graphicsDevice)
         {
         }
 
-        public override void OnRenderAtUpdate(GraphicsDeviceManager graphicsDevice)
+        public /*override*/ void OnRenderAtUpdate(GraphicsDeviceManager graphicsDevice)
         {
             if (flashCounter < 0.25)
                 graphicsDevice.GraphicsDevice.Clear(Color.Blue);
@@ -50,35 +50,35 @@ namespace Infiniminer.States
 
         public override void OnKeyDown(Keys key)
         {
-            Debug.Print("OnKeyDown(" + key.ToString() + ")");
+            Debug.WriteLine("OnKeyDown(" + key.ToString() + ")");
         }
 
         public override void OnKeyUp(Keys key)
         {
-            Debug.Print("OnKeyUp(" + key.ToString() + ")");
+            Debug.WriteLine("OnKeyUp(" + key.ToString() + ")");
         }
 
         public override void OnMouseDown(MouseButton button, int x, int y)
         {
-            Debug.Print("OnMouseDown(" + button + ", " + x + ", " + y + ")");
+            Debug.WriteLine("OnMouseDown(" + button + ", " + x + ", " + y + ")");
         }
 
         public override void OnMouseUp(MouseButton button, int x, int y)
         {
-            Debug.Print("OnMouseUp(" + button + ", " + x + ", " + y + ")");
+            Debug.WriteLine("OnMouseUp(" + button + ", " + x + ", " + y + ")");
         }
 
         public override void OnMouseScroll(int scrollDelta)
         {
-            Debug.Print("OnMouseScroll(" + scrollDelta + ")");
+            Debug.WriteLine("OnMouseScroll(" + scrollDelta + ")");
         }
 
-        //public override void OnStatusChange(NetConnectionStatus status)
-        //{
-        //}
+        public /*override*/ void OnStatusChange(NetConnectionStatus status)
+        {
+        }
 
-        //public override void OnPacket(NetBuffer buffer, NetMessageType type)
-        //{
-        //}
+        public /*override*/ void OnPacket(NetBuffer buffer, NetMessageType type)
+        {
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using System.Text;
 
-namespace Infiniminer
+namespace GameManager
 {
     public enum BlockType : byte
     {

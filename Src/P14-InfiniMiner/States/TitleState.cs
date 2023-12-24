@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer.States
+namespace GameManager.States
 {
     public class TitleState : State
     {
@@ -41,7 +41,7 @@ namespace Infiniminer.States
         public override string OnUpdate(GameTime gameTime, KeyboardState keyState, MouseState mouseState)
         {
             // Do network stuff.
-            //(_SM as InfiniminerGame).UpdateNetwork(gameTime);
+            //(_SM as Game1).UpdateNetwork(gameTime);
 
             return nextState;
         }

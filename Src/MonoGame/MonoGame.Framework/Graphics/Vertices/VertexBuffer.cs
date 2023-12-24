@@ -10,8 +10,12 @@ namespace Microsoft.Xna.Framework.Graphics
     public partial class VertexBuffer : GraphicsResource
     {
         private readonly bool _isDynamic;
+        private GraphicsDevice graphicsDevice;
+        private int v;
+        private BufferUsage writeOnly;
+        public int SizeInBytes;
 
-		public int VertexCount { get; private set; }
+        public int VertexCount { get; private set; }
 		public VertexDeclaration VertexDeclaration { get; private set; }
 		public BufferUsage BufferUsage { get; private set; }
 		
@@ -43,6 +47,15 @@ namespace Microsoft.Xna.Framework.Graphics
 		public VertexBuffer(GraphicsDevice graphicsDevice, Type type, int vertexCount, BufferUsage bufferUsage) :
 			this(graphicsDevice, VertexDeclaration.FromType(type), vertexCount, bufferUsage, false)
 		{
+        }
+
+        //Experimental
+        public VertexBuffer(GraphicsDevice graphicsDevice, int v, BufferUsage writeOnly) :
+        this(graphicsDevice, default, default, default, false)
+        {
+            this.graphicsDevice = graphicsDevice;
+            this.v = v;
+            this.writeOnly = writeOnly;
         }
 
         /// <summary>

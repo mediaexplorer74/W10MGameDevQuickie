@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Storage;
 //using Lidgren.Network;
 //using Lidgren.Network.Xna;
 
-namespace Infiniminer
+namespace GameManager
 {
     public enum PlayerClass
     {
@@ -183,7 +183,7 @@ namespace Infiniminer
         public List<ChatMessage> chatBuffer = new List<ChatMessage>(); // chatBuffer[0] is most recent
         public string chatEntryBuffer = "";
 
-        public PropertyBag(InfiniminerGame gameInstance)
+        public PropertyBag(Game1 gameInstance)
         {
             // Initialize our network device.
             NetConfiguration netConfig = new NetConfiguration("InfiniminerPlus");

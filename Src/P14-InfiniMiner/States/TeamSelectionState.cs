@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer.States
+namespace GameManager.States
 {
     public class TeamSelectionState : State
     {
@@ -53,7 +53,7 @@ namespace Infiniminer.States
         public override string OnUpdate(GameTime gameTime, KeyboardState keyState, MouseState mouseState)
         {
             // Do network stuff.
-            (_SM as InfiniminerGame).UpdateNetwork(gameTime);
+            //(_SM as Game1).UpdateNetwork(gameTime);
 
             return nextState;
         }
@@ -82,8 +82,8 @@ namespace Infiniminer.States
             SpriteBatch spriteBatch = new SpriteBatch(graphicsDevice);
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState);
             spriteBatch.Draw(texMenu, drawRect, Color.White);
-            QuickDrawText(spriteBatch, "" + redTeamCount + " PLAYERS", 360, InfiniminerGame.IM_RED);
-            QuickDrawText(spriteBatch, "" + blueTeamCount + " PLAYERS", 620, InfiniminerGame.IM_BLUE);
+            QuickDrawText(spriteBatch, "" + redTeamCount + " PLAYERS", 360, Game1.IM_RED);
+            QuickDrawText(spriteBatch, "" + blueTeamCount + " PLAYERS", 620, Game1.IM_BLUE);
             spriteBatch.End();
         }
 

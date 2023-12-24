@@ -9,14 +9,14 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer
+namespace GameManager
 {
     public class InterfaceEngine
     {
-        InfiniminerGame gameInstance;
+        Game1 gameInstance;
         PropertyBag _P;
         SpriteBatch spriteBatch;
         SpriteFont uiFont, radarFont;
@@ -30,7 +30,7 @@ namespace Infiniminer
 
         Dictionary<BlockType, Texture2D> blockIcons = new Dictionary<BlockType, Texture2D>();
 
-        public InterfaceEngine(InfiniminerGame gameInstance)
+        public InterfaceEngine(Game1 gameInstance)
         {
             this.gameInstance = gameInstance;
             spriteBatch = new SpriteBatch(gameInstance.GraphicsDevice);
@@ -246,7 +246,7 @@ namespace Infiniminer
             // If we don't have _P, grab it from the current gameInstance.
             // We can't do this in the constructor because we are created in the property bag's constructor!
             if (_P == null)
-                _P = gameInstance.propertyBag;
+                _P = Game1.propertyBag;
 
             // Draw the UI.
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.SaveState);
@@ -293,15 +293,15 @@ namespace Infiniminer
                 RenderMessageCenter(spriteBatch, String.Format("FPS: {0:000}", gameInstance.FrameRate), new Vector2(60, graphicsDevice.Viewport.Height - 20), Color.Gray, Color.Black);
 
             // Show the altimeter.
-            int altitude = (int)(_P.playerPosition.Y - 64 + InfiniminerGame.GROUND_LEVEL);
-            RenderMessageCenter(spriteBatch, String.Format("ALTITUDE: {0:00}", altitude), new Vector2(graphicsDevice.Viewport.Width - 90, graphicsDevice.Viewport.Height - 20), altitude >= 0 ? Color.Gray : InfiniminerGame.IM_RED, Color.Black);
+            int altitude = (int)(_P.playerPosition.Y - 64 + Game1.GROUND_LEVEL);
+            RenderMessageCenter(spriteBatch, String.Format("ALTITUDE: {0:00}", altitude), new Vector2(graphicsDevice.Viewport.Width - 90, graphicsDevice.Viewport.Height - 20), altitude >= 0 ? Color.Gray : Game1.IM_RED, Color.Black);
 
             // Draw bank instructions.
             if (_P.AtBankTerminal())
                 RenderMessageCenter(spriteBatch, "1: DEPOSIT 50 ORE  2: WITHDRAW 50 ORE", new Vector2(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2 + 60), Color.White, Color.Black);
 
             // Are they trying to change class when they cannot?
-            if (Keyboard.GetState().IsKeyDown(Keys.M) && _P.playerPosition.Y <= 64 - InfiniminerGame.GROUND_LEVEL && _P.chatMode == ChatMessageType.None)
+            if (Keyboard.GetState().IsKeyDown(Keys.M) && _P.playerPosition.Y <= 64 - Game1.GROUND_LEVEL && _P.chatMode == ChatMessageType.None)
                 RenderMessageCenter(spriteBatch, "YOU CANNOT CHANGE YOUR CLASS BELOW THE SURFACE", new Vector2(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2 + 90), Color.White, Color.Black);
 
             // Draw the text-based information panel.
@@ -311,8 +311,8 @@ namespace Infiniminer
             spriteBatch.DrawString(uiFont, "LOOT: $" + _P.playerCash, new Vector2(textStart + 170, 2), Color.White);
             spriteBatch.DrawString(uiFont, "WEIGHT: " + _P.playerWeight + "/" + _P.playerWeightMax, new Vector2(textStart + 340, 2), Color.White);
             spriteBatch.DrawString(uiFont, "TEAM ORE: " + _P.teamOre, new Vector2(textStart + 515, 2), Color.White);
-            spriteBatch.DrawString(uiFont, "RED: $" + _P.teamRedCash, new Vector2(textStart + 700, 2), InfiniminerGame.IM_RED);
-            spriteBatch.DrawString(uiFont, "BLUE: $" + _P.teamBlueCash, new Vector2(textStart + 860, 2), InfiniminerGame.IM_BLUE);
+            spriteBatch.DrawString(uiFont, "RED: $" + _P.teamRedCash, new Vector2(textStart + 700, 2), Game1.IM_RED);
+            spriteBatch.DrawString(uiFont, "BLUE: $" + _P.teamBlueCash, new Vector2(textStart + 860, 2), Game1.IM_BLUE);
 
             // Draw player information.
             if ((Keyboard.GetState().IsKeyDown(Keys.Tab) && _P.screenEffect == ScreenEffect.None) || _P.teamWinners != PlayerTeam.None)
@@ -322,7 +322,7 @@ namespace Infiniminer
                 if (_P.teamWinners != PlayerTeam.None)
                 {
                     string teamName = _P.teamWinners == PlayerTeam.Red ? "RED" : "BLUE";
-                    Color teamColor = _P.teamWinners == PlayerTeam.Red ? InfiniminerGame.IM_RED : InfiniminerGame.IM_BLUE;
+                    Color teamColor = _P.teamWinners == PlayerTeam.Red ? Game1.IM_RED : Game1.IM_BLUE;
                     string gameOverMessage = "GAME OVER - " + teamName + " TEAM WINS!";
                     RenderMessageCenter(spriteBatch, gameOverMessage, new Vector2(graphicsDevice.Viewport.Width / 2, 150), teamColor, new Color(0, 0, 0, 0));
                 }
@@ -332,7 +332,7 @@ namespace Infiniminer
                 {
                     if (p.Team != PlayerTeam.Red)
                         continue;
-                    RenderMessageCenter(spriteBatch, p.Handle + " ( $" + p.Score + " )", new Vector2(graphicsDevice.Viewport.Width/4, drawY), InfiniminerGame.IM_RED, new Color(0, 0, 0, 0));
+                    RenderMessageCenter(spriteBatch, p.Handle + " ( $" + p.Score + " )", new Vector2(graphicsDevice.Viewport.Width/4, drawY), Game1.IM_RED, new Color(0, 0, 0, 0));
                     drawY += 35;
                 }
                 drawY = 200;
@@ -340,7 +340,7 @@ namespace Infiniminer
                 {
                     if (p.Team != PlayerTeam.Blue)
                         continue;
-                    RenderMessageCenter(spriteBatch, p.Handle + " ( $" + p.Score + " )", new Vector2(graphicsDevice.Viewport.Width * 3 / 4, drawY), InfiniminerGame.IM_BLUE, new Color(0, 0, 0, 0));
+                    RenderMessageCenter(spriteBatch, p.Handle + " ( $" + p.Score + " )", new Vector2(graphicsDevice.Viewport.Width * 3 / 4, drawY), Game1.IM_BLUE, new Color(0, 0, 0, 0));
                     drawY += 35;
                 }
             }
@@ -360,9 +360,9 @@ namespace Infiniminer
             {
                 Color chatColor = Color.White;
                 if (_P.chatBuffer[i].type == ChatMessageType.SayRedTeam)
-                    chatColor = InfiniminerGame.IM_RED;
+                    chatColor = Game1.IM_RED;
                 if (_P.chatBuffer[i].type == ChatMessageType.SayBlueTeam)
-                    chatColor = InfiniminerGame.IM_BLUE;
+                    chatColor = Game1.IM_BLUE;
                 spriteBatch.DrawString(uiFont, _P.chatBuffer[i].message, new Vector2(22, graphicsDevice.Viewport.Height - 114 - 16 * i), Color.Black);
                 spriteBatch.DrawString(uiFont, _P.chatBuffer[i].message, new Vector2(20, graphicsDevice.Viewport.Height - 116 - 16 * i), chatColor);
             }
@@ -371,7 +371,7 @@ namespace Infiniminer
             spriteBatch.Draw(texRadarBackground, new Vector2(10, 30), Color.White);
             foreach (Player p in _P.playerList.Values)
                 if (p.Team == _P.playerTeam && p.Alive)
-                    RenderRadarBlip(spriteBatch, p.ID == _P.playerMyId ? _P.playerPosition : p.Position, p.Team == PlayerTeam.Red ? InfiniminerGame.IM_RED : InfiniminerGame.IM_BLUE, p.Ping > 0, "");
+                    RenderRadarBlip(spriteBatch, p.ID == _P.playerMyId ? _P.playerPosition : p.Position, p.Team == PlayerTeam.Red ? Game1.IM_RED : Game1.IM_BLUE, p.Ping > 0, "");
             foreach (KeyValuePair<Vector3, Beacon> bPair in _P.beaconList)
                 if (bPair.Value.Team == _P.playerTeam)
                     RenderRadarBlip(spriteBatch, bPair.Key, Color.White, false, bPair.Value.ID);

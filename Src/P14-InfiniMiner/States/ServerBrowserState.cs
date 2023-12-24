@@ -11,10 +11,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer.States
+namespace GameManager.States
 {
     public class ServerBrowserState : State
     {
@@ -36,7 +36,7 @@ namespace Infiniminer.States
         public override void OnEnter(string oldState)
         {
             _SM.IsMouseVisible = true;
-            (_SM as InfiniminerGame).ResetPropertyBag();
+            //(_SM as Game1).ResetPropertyBag();
             _P = _SM.propertyBag;
 
             texMenu = _SM.Content.Load<Texture2D>("menus/tex_menu_server");
@@ -48,8 +48,8 @@ namespace Infiniminer.States
 
             uiFont = _SM.Content.Load<SpriteFont>("font_04b08");
             keyMap = new KeyMap();
-            
-            serverList = (_SM as InfiniminerGame).EnumerateServers(0.5f);
+
+            serverList = default;//(_SM as Game1).EnumerateServers(0.5f);
         }
 
         public override void OnLeave(string newState)
@@ -86,7 +86,7 @@ namespace Infiniminer.States
                 }
             }
 
-            spriteBatch.DrawString(uiFont, InfiniminerGame.INFINIMINER_VERSION, new Vector2(10, _SM.GraphicsDevice.Viewport.Height - 20), Color.White);
+            spriteBatch.DrawString(uiFont, Game1.INFINIMINER_VERSION, new Vector2(10, _SM.GraphicsDevice.Viewport.Height - 20), Color.White);
 
             if (directConnectIPEnter)
                 spriteBatch.DrawString(uiFont, "ENTER IP: " + directConnectIP, new Vector2(drawRect.X + 30, drawRect.Y + 690), Color.White);
@@ -120,7 +120,7 @@ namespace Infiniminer.States
                         connectIp = null;
                         try
                         {
-                            IPAddress[] resolveResults = Dns.GetHostAddresses(directConnectIP);
+                            IPAddress[] resolveResults = default;//Dns.GetHostAddresses(directConnectIP);
                             for (int i = 0; i < resolveResults.Length; i++)
                                 if (resolveResults[i].AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                                 {
@@ -135,7 +135,7 @@ namespace Infiniminer.States
                     }
                     if (connectIp != null)                   
                     {
-                        (_SM as InfiniminerGame).JoinGame(new IPEndPoint(connectIp, 5565));
+                        //(_SM as Game1).JoinGame(new IPEndPoint(connectIp, 5565));
                         nextState = "Infiniminer.States.LoadingState";
                     }
                     directConnectIP = "";
@@ -145,10 +145,11 @@ namespace Infiniminer.States
                 {
                     try
                     {
-                        directConnectIP += System.Windows.Forms.Clipboard.GetText();
+                        //directConnectIP += System.Windows.Forms.Clipboard.GetText();
                     }
-                    catch (Exception e)
+                    catch (Exception eх)
                     {
+                        //
                     }
                 }
                 else if (keyMap.IsKeyMapped(key))
@@ -180,7 +181,7 @@ namespace Infiniminer.States
                     int distanceFromCenter = Math.Abs(_SM.GraphicsDevice.Viewport.Width / 2 - x);
                     if (distanceFromCenter < descWidths[serverIndex] / 2)
                     {
-                        (_SM as InfiniminerGame).JoinGame(serverList[serverIndex].ipEndPoint);
+                        //(_SM as Game1).JoinGame(serverList[serverIndex].ipEndPoint);
                         nextState = "Infiniminer.States.LoadingState";
                         _P.PlaySound(InfiniminerSound.ClickHigh);
                     }
@@ -192,7 +193,7 @@ namespace Infiniminer.States
                 {
                     case "refresh":
                         _P.PlaySound(InfiniminerSound.ClickHigh);
-                        serverList = (_SM as InfiniminerGame).EnumerateServers(0.5f);
+                        serverList = default;//(_SM as Game1).EnumerateServers(0.5f);
                         break;
 
                     case "direct":

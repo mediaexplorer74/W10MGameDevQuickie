@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 
-namespace Infiniminer
+namespace GameManager
 {
     public static class HttpRequest
     {
@@ -21,8 +21,8 @@ namespace Infiniminer
 
             try
             {
-                request.ContentLength = bytes.Length;
-                os = request.GetRequestStream();
+                //request.ContentLength = bytes.Length;
+                os = default;//request.GetRequestStream();
                 os.Write (bytes, 0, bytes.Length);
             }
             catch (WebException ex)
@@ -31,7 +31,10 @@ namespace Infiniminer
             }
             finally
             {
-                if (os != null) os.Close();
+                if (os != null)
+                {
+                    os.Dispose();
+                }
             }
 
             return ReadResponse(request);
@@ -52,7 +55,7 @@ namespace Infiniminer
 
             try
             {
-                WebResponse response = request.GetResponse();
+                WebResponse response = default;//request.GetResponse();
                 if (response == null) throw new Exception("No response");
 
                 StreamReader sr = new StreamReader(response.GetResponseStream());

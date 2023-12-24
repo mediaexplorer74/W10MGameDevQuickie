@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Lidgren.Network;
-using Lidgren.Network.Xna;
+//using Lidgren.Network;
+//using Lidgren.Network.Xna;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer
+namespace GameManager
 {
     public class Player
     {
@@ -166,7 +166,7 @@ namespace Infiniminer
             this.ID = Player.GetUniqueId();
 
             if (netConn != null)
-                this.IP = netConn.RemoteEndpoint.Address.ToString();
+                this.IP = default;//netConn.RemoteEndpoint.Address.ToString();
 
             if (gameInstance != null)
             {

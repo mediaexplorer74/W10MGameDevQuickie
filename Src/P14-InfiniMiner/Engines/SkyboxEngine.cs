@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer
+namespace GameManager
 {
     public class SkyplaneEngine
     {
-        InfiniminerGame gameInstance;
+        Game1 gameInstance;
         PropertyBag _P;
         Texture2D texNoise;
         Random randGen;
@@ -24,7 +24,7 @@ namespace Infiniminer
         VertexDeclaration vertexDeclaration;
         float effectTime = 0;
 
-        public SkyplaneEngine(InfiniminerGame gameInstance)
+        public SkyplaneEngine(Game1 gameInstance)
         {
             this.gameInstance = gameInstance;
 
@@ -63,7 +63,7 @@ namespace Infiniminer
             // If we don't have _P, grab it from the current gameInstance.
             // We can't do this in the constructor because we are created in the property bag's constructor!
             if (_P == null)
-                _P = gameInstance.propertyBag;
+                _P = Game1.propertyBag;
 
             // Draw the skybox.
             Matrix viewMatrix = _P.playerCamera.ViewMatrix;

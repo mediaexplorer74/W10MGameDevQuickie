@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
 namespace StateMasher
@@ -24,7 +24,7 @@ namespace StateMasher
     public class State
     {
         public StateMachine _SM = null;
-        public Infiniminer.PropertyBag _P = null;
+        public GameManager.PropertyBag _P = null;
 
         public virtual void OnEnter(string oldState)
         {

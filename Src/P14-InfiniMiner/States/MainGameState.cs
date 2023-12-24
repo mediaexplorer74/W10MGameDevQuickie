@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+//using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
-using Lidgren.Network;
+//using Lidgren.Network;
 
-namespace Infiniminer.States
+namespace GameManager.States
 {
     public class MainGameState : State
     {
@@ -45,7 +45,7 @@ namespace Infiniminer.States
         public override string OnUpdate(GameTime gameTime, KeyboardState keyState, MouseState mouseState)
         {
             // Update network stuff.
-            (_SM as InfiniminerGame).UpdateNetwork(gameTime);
+            //(_SM as Game1).UpdateNetwork(gameTime);
 
             // Update the current screen effect.
             _P.screenEffectCounter += gameTime.ElapsedGameTime.TotalSeconds;
@@ -72,8 +72,8 @@ namespace Infiniminer.States
                     int dx = mouseState.X - _SM.GraphicsDevice.Viewport.Width / 2;
                     int dy = mouseState.Y - _SM.GraphicsDevice.Viewport.Height / 2;
 
-                    if ((_SM as InfiniminerGame).InvertMouseYAxis)
-                        dy = -dy;
+                    //if ((_SM as Game1).InvertMouseYAxis)
+                    //    dy = -dy;
 
                     _P.playerCamera.Yaw -= dx * 0.005f;
                     _P.playerCamera.Pitch = (float)Math.Min(Math.PI * 0.49, Math.Max(-Math.PI * 0.49, _P.playerCamera.Pitch - dy * 0.005f));
@@ -435,12 +435,12 @@ namespace Infiniminer.States
                 {
                     NetBuffer msgBuffer = _P.netClient.CreateBuffer();
                     msgBuffer.Write((byte)InfiniminerMessage.PlayerPing);
-                    msgBuffer.Write(_P.playerMyId);
+                    msgBuffer.Write(_P.playerMyId.ToString());
                     _P.netClient.SendMessage(msgBuffer, NetChannel.ReliableUnordered);
                 }
 
                 // Change class.
-                if (key == Keys.M && _P.playerPosition.Y > 64 - InfiniminerGame.GROUND_LEVEL)
+                if (key == Keys.M && _P.playerPosition.Y > 64 - Game1.GROUND_LEVEL)
                     nextState = "Infiniminer.States.ClassSelectionState";
 
                 // Change team.

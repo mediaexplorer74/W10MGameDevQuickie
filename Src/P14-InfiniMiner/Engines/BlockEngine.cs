@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 //using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Infiniminer
+namespace GameManager
 {
     public enum BlockFaceDirection : byte
     {
@@ -91,7 +91,7 @@ namespace Infiniminer
         BlockTexture[,] blockTextureMap = null;
         IMTexture[] blockTextures = null;
         Effect basicEffect;
-        InfiniminerGame gameInstance;
+        Game1 gameInstance1;
         DynamicVertexBuffer[,] vertexBuffers = null;
         bool[,] vertexListDirty = null;
         VertexDeclaration vertexDeclaration;
@@ -116,9 +116,9 @@ namespace Infiniminer
                             AddBlock(i, j, k, downloadList[i, j, k]);
         }
 
-        public BlockEngine(InfiniminerGame gameInstance)
+        public BlockEngine(Game1 gameInstance1)
         {
-            this.gameInstance = gameInstance;
+            this.gameInstance1 = gameInstance1;
 
             // Initialize the block list.
             downloadList = new BlockType[MAPSIZE, MAPSIZE, MAPSIZE];
@@ -146,46 +146,46 @@ namespace Infiniminer
             // Load the textures we'll use.
             blockTextures = new IMTexture[(byte)BlockTexture.MAXIMUM];
             blockTextures[(byte)BlockTexture.None] = new IMTexture(null);
-            blockTextures[(byte)BlockTexture.Dirt] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_dirt"));
-            blockTextures[(byte)BlockTexture.Rock] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_rock"));
-            blockTextures[(byte)BlockTexture.Ore] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_ore"));
-            blockTextures[(byte)BlockTexture.Gold] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_silver"));
-            blockTextures[(byte)BlockTexture.Diamond] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_diamond"));
-            blockTextures[(byte)BlockTexture.HomeRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_home_red"));
-            blockTextures[(byte)BlockTexture.HomeBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_home_blue"));
-            blockTextures[(byte)BlockTexture.SolidRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_red"));
-            blockTextures[(byte)BlockTexture.SolidBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_blue"));
-            blockTextures[(byte)BlockTexture.Ladder] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_ladder"));
-            blockTextures[(byte)BlockTexture.LadderTop] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_ladder_top"));
-            blockTextures[(byte)BlockTexture.Spikes] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_spikes"));
-            blockTextures[(byte)BlockTexture.Jump] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_jump"));
-            blockTextures[(byte)BlockTexture.JumpTop] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_jump_top"));
-            blockTextures[(byte)BlockTexture.Explosive] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_explosive"));
-            blockTextures[(byte)BlockTexture.Metal] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_metal"));
-            blockTextures[(byte)BlockTexture.DirtSign] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_dirt_sign"));
-            blockTextures[(byte)BlockTexture.BankTopRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_top_red"));
-            blockTextures[(byte)BlockTexture.BankLeftRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_left_red"));
-            blockTextures[(byte)BlockTexture.BankFrontRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_front_red"));
-            blockTextures[(byte)BlockTexture.BankRightRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_right_red"));
-            blockTextures[(byte)BlockTexture.BankBackRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_back_red"));
-            blockTextures[(byte)BlockTexture.BankTopBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_top_blue"));
-            blockTextures[(byte)BlockTexture.BankLeftBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_left_blue"));
-            blockTextures[(byte)BlockTexture.BankFrontBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_front_blue"));
-            blockTextures[(byte)BlockTexture.BankRightBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_right_blue"));
-            blockTextures[(byte)BlockTexture.BankBackBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_bank_back_blue"));
-            blockTextures[(byte)BlockTexture.TeleSideA] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_teleporter_a"));
-            blockTextures[(byte)BlockTexture.TeleSideB] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_teleporter_b"));
-            blockTextures[(byte)BlockTexture.TeleTop] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_teleporter_top"));
-            blockTextures[(byte)BlockTexture.TeleBottom] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_teleporter_bottom"));
-            blockTextures[(byte)BlockTexture.Lava] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_lava"));
-            blockTextures[(byte)BlockTexture.Road] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_road"));
-            blockTextures[(byte)BlockTexture.BeaconRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_beacon_top_red"));
-            blockTextures[(byte)BlockTexture.BeaconBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_beacon_top_blue"));
-            blockTextures[(byte)BlockTexture.TransRed] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_trans_red"));
-            blockTextures[(byte)BlockTexture.TransBlue] = new IMTexture(gameInstance.Content.Load<Texture2D>("blocks/tex_block_trans_blue"));
+            blockTextures[(byte)BlockTexture.Dirt] = new IMTexture(Glob.Content.Load<Texture2D>("blocks\\tex_block_dirt"));
+            blockTextures[(byte)BlockTexture.Rock] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_rock"));
+            blockTextures[(byte)BlockTexture.Ore] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_ore"));
+            blockTextures[(byte)BlockTexture.Gold] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_silver"));
+            blockTextures[(byte)BlockTexture.Diamond] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_diamond"));
+            blockTextures[(byte)BlockTexture.HomeRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_home"));
+            blockTextures[(byte)BlockTexture.HomeBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_home"));
+            blockTextures[(byte)BlockTexture.SolidRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_red"));
+            blockTextures[(byte)BlockTexture.SolidBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_blue"));
+            blockTextures[(byte)BlockTexture.Ladder] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_ladder"));
+            blockTextures[(byte)BlockTexture.LadderTop] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_ladder_top"));
+            blockTextures[(byte)BlockTexture.Spikes] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_spikes"));
+            blockTextures[(byte)BlockTexture.Jump] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_jump"));
+            blockTextures[(byte)BlockTexture.JumpTop] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_jump_top"));
+            blockTextures[(byte)BlockTexture.Explosive] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_explosive"));
+            blockTextures[(byte)BlockTexture.Metal] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_metal"));
+            blockTextures[(byte)BlockTexture.DirtSign] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_dirt_sign"));
+            blockTextures[(byte)BlockTexture.BankTopRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_top_red"));
+            blockTextures[(byte)BlockTexture.BankLeftRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_left_red"));
+            blockTextures[(byte)BlockTexture.BankFrontRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_front_red"));
+            blockTextures[(byte)BlockTexture.BankRightRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_right_red"));
+            blockTextures[(byte)BlockTexture.BankBackRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_back_red"));
+            blockTextures[(byte)BlockTexture.BankTopBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_top_blue"));
+            blockTextures[(byte)BlockTexture.BankLeftBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_left_blue"));
+            blockTextures[(byte)BlockTexture.BankFrontBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_front_blue"));
+            blockTextures[(byte)BlockTexture.BankRightBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_right_blue"));
+            blockTextures[(byte)BlockTexture.BankBackBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_bank_back_blue"));
+            blockTextures[(byte)BlockTexture.TeleSideA] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_teleporter_a"));
+            blockTextures[(byte)BlockTexture.TeleSideB] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_teleporter_b"));
+            blockTextures[(byte)BlockTexture.TeleTop] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_teleporter_top"));
+            blockTextures[(byte)BlockTexture.TeleBottom] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_teleporter_bottom"));
+            blockTextures[(byte)BlockTexture.Lava] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_lava"));
+            blockTextures[(byte)BlockTexture.Road] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_road"));
+            blockTextures[(byte)BlockTexture.BeaconRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_beacon_top_red"));
+            blockTextures[(byte)BlockTexture.BeaconBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_beacon_top_blue"));
+            blockTextures[(byte)BlockTexture.TransRed] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_trans_red"));
+            blockTextures[(byte)BlockTexture.TransBlue] = new IMTexture(Glob.Content.Load<Texture2D>("blocks/tex_block_trans_blue"));
 
             // Load our effects.
-            basicEffect = gameInstance.Content.Load<Effect>("effect_basic");
+            basicEffect = Glob.Content.Load<Effect>("effect_basic");
 
             // Build vertex lists.
             vertexBuffers = new DynamicVertexBuffer[(byte)BlockTexture.MAXIMUM, NUMREGIONS];
@@ -195,13 +195,14 @@ namespace Infiniminer
                     vertexListDirty[i, j] = true;
 
             // Initialize any graphics stuff.
-            vertexDeclaration = new VertexDeclaration(gameInstance.GraphicsDevice, VertexPositionTextureShade.VertexElements);
+            vertexDeclaration = new VertexDeclaration(gameInstance1.GraphicsDevice, 
+                VertexPositionTextureShade.VertexElements);
 
             // Initialize the bloom engine.
-            if (gameInstance.RenderPretty)
+            if (gameInstance1.RenderPretty)
             {
                 bloomPosteffect = new BloomComponent();
-                bloomPosteffect.Load(gameInstance.GraphicsDevice, gameInstance.Content);
+                bloomPosteffect.Load(gameInstance1.GraphicsDevice, gameInstance1.Content);
             }
             else
                 bloomPosteffect = null;
@@ -220,12 +221,13 @@ namespace Infiniminer
 
         private bool BlockPassibleForPlayer(BlockType blockType)
         {
-            if (blockType == BlockType.None)
+            if (blockType == BlockType.None 
+                || blockType == BlockType.TransRed || blockType == BlockType.TransBlue)
                 return true;
-            if (gameInstance.propertyBag.playerTeam == PlayerTeam.Red && blockType == BlockType.TransRed)
-                return true;
-            if (gameInstance.propertyBag.playerTeam == PlayerTeam.Blue && blockType == BlockType.TransBlue)
-                return true;
+            //if (Glob.propertyBag.playerTeam == PlayerTeam.Red && blockType == BlockType.TransRed)
+            //    return true;
+            //if (Glob.propertyBag.playerTeam == PlayerTeam.Blue && blockType == BlockType.TransBlue)
+            //    return true;
             return false;
         }
 
@@ -277,7 +279,11 @@ namespace Infiniminer
 
                     // If this isn't in our view frustum, don't render it.
                     BoundingSphere regionBounds = new BoundingSphere(GetRegionCenter(r), REGIONSIZE);
-                    BoundingFrustum boundingFrustum = new BoundingFrustum(gameInstance.propertyBag.playerCamera.ViewMatrix * gameInstance.propertyBag.playerCamera.ProjectionMatrix);
+
+                    BoundingFrustum boundingFrustum = new BoundingFrustum(
+                        Game1.propertyBag.playerCamera.ViewMatrix
+                        * Game1.propertyBag.playerCamera.ProjectionMatrix);
+
                     if (boundingFrustum.Contains(regionBounds) == ContainmentType.Disjoint)
                         continue;
 
@@ -287,7 +293,8 @@ namespace Infiniminer
 
                     // Actually render.
                     RenderVertexList(graphicsDevice, regionBuffer, blockTextures[(byte)blockTexture].Texture,
-                        blockTextures[(byte)blockTexture].LODColor, renderTranslucent, blockTexture == BlockTexture.Lava,
+                        blockTextures[(byte)blockTexture].LODColor, renderTranslucent, 
+                        blockTexture == BlockTexture.Lava,
                         (float)gameTime.TotalRealTime.TotalSeconds);
                 }
 
@@ -310,8 +317,8 @@ namespace Infiniminer
                 basicEffect.CurrentTechnique = basicEffect.Techniques["Block"];
             
             basicEffect.Parameters["xWorld"].SetValue(Matrix.Identity);
-            basicEffect.Parameters["xView"].SetValue(gameInstance.propertyBag.playerCamera.ViewMatrix);
-            basicEffect.Parameters["xProjection"].SetValue(gameInstance.propertyBag.playerCamera.ProjectionMatrix);
+            basicEffect.Parameters["xView"].SetValue(Game1.propertyBag.playerCamera.ViewMatrix);
+            basicEffect.Parameters["xProjection"].SetValue(Game1.propertyBag.playerCamera.ProjectionMatrix);
             basicEffect.Parameters["xTexture"].SetValue(blockTexture);
             basicEffect.Parameters["xLODColor"].SetValue(lodColor.ToVector3());
             basicEffect.Begin();
@@ -386,7 +393,7 @@ namespace Infiniminer
                 BuildFaceVertices(ref vertexList, vertexPointer, faceInfo, texture == (int)BlockTexture.Spikes);
                 vertexPointer += 6;            
             }
-            DynamicVertexBuffer vertexBuffer = new DynamicVertexBuffer(gameInstance.GraphicsDevice, vertexList.Length * VertexPositionTextureShade.SizeInBytes, BufferUsage.WriteOnly);
+            DynamicVertexBuffer vertexBuffer = new DynamicVertexBuffer(gameInstance1.GraphicsDevice, vertexList.Length * VertexPositionTextureShade.SizeInBytes, BufferUsage.WriteOnly);
             vertexBuffer.ContentLost += new EventHandler(vertexBuffer_ContentLost);
             vertexBuffer.Tag = new DynamicVertexBufferTag(this, texture, region);
             vertexBuffer.SetData(vertexList);

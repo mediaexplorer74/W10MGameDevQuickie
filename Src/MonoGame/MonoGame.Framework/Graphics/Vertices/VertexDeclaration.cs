@@ -291,6 +291,11 @@ namespace Microsoft.Xna.Framework.Graphics
             return _data.GetHashCode();
         }
 
+        public void SetSource(VertexBuffer vertexBuffer, int v, int sizeInBytes)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Compares two <see cref="VertexElement"/> instances to determine whether they are the
         /// same.

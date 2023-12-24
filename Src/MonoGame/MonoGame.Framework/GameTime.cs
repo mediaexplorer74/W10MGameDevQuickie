@@ -10,6 +10,9 @@ namespace Microsoft.Xna.Framework
     {
         public TimeSpan TotalGameTime { get; set; }
 
+        //RnD
+        public TimeSpan TotalRealTime { get; set; }
+
         public TimeSpan ElapsedGameTime { get; set; }
 
         public bool IsRunningSlowly { get; set; }

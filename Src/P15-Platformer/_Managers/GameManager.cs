@@ -8,20 +8,20 @@ namespace GameManager
 
     public class GameManager
     {
-        private readonly Canvas _canvas;
+        private readonly Canvas1 _canvas;
         private readonly Map1 _map;
-        private readonly Hero _hero;
+        private readonly Hero1 _hero;
         private readonly List<Monster1> _monsters = new();
         private readonly Texture2D _monsterTex;
-        private readonly Button _button;
+        private readonly Button1 _button;
 
         public GameManager(GraphicsDeviceManager graphics)
         {
-            _canvas = new(graphics.GraphicsDevice, 64 * Map1.Size.X, 64 * (Map1.Size.Y + 1));
+            _canvas = new Canvas1(graphics.GraphicsDevice, 64 * Map1.Size.X, 64 * (Map1.Size.Y + 1));
             
-            /*
+            
             _map = new();
-            _hero = new Hero(Glob.Content.Load<Texture2D>("hero"), Vector2.Zero);
+            _hero = new Hero1(Glob.Content.Load<Texture2D>("hero"), Vector2.Zero);
             _monsterTex = Glob.Content.Load<Texture2D>("hero");
             Pathfinder.Init(_map, _hero);
 
@@ -30,11 +30,14 @@ namespace GameManager
                 SpawnMonster();
             }
 
-            Monster.OnDeath += (e, a) => SpawnMonster();
+            Monster1.OnDeath += (e, a) =>
+            {
+                SpawnMonster();
+            };
 
-            _button = new Button(_monsterTex, new Vector2(32, 13 * 64 - 32));
+            _button = new Button1(_monsterTex, new Vector2(32, 13 * 64 - 32));
             _button.OnTap += (e, a) => SpawnMonster();
-            */
+            
         }
 
         public void SpawnMonster()

@@ -11,7 +11,8 @@ namespace GameManager
         public Point TileSize { get; }
 
         public Vector2 MapToScreen(int x, int y) => new(x * TileSize.X, y * TileSize.Y);
-        public (int x, int y) ScreenToMap(Vector2 pos) => ((int)pos.X / TileSize.X, (int)pos.Y / TileSize.Y);
+        public (int x, int y) ScreenToMap(Vector2 pos) => ((int)pos.X / TileSize.X,
+            (int)pos.Y / TileSize.Y);
 
         public Map1()
         {

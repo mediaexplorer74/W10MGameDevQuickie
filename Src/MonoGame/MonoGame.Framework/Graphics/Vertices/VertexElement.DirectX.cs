@@ -15,7 +15,8 @@ namespace Microsoft.Xna.Framework.Graphics
         private VertexElementUsage position;
         private int v3;
 
-        public VertexElement(int v1, int v2, VertexElementFormat vector3, object @default, VertexElementUsage position, int v3) : this()
+        public VertexElement(int v1, int v2, VertexElementFormat vector3, 
+            object @default, VertexElementUsage position, int v3) : this()
         {
             this.v1 = v1;
             this.v2 = v2;

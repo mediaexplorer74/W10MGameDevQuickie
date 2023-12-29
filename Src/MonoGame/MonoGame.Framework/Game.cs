@@ -182,13 +182,7 @@ namespace Microsoft.Xna.Framework
             set
             {
                 if (value < TimeSpan.Zero)
-                {
-                    Debug.WriteLine("[ex] The time must be positive.");
-                    //throw new ArgumentOutOfRangeException("The time must be positive.",
-                    //    default(Exception));
-                    //RnD
-                    value = default;
-                }
+                    throw new ArgumentOutOfRangeException("The time must be positive.", default(Exception));
 
                 _inactiveSleepTime = value;
             }
@@ -204,15 +198,9 @@ namespace Microsoft.Xna.Framework
             set
             {
                 if (value < TimeSpan.Zero)
-                {
-                    Debug.WriteLine("[ex] Game - The time must be positive.");
-                    //throw new ArgumentOutOfRangeException("The time must be positive.", default(Exception));
-                }
+                    throw new ArgumentOutOfRangeException("The time must be positive.", default(Exception));
                 if (value < _targetElapsedTime)
-                {
-                    Debug.WriteLine("The time must be at least TargetElapsedTime.");
-                    //throw new ArgumentOutOfRangeException("The time must be at least TargetElapsedTime", default(Exception));
-                }
+                    throw new ArgumentOutOfRangeException("The time must be at least TargetElapsedTime", default(Exception));
 
                 _maxElapsedTime = value;
             }
@@ -239,11 +227,8 @@ namespace Microsoft.Xna.Framework
                 value = Platform.TargetElapsedTimeChanging(value);
 
                 if (value <= TimeSpan.Zero)
-                {
-                    Debug.WriteLine("[ex] Game - The time must be at least TargetElapsedTime!");
-                    //throw new ArgumentOutOfRangeException(
-                    //    "The time must be positive and non-zero.", default(Exception));
-                }
+                    throw new ArgumentOutOfRangeException(
+                        "The time must be positive and non-zero.", default(Exception));
 
                 if (value != _targetElapsedTime)
                 {
@@ -259,8 +244,7 @@ namespace Microsoft.Xna.Framework
             set { _isFixedTimeStep = value; }
         }
 
-        public GameServiceContainer Services 
-        {
+        public GameServiceContainer Services {
             get { return _services; }
         }
 
@@ -270,10 +254,7 @@ namespace Microsoft.Xna.Framework
             set
             {
                 if (value == null)
-                {
-                    Debug.WriteLine("[ex] Game - ContentManager Content - ArgumentNullException");
-                    //throw new ArgumentNullException();
-                }
+                    throw new ArgumentNullException();
 
                 _content = value;
             }
@@ -369,18 +350,26 @@ namespace Microsoft.Xna.Framework
             if (!Platform.BeforeRun())
                 return;
 
-            if (!_initialized) {
+            if (!_initialized) 
+            {
                 DoInitialize ();
                 _gameTimer = Stopwatch.StartNew();
                 _initialized = true;
             }
 
-            BeginRun();            
+            BeginRun();
 
             //Not quite right..
-            Tick ();
+            try
+            {
+                Tick();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] Game - Tick error: " + ex.Message);
+            }
 
-            EndRun ();
+            EndRun();
 
         }
 
@@ -439,20 +428,41 @@ namespace Microsoft.Xna.Framework
         private TimeSpan _accumulatedElapsedTime;
         private readonly GameTime _gameTime = new GameTime();
         private Stopwatch _gameTimer;
+        private long currentTicks = 0; //RnD
         private long _previousTicks = 0;
         private int _updateFrameLag;
 
         public void Tick()
         {
-            // NOTE: This code is very sensitive and can break very badly
-            // with even what looks like a safe change.  Be sure to test 
-            // any change fully in both the fixed and variable timestep 
-            // modes across multiple devices and platforms.
+        // NOTE: This code is very sensitive and can break very badly
+        // with even what looks like a safe change.  Be sure to test 
+        // any change fully in both the fixed and variable timestep 
+        // modes across multiple devices and platforms.
 
         RetryTick:
 
+            //RnD
+            //if (_gameTimer == null)
+            //    return;
+
             // Advance the accumulated elapsed time.
-            var currentTicks = _gameTimer.Elapsed.Ticks;
+
+            if (_gameTimer == null)
+            {
+                currentTicks = 10;
+            }
+            else
+            {
+                try
+                {
+                    currentTicks = _gameTimer.Elapsed.Ticks;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("[ex] _gameTimer.Elapsed.Ticks error: " + ex.Message);
+                }
+            }
+            
             _accumulatedElapsedTime += TimeSpan.FromTicks(currentTicks - _previousTicks);
             _previousTicks = currentTicks;
 
@@ -471,7 +481,7 @@ namespace Microsoft.Xna.Framework
 #else
                 System.Threading.Thread.Sleep(sleepTime);
 #endif
-                goto RetryTick;
+                //goto RetryTick;
             }
 
             // Do not allow any update to take longer than our maximum.

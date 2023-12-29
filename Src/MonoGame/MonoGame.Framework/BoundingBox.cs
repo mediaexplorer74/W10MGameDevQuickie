@@ -238,9 +238,7 @@ namespace Microsoft.Xna.Framework
         public static BoundingBox CreateFromPoints(IEnumerable<Vector3> points)
         {
             if (points == null)
-            {
                 throw new ArgumentNullException();
-            }
 
             var empty = true;
             var minVec = MaxVector3;

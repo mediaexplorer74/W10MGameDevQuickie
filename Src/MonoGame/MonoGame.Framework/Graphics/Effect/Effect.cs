@@ -126,34 +126,25 @@ namespace Microsoft.Xna.Framework.Graphics
 
             if (header.Signature != MGFXHeader.MGFXSignature)
             {
-                //throw new Exception("This does not appear to be a MonoGame MGFX file!");
-                Debug.WriteLine("This does not appear to be a MonoGame MGFX file!");
+                // throw new Exception("This does not appear to be a MonoGame MGFX file!");
+                return default;
             }
-
             if (header.Version < MGFXHeader.MGFXVersion)
             {
-                //throw new Exception("This MGFX effect is for an older release of MonoGame and needs to be rebuilt.");
-                Debug.WriteLine("This MGFX effect is for an older release of MonoGame and needs to be rebuilt.");
+                throw new Exception("This MGFX effect is for an older release of MonoGame and needs to be rebuilt.");
             }
-
             if (header.Version > MGFXHeader.MGFXVersion)
             {
-                //throw new Exception("This MGFX effect seems to be for a newer release of MonoGame.");
-                Debug.WriteLine("This MGFX effect seems to be for a newer release of MonoGame.");
+                throw new Exception("This MGFX effect seems to be for a newer release of MonoGame.");
             }
-
 #if DIRECTX
             if (header.Profile != 1)
 #else
 			if (header.Profile != 0)
 #endif
-            {
-                //throw new Exception("This MGFX effect was built for a different platform!");
-                Debug.WriteLine("[ex] This MGFX effect was built for a different platform!");
-            }
-
-
-
+                throw new Exception("This MGFX effect was built for a different platform!");
+            
+            
             return header;
         }
 
@@ -170,7 +161,20 @@ namespace Microsoft.Xna.Framework.Graphics
             Debug.Assert(_isClone, "Cannot clone into non-cloned effect!");
 
             // Copy the mutable members of the effect.
-            Parameters = cloneSource.Parameters.Clone();
+
+            try
+            {
+                if (cloneSource.Parameters != null)
+                    Parameters = cloneSource.Parameters.Clone();
+                else
+                    return;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] Effect - Clone error: " + ex.Message);
+                return;
+            }
+            
             Techniques = cloneSource.Techniques.Clone(this);
 
             // Make a copy of the immutable constant buffers.
@@ -289,23 +293,17 @@ namespace Microsoft.Xna.Framework.Graphics
 				var offsets = new int[parameters.Length];
 				for (var i = 0; i < parameters.Length; i++) 
                 {
-                    parameters[i] = 0;
-
                     try
                     {
                         parameters[i] = (int)reader.ReadByte();
                     }
-                    catch { }
-
-                    offsets[i] = 0;
-                    try
-                    {
-                        offsets[i] = (int)reader.ReadUInt16();
-                    }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine("[ex] Effect - reader.ReadUInt16 error: " + ex.Message);
+                        Debug.WriteLine("[ex] Effect - reader.ReadByte: " + ex.Message);
+                        return;
                     }
+				
+                    offsets [i] = (int)reader.ReadUInt16 ();
 				}
 
                 var buffer = new ConstantBuffer(GraphicsDevice,
@@ -313,7 +311,6 @@ namespace Microsoft.Xna.Framework.Graphics
 				                                parameters,
 				                                offsets,
 				                                name);
-             
                 ConstantBuffers[c] = buffer;
             }
 
@@ -512,16 +509,6 @@ namespace Microsoft.Xna.Framework.Graphics
 
 			return new EffectParameterCollection(parameters);
 		}
-
-        public void Begin()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void End()
-        {
-            throw new NotImplementedException();
-        }
         #endregion // Effect File Reader
-    }
+	}
 }

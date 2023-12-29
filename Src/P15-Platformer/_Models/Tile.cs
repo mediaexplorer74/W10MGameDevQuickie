@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameManager
 {
 
-    public class Tile1 : Sprite
+    public class Tile1 : Sprite1
     {
         public bool Blocked { get; set; }
         public bool Path { get; set; }

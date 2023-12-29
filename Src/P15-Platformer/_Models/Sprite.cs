@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GameManager
 {
 
-    public class Sprite
+    public class Sprite1
     {
         protected Texture2D texture;
         public Vector2 Position { get; protected set; }
@@ -13,7 +13,7 @@ namespace GameManager
         public Rectangle Rectangle => new((Position - Origin).ToPoint(), 
             new(texture.Width, texture.Height));
 
-        public Sprite(Texture2D texture, Vector2 position)
+        public Sprite1(Texture2D texture, Vector2 position)
         {
             this.texture = texture;
             Position = position;
@@ -23,7 +23,8 @@ namespace GameManager
 
         public virtual void Draw()
         {
-            Glob.SpriteBatch.Draw(texture, Position, null, Color, 0f, Origin, 1f, SpriteEffects.None, 0f);
+            Glob.SpriteBatch.Draw(texture, Position, null, Color, 0f, 
+                Origin, 1f, SpriteEffects.None, 0f);
         }
     }
 }

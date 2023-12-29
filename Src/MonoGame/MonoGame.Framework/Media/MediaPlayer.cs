@@ -119,11 +119,7 @@ namespace Microsoft.Xna.Framework.Media
         /// </summary>
         public static void Play(Song song)
         {
-            try
-            {
-                Play(song, null);
-            }
-            catch { }
+            Play(song, null);
         }
 
         /// <summary>

@@ -50,10 +50,19 @@ namespace GameManager
         {
             Rectangle pixel = new Rectangle(1, 1, 1, 1);
             VertexDeclaration vertexDeclaration;
-            default_shader = content.Load<Effect>(Default_Effect_File);
+            default_shader = default;//content.Load<Effect>(Default_Effect_File);
             device = graphics;
-            if (ScreenWidth.HasValue) screenWidth = ScreenWidth.Value; else screenWidth = device.Viewport.Width;
-            if (ScreenHeight.HasValue) screenHeight = ScreenHeight.Value; else screenHeight = device.Viewport.Height;
+
+            if (ScreenWidth.HasValue) 
+                screenWidth = ScreenWidth.Value; 
+            else 
+                screenWidth = device.Viewport.Width;
+
+            if (ScreenHeight.HasValue) 
+                screenHeight = ScreenHeight.Value; 
+            else 
+                screenHeight = device.Viewport.Height;
+
             beginCalled = false;
             vertices  = new VertexPositionColorTexture[8192]; // 2048 sprites * 4 vertices per sprite IS 8192
             fontverts = new VertexPositionColorTexture[8192]; // 2048 sprites * 4 vertices per sprite IS 8192

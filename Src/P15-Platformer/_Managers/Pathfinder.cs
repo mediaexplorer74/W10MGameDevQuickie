@@ -22,11 +22,11 @@ namespace GameManager
 
         private static Node[,] _nodeMap;
         private static Map1 _map;
-        private static Hero _hero;
+        private static Hero1 _hero;
         private static readonly int[] row = { -1, 0, 0, 1 };
         private static readonly int[] col = { 0, -1, 1, 0 };
 
-        public static void Init(Map1 map, Hero hero)
+        public static void Init(Map1 map, Hero1 hero)
         {
             _map = map;
             _hero = hero;

@@ -5,13 +5,13 @@ using System;
 namespace GameManager
 {
 
-    public class Canvas
+    public class Canvas1
     {
         private readonly RenderTarget2D _target;
         private readonly GraphicsDevice _graphicsDevice;
         private Rectangle _destinationRectangle;
 
-        public Canvas(GraphicsDevice graphicsDevice, int width, int height)
+        public Canvas1(GraphicsDevice graphicsDevice, int width, int height)
         {
             _graphicsDevice = graphicsDevice;
             _target = new(_graphicsDevice, width, height);

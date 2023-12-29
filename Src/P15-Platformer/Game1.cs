@@ -168,8 +168,25 @@ namespace GameManager
 
             if (crystal_fx != null)
             {
-                crystal_fx.Parameters["screen"].SetValue(new Vector2(screenW, screenH)); // screen(target) resolution 
-                crystal_fx.Parameters["BackMap"].SetValue(far_background);              // image to make shimmer from                       
+                try
+                {
+                    if (crystal_fx.Parameters != null)
+                    {
+                        crystal_fx.Parameters["screen"].SetValue(new Vector2(screenW, screenH));
+                        // screen(target) resolution 
+                    }
+                }
+                catch { }
+
+                try
+                {
+                    if (crystal_fx.Parameters != null)
+                    { 
+                        crystal_fx.Parameters["BackMap"].SetValue(far_background);              
+                    // image to make shimmer from
+                    }
+                }
+                catch { }
             }
 
             // later we will want update to check if loading a new area is needed... and then have it call a method to load based on the level or area (game-state in update)
@@ -299,12 +316,15 @@ namespace GameManager
             //-----------------
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullNone);
             map.DrawTiles();    // D R A W  T I L E S
-            spriteBatch.End();            
+            spriteBatch.End();
             //-----------------
 
             // DRAW CRYSTALS 
             if (crystal_fx != null)
-              crystal_fx.Parameters["ReflectMap"].SetValue(sprite_target);
+            {
+                if (crystal_fx.Parameters != null)
+                  crystal_fx.Parameters["ReflectMap"].SetValue(sprite_target);
+            }
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, 
                 SamplerState.LinearClamp, DepthStencilState.None, 

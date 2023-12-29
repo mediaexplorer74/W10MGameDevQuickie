@@ -131,8 +131,7 @@ namespace Microsoft.Xna.Framework.Content
 		{
 			if (serviceProvider == null)
 			{
-                Debug.WriteLine("[ex] ContentManager - serviceProvider - ArgumentNullException");
-				//throw new ArgumentNullException("serviceProvider");
+				throw new ArgumentNullException("serviceProvider");
 			}
 			this.serviceProvider = serviceProvider;
             AddContentManager(this);
@@ -258,34 +257,34 @@ namespace Microsoft.Xna.Framework.Content
 			return stream;
 		}
 
-        protected T ReadAsset<T>(string assetName, Action<IDisposable> recordDisposableObject)
-        {
-            if (string.IsNullOrEmpty(assetName))
-            {
-                throw new ArgumentNullException("assetName");
-            }
-            if (disposed)
-            {
-                throw new ObjectDisposedException("ContentManager");
-            }
+		protected T ReadAsset<T>(string assetName, Action<IDisposable> recordDisposableObject)
+		{
+			if (string.IsNullOrEmpty(assetName))
+			{
+				throw new ArgumentNullException("assetName");
+			}
+			if (disposed)
+			{
+				throw new ObjectDisposedException("ContentManager");
+			}
+						
+			string originalAssetName = assetName;
+			object result = null;
 
-            string originalAssetName = assetName;
-            object result = null;
-
-            if (this.graphicsDeviceService == null)
+			if (this.graphicsDeviceService == null)
+			{
+				this.graphicsDeviceService = serviceProvider.GetService(typeof(IGraphicsDeviceService)) as IGraphicsDeviceService;
+				if (this.graphicsDeviceService == null)
+				{
+					throw new InvalidOperationException("No Graphics Device Service");
+				}
+			}
+			
+			Stream stream = null;
+			try
             {
-                this.graphicsDeviceService = serviceProvider.GetService(typeof(IGraphicsDeviceService)) as IGraphicsDeviceService;
-                if (this.graphicsDeviceService == null)
-                {
-                    throw new InvalidOperationException("No Graphics Device Service");
-                }
-            }
-
-            Stream stream = null;
-            try
-            {
-                //try load it traditionally
-                stream = OpenStream(assetName);
+				//try load it traditionally
+				stream = OpenStream(assetName);
 
                 // Try to load as XNB file
                 try
@@ -312,19 +311,19 @@ namespace Microsoft.Xna.Framework.Content
             }
             catch (ContentLoadException ex)
             {
-                //MonoGame try to load as a non-content file
+				//MonoGame try to load as a non-content file
 
                 string assetName1 = TitleContainer.GetFilename(
                     Path.Combine(RootDirectory, assetName));
 
                 assetName1 = Normalize<T>(assetName1);
-
-                if (string.IsNullOrEmpty(assetName1))
-                {
-                    throw new ContentLoadException(
-                        "Could not load " + originalAssetName +
+	
+				if (string.IsNullOrEmpty(assetName1))
+				{
+					throw new ContentLoadException(
+                        "Could not load " + originalAssetName + 
                         " asset as a non-content file!"/*, ex*/);
-                }
+				}
 
                 result = ReadRawAsset<T>(assetName1, originalAssetName);
 
@@ -338,14 +337,10 @@ namespace Microsoft.Xna.Framework.Content
                     else
                         disposableAssets.Add(result as IDisposable);
                 }
-            }//
-
-            if (result == null)
-            {
-                // throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
-                Debug.WriteLine("[ex] Could not load " + originalAssetName + " asset!");
-                return default;
-            }
+			}//
+            
+			if (result == null)
+				throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
 
 			return (T)result;
 		}
@@ -411,14 +406,7 @@ namespace Microsoft.Xna.Framework.Content
                 {
                     var data = new byte[assetStream.Length];
                     assetStream.Read(data, 0, (int)assetStream.Length);
-                    Effect r = default;
-                    try
-                    {
-                        r = new Effect(this.graphicsDeviceService.GraphicsDevice, data);
-                    }
-                    catch { }
-                    
-                    return r;
+                    return new Effect(this.graphicsDeviceService.GraphicsDevice, data);
                 }
             }
             return null;

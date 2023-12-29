@@ -5,7 +5,7 @@ using System;
 namespace GameManager
 {
 
-    public class Monster1 : Sprite
+    public class Monster1 : Sprite1
     {
         private readonly int _speed;
         private Vector2 _direction;

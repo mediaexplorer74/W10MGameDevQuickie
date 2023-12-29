@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Windows.UI.Xaml.Controls;
+using System.Diagnostics;
 
 namespace Microsoft.Xna.Framework
 {
@@ -286,7 +287,16 @@ namespace Microsoft.Xna.Framework
 
             // Update and render the game.
             if (Game != null)
-                Game.Tick();
+            {
+                try
+                {
+                    Game.Tick();
+                }
+                catch (Exception ex) 
+                {
+                    Debug.WriteLine("[ex] UAPGameWindow - Tick error: " + ex.Message);
+                }
+            }
         }
 
         #region Public Methods

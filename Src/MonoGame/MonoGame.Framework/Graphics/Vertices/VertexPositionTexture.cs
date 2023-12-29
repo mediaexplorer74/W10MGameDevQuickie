@@ -7,7 +7,6 @@ namespace Microsoft.Xna.Framework.Graphics
     {
         public Vector3 Position;
         public Vector2 TextureCoordinate;
-        public static VertexElement[] VertexElements;
         public static readonly VertexDeclaration VertexDeclaration;
         public VertexPositionTexture(Vector3 position, Vector2 textureCoordinate)
         {

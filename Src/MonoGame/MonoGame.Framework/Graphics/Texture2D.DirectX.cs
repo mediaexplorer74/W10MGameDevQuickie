@@ -10,6 +10,7 @@ using MonoGame.Utilities.Png;
 #if WINDOWS_PHONE
 using System.Threading;
 using System.Windows;
+using System.Windows.Media.Imaging;
 #endif
 
 #if WINDOWS_STOREAPP || WINDOWS_UAP
@@ -17,7 +18,6 @@ using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using SharpDX.WIC;
 #endif
 
 namespace Microsoft.Xna.Framework.Graphics
@@ -293,32 +293,12 @@ namespace Microsoft.Xna.Framework.Graphics
             SharpDX.WIC.BitmapDecoder decoder;
 
             using (var bitmap = LoadBitmap(stream, out decoder))
+            using (decoder)
             {
-                SharpDX.Direct3D11.Texture2D sharpDxTexture = default;
+                SharpDX.Direct3D11.Texture2D sharpDxTexture = CreateTex2DFromBitmap(bitmap, graphicsDevice);
 
-                using (decoder)
-                {
-                    if (bitmap != null)
-                    {
-                        sharpDxTexture = CreateTex2DFromBitmap(bitmap, graphicsDevice);
+                toReturn = new Texture2D(graphicsDevice, bitmap.Size.Width, bitmap.Size.Height);
 
-                        try
-                        {
-                            toReturn = new Texture2D(graphicsDevice, bitmap.Size.Width, bitmap.Size.Height);
-                        }
-                        catch 
-                        {
-                            toReturn = new Texture2D(graphicsDevice, 10, 10);
-                        }
-                    }
-                    else
-                    {
-                        //RnD
-                        //SharpDX.Direct3D11.Texture2D sharpDxTexture = default;
-                        toReturn = new Texture2D(graphicsDevice, 10, 10);
-                    }
-
-                }
                 toReturn._texture = sharpDxTexture;
             }
             return toReturn;
@@ -328,7 +308,7 @@ namespace Microsoft.Xna.Framework.Graphics
         private void PlatformSaveAsJpeg(Stream stream, int width, int height)
         {
 #if WINDOWS_STOREAPP || WINDOWS_UAP
-            SaveAsImage(Windows.Graphics.Imaging.BitmapEncoder.JpegEncoderId, stream, width, height);
+            SaveAsImage(BitmapEncoder.JpegEncoderId, stream, width, height);
 #endif
 #if WINDOWS_PHONE
 
@@ -395,9 +375,8 @@ namespace Microsoft.Xna.Framework.Graphics
                 var memstream = new InMemoryRandomAccessStream();
 
                 // Write the png.
-                var encoder = await Windows.Graphics.Imaging.BitmapEncoder.CreateAsync(encoderId, memstream);
-                encoder.SetPixelData(BitmapPixelFormat.Rgba8, BitmapAlphaMode.Ignore, (uint)width,
-                    (uint)height, 96, 96, pixelData);
+                var encoder = await BitmapEncoder.CreateAsync(encoderId, memstream);
+                encoder.SetPixelData(BitmapPixelFormat.Rgba8, BitmapAlphaMode.Ignore, (uint)width, (uint)height, 96, 96, pixelData);
                 await encoder.FlushAsync();
 
                 // Copy the memory stream into the real output stream.
@@ -410,33 +389,12 @@ namespace Microsoft.Xna.Framework.Graphics
 #if !WINDOWS_PHONE
 
         [CLSCompliant(false)]
-        public static SharpDX.Direct3D11.Texture2D CreateTex2DFromBitmap
-            (SharpDX.WIC.BitmapSource bsource, 
-            GraphicsDevice device)
+        public static SharpDX.Direct3D11.Texture2D CreateTex2DFromBitmap(SharpDX.WIC.BitmapSource bsource, GraphicsDevice device)
         {
 
             SharpDX.Direct3D11.Texture2DDescription desc;
-            
-            desc.Width = 1;//
-
-            try
-            {
-                desc.Width = bsource.Size.Width;
-            }
-            catch 
-            { 
-            }
-            
-            desc.Height = 1;//
-
-            try
-            {
-                desc.Height = bsource.Size.Height;
-            }
-            catch 
-            { 
-            }
-            
+            desc.Width = bsource.Size.Width;
+            desc.Height = bsource.Size.Height;
             desc.ArraySize = 1;
             desc.BindFlags = SharpDX.Direct3D11.BindFlags.ShaderResource;
             desc.Usage = SharpDX.Direct3D11.ResourceUsage.Default;
@@ -447,59 +405,37 @@ namespace Microsoft.Xna.Framework.Graphics
             desc.SampleDescription.Count = 1;
             desc.SampleDescription.Quality = 0;
 
-            using(SharpDX.DataStream s = new SharpDX.DataStream(desc.Height * desc.Width * 4, true, true))
+            using(SharpDX.DataStream s = new SharpDX.DataStream(bsource.Size.Height * bsource.Size.Width * 4, true, true))
             {
-                try
-                {
-                    bsource.CopyPixels(desc.Width * 4, s);
-                }
-                catch { }
+                bsource.CopyPixels(bsource.Size.Width * 4, s);
 
-                SharpDX.DataRectangle rect = new SharpDX.DataRectangle(s.DataPointer, desc.Width * 4);
+                SharpDX.DataRectangle rect = new SharpDX.DataRectangle(s.DataPointer, bsource.Size.Width * 4);
 
                 return new SharpDX.Direct3D11.Texture2D(device._d3dDevice, desc, rect);
             }
-        }//CreateTex2DFromBitmap
-
-
+        }
 
         static SharpDX.WIC.ImagingFactory imgfactory = null;
-        private static SharpDX.WIC.BitmapSource LoadBitmap(Stream stream, 
-            out SharpDX.WIC.BitmapDecoder decoder)
+        private static SharpDX.WIC.BitmapSource LoadBitmap(Stream stream, out SharpDX.WIC.BitmapDecoder decoder)
         {
             if (imgfactory == null)
             {
                 imgfactory = new SharpDX.WIC.ImagingFactory();
             }
 
-            try
-            {
-                decoder = new SharpDX.WIC.BitmapDecoder(
-                    imgfactory,
-                    stream,
-                    SharpDX.WIC.DecodeOptions.CacheOnDemand
-                    );
-            }
-            catch 
-            {
-                decoder = default;
-            }
+            decoder = new SharpDX.WIC.BitmapDecoder(
+                imgfactory,
+                stream,
+                SharpDX.WIC.DecodeOptions.CacheOnDemand
+                );
 
-            FormatConverter fconv = new SharpDX.WIC.FormatConverter(imgfactory);
+            var fconv = new SharpDX.WIC.FormatConverter(imgfactory);
 
-            try
-            {
-                if (decoder != null)
-                fconv.Initialize(
-                    decoder.GetFrame(0),
-                    SharpDX.WIC.PixelFormat.Format32bppPRGBA,
-                    SharpDX.WIC.BitmapDitherType.None, null,
-                    0.0, SharpDX.WIC.BitmapPaletteType.Custom);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("[ex] Texture2D Exception - decoder : " + ex.Message);
-            }
+            fconv.Initialize(
+                decoder.GetFrame(0),
+                SharpDX.WIC.PixelFormat.Format32bppPRGBA,
+                SharpDX.WIC.BitmapDitherType.None, null,
+                0.0, SharpDX.WIC.BitmapPaletteType.Custom);
 
             return fconv;
         }

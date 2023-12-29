@@ -157,7 +157,7 @@ namespace GameManager
                     key1--;
                     if (key1 < 0)
                     {
-                        if (meo.anim[a].looping == false)
+                        if (true)//(meo.anim[a].looping == false)
                         {   // STOP ANIMATION
                             key1 = 0; 
                             key2 = 0; 

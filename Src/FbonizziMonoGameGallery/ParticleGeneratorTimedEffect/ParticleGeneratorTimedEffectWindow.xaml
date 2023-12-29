@@ -1,0 +1,245 @@
+﻿<Page
+    x:Class="FbonizziMonoGameGallery.ParticleGeneratorTimedEffect.ParticleGeneratorTimedEffectWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="800"
+    Height="850"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="GameGrid" Grid.Column="0" />
+
+        <StackPanel
+            Grid.Column="1"
+            Margin="10"
+            Orientation="Vertical">
+
+            <TextBlock
+                Margin="0,10"
+                FontSize="16"
+                FontWeight="Bold"
+                Text="ParticleGeneratorTimedEffect" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Load particle image: " />
+                <Button
+                    x:Name="LoadParticleButton"
+                    Width="Auto"
+                    Click="LoadParticleButton_Click"
+                    Content="Load" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Particles generation interval (ms): " />
+                    <Run Text="{Binding Value, ElementName=GenerationIntervalMillisecondsSlider}" />
+                </TextBlock> 
+                <Slider
+                    x:Name="GenerationIntervalMillisecondsSlider"
+                    Maximum="5000"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Density: " />
+                    <Run Text="{Binding Value, ElementName=DensitySlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="DensitySlider"
+                    Maximum="10"
+                    Minimum="1"
+                    TickFrequency="1"
+                    Value="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min num particles: " />
+                    <Run Text="{Binding Value, ElementName=MinNumParticlesSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinNumParticlesSlider"
+                    Maximum="20"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max num particles: " />
+                    <Run Text="{Binding Value, ElementName=MaxNumParticlesSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxNumParticlesSlider"
+                    Maximum="20"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min initial speed: " />
+                    <Run Text="{Binding Value, ElementName=MinInitialSpeedSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinInitialSpeedSlider"
+                    Maximum="500"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max initial speed: " />
+                    <Run Text="{Binding Value, ElementName=MaxInitialSpeedSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxInitialSpeedSlider"
+                    Maximum="500"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min acceleration: " />
+                    <Run Text="{Binding Value, ElementName=MinAccelerationSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinAccelerationSlider"
+                    Maximum="20"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max acceleration: " />
+                    <Run Text="{Binding Value, ElementName=MaxAccelerationSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxAccelerationSlider"
+                    Maximum="20"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min rotation speed: " />
+                    <Run Text="{Binding Value, ElementName=MinRotationSpeedSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinRotationSpeedSlider"
+                    Maximum="20"
+                    Minimum="-20"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max rotation speed: " />
+                    <Run Text="{Binding Value, ElementName=MaxRotationSpeedSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxRotationSpeedSlider"
+                    Maximum="20"
+                    Minimum="-20"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min lifetime milliseconds: " />
+                    <Run Text="{Binding Value, ElementName=MinLifetimeMillisecondsSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinLifetimeMillisecondsSlider"
+                    Maximum="2000"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max lifetime milliseconds: " />
+                    <Run Text="{Binding Value, ElementName=MaxLifetimeMillisecondsSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxLifetimeMillisecondsSlider"
+                    Maximum="2000"
+                    Minimum="1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min scale: " />
+                    <Run Text="{Binding Value, ElementName=MinScaleSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinScaleSlider"
+                    Maximum="4"
+                    Minimum="0.1"
+                    TickFrequency="0.1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max scale: " />
+                    <Run Text="{Binding Value, ElementName=MaxScaleSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxScaleSlider"
+                    Maximum="4"
+                    Minimum="0.1"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Min spawn angle slider: " />
+                    <Run Text="{Binding Value, ElementName=MinSpawnAngleSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MinSpawnAngleSlider"
+                    Maximum="360"
+                    Minimum="-360"
+                    TickFrequency="1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock>
+                    <Run Text="Max spawn angle slider: " />
+                    <Run Text="{Binding Value, ElementName=MaxSpawnAngleSlider}" />
+                </TextBlock>
+                <Slider
+                    x:Name="MaxSpawnAngleSlider"
+                    Maximum="360"
+                    Minimum="-360"
+                    TickFrequency="1" />
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+
+</Page>

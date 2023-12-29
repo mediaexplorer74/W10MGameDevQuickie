@@ -26,7 +26,7 @@ namespace GameManager
 
             Glob.Content = Content;
 
-            _gameManager = new();
+            _gameManager = new GameManager();
 
             base.Initialize();
         }

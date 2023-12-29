@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 
 namespace Microsoft.Xna.Framework.Graphics
@@ -135,17 +134,6 @@ namespace Microsoft.Xna.Framework.Graphics
                 if (sampler.state != null)
                     samplerStates[sampler.samplerSlot] = sampler.state;
             }
-        }
-
-        //Experimental
-        public void Begin()
-        {
-            //throw new NotImplementedException();
-        }
-
-        public void End()
-        {
-            //throw new NotImplementedException();
         }
     }
 }

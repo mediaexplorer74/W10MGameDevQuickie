@@ -125,8 +125,6 @@ namespace Microsoft.Xna.Framework.Graphics
 
 
         private readonly Data _data;
-        private GraphicsDevice graphicsDevice;
-        private object vertexElements;
 
         /// <summary>
         /// Gets the internal vertex elements array.
@@ -179,12 +177,6 @@ namespace Microsoft.Xna.Framework.Graphics
                     _vertexDeclarationCache[data] = this;
                 }
             }
-        }
-
-        public VertexDeclaration(GraphicsDevice graphicsDevice, object vertexElements)
-        {
-            this.graphicsDevice = graphicsDevice;
-            this.vertexElements = vertexElements;
         }
 
         private static int GetVertexStride(VertexElement[] elements)
@@ -289,11 +281,6 @@ namespace Microsoft.Xna.Framework.Graphics
         public override int GetHashCode()
         {
             return _data.GetHashCode();
-        }
-
-        public void SetSource(VertexBuffer vertexBuffer, int v, int sizeInBytes)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

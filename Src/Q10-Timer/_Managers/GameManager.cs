@@ -9,7 +9,7 @@ namespace GameManager
     {
         private readonly Timer _timer;
         private readonly SpriteFont _font;
-        private readonly Vector2 _counterPosition = new(300, 200);
+        private readonly Vector2 _counterPosition = new Vector2(300, 200);
         private int _counter;
 
         public GameManager()

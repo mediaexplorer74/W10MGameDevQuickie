@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace GameManager
 {
 
-    public class Hero : Sprite
+    public class Hero1 : Sprite1
     {
         public Vector2 DestinationPosition { get; protected set; }
         public bool MoveDone { get; protected set; }
@@ -14,7 +14,7 @@ namespace GameManager
         public List<Vector2> Path { get; private set; }
         private int _current;
 
-        public Hero(Texture2D tex, Vector2 pos) : base(tex, pos)
+        public Hero1(Texture2D tex, Vector2 pos) : base(tex, pos)
         {
             speed = 600;
             DestinationPosition = pos;

@@ -359,11 +359,6 @@ namespace Microsoft.Xna.Framework.Audio
             }
         }
 
-        public void Play(float volumeLevel)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
     }

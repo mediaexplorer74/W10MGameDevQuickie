@@ -5,9 +5,9 @@ using System;
 namespace GameManager
 {
 
-    public class Button : Sprite
+    public class Button1 : Sprite1
     {
-        public Button(Texture2D t, Vector2 p) : base(t, p)
+        public Button1(Texture2D t, Vector2 p) : base(t, p)
         {
         }
 

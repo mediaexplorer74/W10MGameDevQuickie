@@ -28,10 +28,11 @@ namespace Microsoft.Xna.Framework.Graphics
                     _cbuffer = new SharpDX.Direct3D11.Buffer(GraphicsDevice._d3dDevice, desc);
                 }
                 catch (Exception ex)
-                {
-                    Debug.WriteLine("[ex] New SharpDX.Direct3D11.Buffer error: " + ex.Message);
+                { 
+                    Debug.WriteLine("[ex] PlatformInitialize: " + ex.Message);
                 }
             }
+
         }
 
         private void PlatformClear()

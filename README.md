@@ -1,4 +1,4 @@
-# W10MGameDevQuickie 1.x.x (MonoGame2D tutorial projects/samples)
+# W10MGameDevQuickie v2.0 (MonoGame2D tutorial projects/samples)
 
 url: https://github.com/mediaexplorer74/W10MGameDevQuickie
 

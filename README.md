@@ -1,4 +1,4 @@
-# W10MGameDevQuickie 1.0.0 (MonoGame2D tutorial projects/samples)
+# W10MGameDevQuickie 1.x.x (MonoGame2D tutorial projects/samples)
 
 url: https://github.com/mediaexplorer74/W10MGameDevQuickie
 
@@ -39,6 +39,8 @@ Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 - P11 added as *uwp + mvvmlight* technics rnd (my "fork/port" of https://github.com/martinsuchan/WP.NuPogodi)
 - P12 added as *astoria + uwp + orchestrators* technics RnD (my fork of https://github.com/FrancescoBonizzi/StarfallGame)
 - S01-02 added as "game synthez from some game parts" technics RnD (draft at now)
+- P13-P21 added
+- Q22 added
 
 ## Bugs / Errors
 - SpriteFont mulfunction 
@@ -66,14 +68,15 @@ For a step-by-step walkthrough of the code, check out the [MonoGame 2D tutorial 
 - Refactor readme... and something else? 
 - Create your own small and sweet retro-games for Windows 10 Mobile os! )))
 
-## ..
-As is. No support. For Learning purposes only / DIY :)
-
 ## References
 - https://www.youtube.com/@GameDevQuickie/videos LubiiiCZ's Monogame2D video-tutorials
 - https://github.com/LubiiiCZ/DevQuickie The original GameDevQuickie
 - https://github.com/LubiiiCZ LubiiiCZ, GameDevQuickie's creator/developer
 - https://github.com/FrancescoBonizzi/ Francesco Bonizzi, InFart & StarFall game developer
 
+
+## ..
+As is. No support. For Learning purposes only / DIY :)
+
 ## .
-[m][e] 2023
+[m][e] 2024

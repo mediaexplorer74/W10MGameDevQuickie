@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 //using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
+//using Microsoft.Xna.Framework.Storage;
 using Windows.Devices.Sensors;
 
 
@@ -71,7 +71,7 @@ namespace GameManager
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            texture = Content.Load<Texture2D>("gamepad.png");
+            texture = Content.Load<Texture2D>("gamepad");
 			caracter = Content.Load<Texture2D>("monogameicon");
 			font = Content.Load<SpriteFont>("font");
 
@@ -98,6 +98,7 @@ namespace GameManager
 			thumbStick.Texture = texture;
 			thumbStick.TextureRect = new Rectangle(2,2,68,68);
 
+            //RnD
             //GamePad.LeftThumbStickDefinition = thumbStick;
 
             
@@ -179,16 +180,25 @@ namespace GameManager
            	graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
 			
 			spriteBatch.Begin();
-			//spriteBatch.Draw(caracter,position,caracterColor);
-			//spriteBatch.DrawString(font,GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.ToString(),
-			//	Vector2.One,Color.Black);
-			//spriteBatch.DrawString(font,"Accelerometer"//Accelerometer.GetState().Acceleration.ToString()
-			//	,new Vector2(1,40),Color.Black);
+			spriteBatch.Draw(caracter,position,caracterColor);
+
+			spriteBatch.DrawString(font,
+                GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.ToString(),
+				Vector2.One,
+                Color.Black);
+
+			spriteBatch.DrawString(font,
+                "Accelerometer"//Accelerometer.GetState().Acceleration.ToString()
+				,
+                new Vector2(1,40),
+                Color.Black);
 
             //RnD
             // Draw the virtual GamePad
             //GamePad.Draw(gameTime,spriteBatch);
-            gm.Draw(gameTime, spriteBatch);
+
+
+            //gm.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 			

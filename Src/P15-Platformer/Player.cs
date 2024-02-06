@@ -94,9 +94,12 @@ namespace GameManager
 
             // CUSTOMIZE CHARACTER PROPERTIES
             int index;
-            index = meo_hero.GetIndex("duck");  //meo.anim[index].speed = 5.0f;    // speed up ducking animation
-            index = meo_hero.GetIndex("jump");  //meo.anim[index].speed = 0.7f;    // slow down initial jumping animation
-            index = meo_hero.GetIndex("spell"); //meo.anim[index].speed = 2.5f;    // speed up spell/attack animation
+            index = meo_hero.GetIndex("duck"); 
+            //meo.anim[index].speed = 5.0f;    // speed up ducking animation
+            index = meo_hero.GetIndex("jump"); 
+            //meo.anim[index].speed = 0.7f;    // slow down initial jumping animation
+            index = meo_hero.GetIndex("spell"); 
+            //meo.anim[index].speed = 2.5f;    // speed up spell/attack animation
             ouch_index = meo_hero.GetIndex("ouch"); 
             //meo.anim[ouch_index].looping = false;                 // ensure it doesn't loop (if forgot to set in MeoMotion)            
             //meo.anim[ouch_index].num_keys--;                      // shorten the animation [don't need last key for this one]
@@ -198,20 +201,47 @@ namespace GameManager
                 case motion.idle1: // I D L E ---------------- 
                 case motion.idle2:
                     // use timer to select idle mode
-                    if ((last_hero_motion != motion.idle1) && (last_hero_motion != motion.idle2)) idle_timer = 0; // not in idle so reset the timer
+                    if ((last_hero_motion != motion.idle1)
+                        && (last_hero_motion != motion.idle2)) 
+                        idle_timer = 0; // not in idle so reset the timer
+
                     if (idle_timer <= 155) hero_motion = motion.idle1;                                            // idle1 for some time
                     else if (idle_timer > 155)                                                                    // idle2 with blink (until it's done) 
                     {
-                        if ((hero_motion == motion.idle1) && (meo_hero.IsDoneAnimation()))   hero_motion = motion.idle2;
-                        if ((hero_motion == motion.idle2) && (meo_hero.IsDoneAnimation())) { hero_motion = motion.idle1; idle_timer = 0; }
+                        if ((hero_motion == motion.idle1) && (meo_hero.IsDoneAnimation()))
+                        {
+                            hero_motion = motion.idle2;
+                        }
+                        if ((hero_motion == motion.idle2) && (meo_hero.IsDoneAnimation())) 
+                        { 
+                            hero_motion = motion.idle1; 
+                            idle_timer = 0; 
+                        }
                     }
                     idle_timer++;
 
-                    if (inp.Keydown(Keys.Right)) { hero_motion = motion.walk; flip = false; vel.X += 0.80f; }
-                    if (inp.Keydown(Keys.Left))  { hero_motion = motion.walk; flip = true;  vel.X -= 0.80f; }
-                    if (inp.Keydown(Keys.Down)) { hero_motion = motion.duck; duck_mode = duck_state.down; }
-                    else HeroJump(CheckInput:true);                     
-                    if ((inp.control_press) || (inp.alt_press)) HeroAttack(); 
+                    if (inp.Keydown(Keys.Right)) 
+                    { 
+                        hero_motion = motion.walk;
+                        flip = false; 
+                        vel.X += 0.80f; 
+                    }
+                    if (inp.Keydown(Keys.Left))  
+                    { hero_motion = motion.walk; 
+                        flip = true;  
+                        vel.X -= 0.80f; 
+                    }
+
+                    if (inp.Keydown(Keys.Down))
+                    { 
+                        hero_motion = motion.duck;
+                        duck_mode = duck_state.down;
+                    }
+                    else 
+                        HeroJump(CheckInput:true);    
+                    
+                    if ((inp.control_press) || (inp.alt_press)) 
+                        HeroAttack(); 
                     break;
                 case motion.duck: // D U C K ----------------- (note: duck logic can be complex)
                     switch (duck_mode)
@@ -227,8 +257,13 @@ namespace GameManager
                             break;
                         case duck_state.up: // s t a n d i n g  u p
                             meo_hero.reverse = true;                        // initially ensure reverse animation
-                            if (inp.Keydown(Keys.Down)) duck_mode = duck_state.down; // start ducking down again                            
-                            if (meo_hero.IsDoneAnimation()) { meo_hero.reverse = false; hero_motion = motion.idle1; } // done standing up so go to idle mode initially                            
+                            if (inp.Keydown(Keys.Down)) 
+                                duck_mode = duck_state.down; // start ducking down again                            
+                            if (meo_hero.IsDoneAnimation()) 
+                            { 
+                                meo_hero.reverse = false; 
+                                hero_motion = motion.idle1;
+                            } // done standing up so go to idle mode initially                            
                             break;
                     }
                     //jump_boost = -2f; 
@@ -247,9 +282,15 @@ namespace GameManager
                         hero_motion = motion.walk; flip = true;
                         if (vel.X > -MAX_VELOCITY) vel.X -= 0.80f;     // accelerate left
                     }
-                    if (inp.Keydown(Keys.Down)) { hero_motion = motion.duck; duck_mode = duck_state.down; } // start duck
+                    if (inp.Keydown(Keys.Down)) 
+                    { 
+                        hero_motion = motion.duck; 
+                        duck_mode = duck_state.down; 
+                    } // start duck
                     else HeroJump(CheckInput: true);
-                    if ((inp.control_press) || (inp.alt_press)) HeroAttack(); 
+
+                    if ((inp.control_press) || (inp.alt_press)) 
+                        HeroAttack(); 
                     break;
                 case motion.jump: // J U M P -------------------
                     if (last_hero_motion == motion.jump)              // make sure the animation's started already
@@ -257,33 +298,84 @@ namespace GameManager
                         if ((jump_mode != jump_state.start) && (last_grounded) && (vel.X != 0))            // if in the air and becomes grounded... prevent sliding
                             hero_motion = motion.walk; else 
                         hero_motion = motion.jump;                        
-                        if (meo_hero.key1<2) meo_hero.play_speed=4f; else meo_hero.play_speed = 0.5f;      // customize play speed to match jumping action                        
-                        if ((meo_hero.key1 >= 1) && (jump_mode == jump_state.start)) {                     // leaving the ground                        
+                        if (meo_hero.key1<2)
+                            meo_hero.play_speed=4f;
+                        else 
+                            meo_hero.play_speed = 0.5f;      // customize play speed to match jumping action                        
+                       
+                        if ((meo_hero.key1 >= 1) && (jump_mode == jump_state.start))
+                        {                     // leaving the ground                        
                             jump_mode  = jump_state.air; 
                             vel.Y = MAX_JUMP; // + jump_boost; jump_boost = 0f; 
                         } 
                         
-                        if (inp.Keydown(Keys.Right)) { flip = false; if (vel.X <  MAX_VELOCITY) vel.X += 0.80f; } // accelerate right
-                        if (inp.Keydown(Keys.Left))  { flip = true;  if (vel.X > -MAX_VELOCITY) vel.X -= 0.80f; } // accelerate left
+                        if (inp.Keydown(Keys.Right))
+                        { flip = false; 
+                            if (vel.X <  MAX_VELOCITY) vel.X += 0.80f;
+                        } // accelerate right
+
+                        if (inp.Keydown(Keys.Left))  { flip = true;  
+                            if (vel.X > -MAX_VELOCITY) vel.X -= 0.80f;
+                        } // accelerate left
+
                         HeroJump(CheckInput: true);
-                        if (meo_hero.IsDoneAnimation()) hero_motion = motion.idle1;
-                        if ((inp.control_press) || (inp.alt_press)) HeroAttack();
+                        if (meo_hero.IsDoneAnimation())
+                            hero_motion = motion.idle1;
+                        if ((inp.control_press) || (inp.alt_press)) 
+                            HeroAttack();
                     }
                     break;
                 case motion.spell: // S P E L L -------------------
-                    if (inp.Keydown(Keys.Right)) { flip = false; if (vel.X <  MAX_VELOCITY) vel.X += 0.50f; } // accelerate right
-                    if (inp.Keydown(Keys.Left))  { flip = true;  if (vel.X > -MAX_VELOCITY) vel.X -= 0.50f; } // accelerate left
+                    if (inp.Keydown(Keys.Right)) 
+                    { 
+                        flip = false; 
+                        if (vel.X <  MAX_VELOCITY) 
+                            vel.X += 0.50f; 
+                    } 
+                    // accelerate right
+
+                    if (inp.Keydown(Keys.Left))  
+                    { flip = true;  
+                        if (vel.X > -MAX_VELOCITY)
+                            vel.X -= 0.50f; 
+                    } // accelerate left
+
                     HeroJump(CheckInput: true, keep_motion: true);
-                    if (meo_hero.IsDoneAnimation()) hero_motion = motion.idle1;
+                    
+                    if (meo_hero.IsDoneAnimation()) 
+                        hero_motion = motion.idle1;
                     break;
             }
+
             // GRAVITY
             if (vel.Y < MAX_FALL_SPEED) vel.Y += GRAVITY;
             // SLOW DOWN PLAYER (and set animation play speed)
-            if (vel.X > 0) { vel.X -= 0.40f; if (vel.X < 0) vel.X = 0; direction = Facing.right; walk_anim.speed = vel.X *  0.42f; }
-            if (vel.X < 0) { vel.X += 0.40f; if (vel.X > 0) vel.X = 0; direction = Facing.left;  walk_anim.speed = vel.X * -0.42f; } // animation speeds can only be positive (- x - = +)
+            if (vel.X > 0) 
+            { 
+                vel.X -= 0.40f; 
+                if (vel.X < 0) 
+                    vel.X = 0; 
+                direction = Facing.right; 
+                walk_anim.speed = vel.X *  0.42f; 
+            }
+            if (vel.X < 0) 
+            { 
+                vel.X += 0.40f; 
+                if (vel.X > 0) 
+                    vel.X = 0; 
+                direction = Facing.left;  
+                
+                walk_anim.speed = vel.X * -0.42f; 
+            } 
+            
+            // animation speeds can only be positive (- x - = +)
+            
             // DETERMINE FLIP
-            if (direction == Facing.right) meo_hero.flip = false; else meo_hero.flip = true;
+            if (direction == Facing.right) 
+                meo_hero.flip = false; 
+            else 
+                meo_hero.flip = true;
+            
             // MOVE PLAYER
             Vector2 tru_vel = vel * rescale; // factors character resize into velocity
             pos += tru_vel;
@@ -293,7 +385,9 @@ namespace GameManager
             while (i < spells.Count)
             {
                 spells[i].Update(true);
-                if (spells[i].dead) spells.RemoveAt(i); // remove any dead emitters (ie: fizzled out fire balls)
+
+                if (spells[i].dead) 
+                    spells.RemoveAt(i); // remove any dead emitters (ie: fizzled out fire balls)
                 i++;
             }
 

@@ -410,10 +410,28 @@ namespace GameManager
             if (vel.Y < MAX_FALL_SPEED) vel.Y += GRAVITY;
             // SLOW DOWN MONSTER:
             MeoAnimation walk_anim = meo.anim[walk_index]; // reference the walk for easier access
-            if (vel.X > 0) { vel.X -= 0.40f; if (vel.X < 0) vel.X = 0; walk_anim.speed = vel.X *  0.42f; }
-            if (vel.X < 0) { vel.X += 0.40f; if (vel.X > 0) vel.X = 0; walk_anim.speed = vel.X * -0.42f; } // animation speeds can only be positive (- x - = +)
+            if (vel.X > 0)
+            {
+                vel.X -= 0.40f; 
+
+                if (vel.X < 0) 
+                    vel.X = 0; 
+
+                walk_anim.speed = vel.X *  0.42f; 
+            }
+
+            if (vel.X < 0) 
+            { 
+                vel.X += 0.40f; 
+                if (vel.X > 0) vel.X = 0; 
+                walk_anim.speed = vel.X * -0.42f; 
+            } // animation speeds can only be positive (- x - = +)
+            
             // DETERMINE FLIP (assumes monsters initially facing left)
-            if (vel.X < -1) flip = true; else if (vel.X > 1) flip = false;
+            if (vel.X < -1)
+                flip = true; 
+            else if (vel.X > 1) 
+                flip = false;
             // MOVE MONSTER
             Vector2 tru_vel = vel * rescale; // factors character resize into velocity
             pos += tru_vel;
@@ -423,23 +441,38 @@ namespace GameManager
             // ANIMATE: 
             bool allow_switch = true;
             if (must_finish_animation)
-                if (!meo_play.IsDoneAnimation()) allow_switch = false; else { must_finish_animation = false; motion = Act.idle; }
+            {
+                if (!meo_play.IsDoneAnimation()) allow_switch = false;
+                else
+                {
+                    must_finish_animation = false;
+                    motion = Act.idle;
+                }
+            }
+
             if ((allow_switch) && (motion != last_motion))
             {
                 switch (motion)
                 {
-                    case Act.idle:   meo_play.SetAnimation("idle",   flip); break;
-                    case Act.walk:   meo_play.SetAnimation("walk",   flip); break;
-                    case Act.run:    meo_play.SetAnimation("run",    flip); break;
-                    case Act.attack: meo_play.SetAnimation("attack", flip); break;
-                    case Act.ouch:   meo_play.SetAnimation("ouch",   flip); break;
-                    case Act.jump:   if (jump_index>0) meo_play.SetAnimation("jump",   flip); break;   // if jump animation exists (none for hellcat)
+                    case Act.idle:   meo_play.SetAnimation("idle",   flip); 
+                        break;
+                    case Act.walk:   meo_play.SetAnimation("walk",   flip); 
+                        break;
+                    case Act.run:    meo_play.SetAnimation("run",    flip); 
+                        break;
+                    case Act.attack: meo_play.SetAnimation("attack", flip); 
+                        break;
+                    case Act.ouch:   meo_play.SetAnimation("ouch",   flip); 
+                        break;
+                    case Act.jump:   if (jump_index>0) meo_play.SetAnimation("jump",   flip); 
+                        break;   // if jump animation exists (none for hellcat)
                 }
             }
             meo_play.flip = flip;
             last_motion = motion;
 
-            if ((screen_pos.X > bbox.X) && (screen_pos.X + bbox.X < screenW) && (screen_pos.Y > bbox.Y) && (screen_pos.Y + bbox.Y < screenH))
+            if ((screen_pos.X > bbox.X) && (screen_pos.X + bbox.X < screenW) 
+                && (screen_pos.Y > bbox.Y) && (screen_pos.Y + bbox.Y < screenH))
                 meo_play.Update(gameTime);
 
             // TEST IF PLAYER ATTACK HITS THIS MONSTER
@@ -448,13 +481,17 @@ namespace GameManager
             {
                 if (mode == Mode.run_away) mode = Mode.patrol;
                 const int radius = 32, rad2 = 64; // radius of spell, radius * 2
-                Rectangle bound_rec = new Rectangle((int)(pos.X + bbox.X), (int)(pos.Y + bbox.Y), (int)bbox.Width, (int)bbox.Height);
+                Rectangle bound_rec = new Rectangle((int)(pos.X + bbox.X),
+                    (int)(pos.Y + bbox.Y), (int)bbox.Width, (int)bbox.Height);
                 int i = 0;
                 while (i < player.spells.Count)
                 {
                     Vector2 spos = player.spells[i].emit_world_pos;
-                    Rectangle spell_rec = new Rectangle((int)(spos.X - radius), (int)(spos.Y - radius), rad2, rad2);
-                    if (spell_rec.Intersects(bound_rec)) MonsterDamaged(player.spell_power); 
+                    Rectangle spell_rec = new Rectangle((int)(spos.X - radius),
+                        (int)(spos.Y - radius), rad2, rad2);
+
+                    if (spell_rec.Intersects(bound_rec)) 
+                        MonsterDamaged(player.spell_power); 
                     i++;
                 }
             }

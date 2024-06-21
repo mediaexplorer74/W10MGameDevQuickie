@@ -22,7 +22,7 @@ namespace GameManager
             _texture = texture;
             _font = font;
             _position = position;
-            _textPosition = new(position.X + 32, position.Y + 2);
+            _textPosition = new Vector2(position.X + 32, position.Y + 2);
             _timeLength = length;
             _timeLeft = length;
         }

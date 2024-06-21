@@ -56,7 +56,7 @@ namespace GameManager
                 for (int j = 0; j < Map1.Size.Y; j++)
                 {
                     _map.Tiles[i, j].Path = false;
-                    _nodeMap[i, j] = new(i, j);
+                    _nodeMap[i, j] = new Node(i, j);
                     if (_map.Tiles[i, j].Blocked) _nodeMap[i, j].visited = true;
                 }
             }
@@ -65,7 +65,7 @@ namespace GameManager
         public static List<Vector2> BFSearch(int goalX, int goalY)
         {
             CreateNodeMap();
-            Queue<Node> q = new();
+            Queue<Node> q = new Queue<Node>();
 
             (int startX, int startY) = ScreenToMap(_hero.Position);
             var start = _nodeMap[startX, startY];
@@ -100,11 +100,11 @@ namespace GameManager
 
         private static List<Vector2> RetracePath(int goalX, int goalY)
         {
-            Stack<Vector2> stack = new();
-            List<Vector2> result = new();
+            Stack<Vector2> stack = new Stack<Vector2>();
+            List<Vector2> result = new List<Vector2>();
             Node curr = _nodeMap[goalX, goalY];
 
-            while (curr is not null)
+            while (curr != null)
             {
                 _map.Tiles[curr.x, curr.y].Path = true;
                 stack.Push(_map.Tiles[curr.x, curr.y].Position);

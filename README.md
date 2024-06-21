@@ -1,4 +1,4 @@
-# W10MGameDevQuickie v2.0 (MonoGame2D tutorial projects/samples)
+# W10MGameDevQuickie v3.0-alpha (MonoGame2D tutorial projects/samples)
 
 url: https://github.com/mediaexplorer74/W10MGameDevQuickie
 
@@ -12,7 +12,7 @@ languages: csharp
 products: windows 10, windows 10 mobile
 
 ## About 
-This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M Astoria OS!:)
+This is my new experiment to run some simplest Desktop Monogame2D apps on/in W10M (Astoria build included)). I'm starting some W10MGameDevQuickie 3.0 remake. ;)
 
 ## Screenshots (Target: win 11 on desktop pc)
 ![Button](Images/Q01.png)
@@ -30,6 +30,7 @@ This is my experiment to run some simplest Desktop Monogame2D apps on/in W10M As
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 
 ## Progress
+- VS 2017 compatibility partiall realized (approx. 15 of 35 projects ready)
 - Q01-Q21 ported to UWP, but a lite incomplete (because of no TouchPanel "handlers" yet)
 - P01 and P02 ported to UWP too (keyboard/mouse control only at now... no touch, heh!)
 - P03 added as *bonus* ( it's my "uwp fork" of https://github.com/semack/land )
@@ -49,10 +50,10 @@ Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 - Map pathfinding seems to be broken ;(
 
 ## Requirements
-This app requires Visual Studio 2022 Community to run. [Click here to learn how to get set up with Visual Studio](https://docs.microsoft.com/windows/uwp/get-started/get-set-up).
+This app requires Visual Studio 2017 or 2022 Community to run. [Click here to learn how to get set up with Visual Studio](https://docs.microsoft.com/windows/uwp/get-started/get-set-up).
 
 ## Install and run the app
-1. Install **MonoGame 3.6** for Visual Studio from [monogame.net](http://www.monogame.net/)
+1. Install **MonoGame 3.6 (3.8?)** for Visual Studio from [monogame.net](http://www.monogame.net/)
 2. Clone or download this repository
 3. Open **Src\W10MGameDevQuickie.sln** in Visual Studio.
 4. Select the desired Qxx (or Pxx) project and set it as default project for run. 

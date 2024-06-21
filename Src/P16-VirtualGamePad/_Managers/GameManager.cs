@@ -11,13 +11,13 @@ namespace GameManager
         private readonly Canvas _canvas;
         private readonly Map1 _map;
         private readonly Hero _hero;
-        private readonly List<Monster1> _monsters = new();
+        private readonly List<Monster1> _monsters = new List<Monster1>();
         private readonly Texture2D _monsterTex;
         private readonly Button _button;
 
         public GameManager(GraphicsDeviceManager graphics)
         {
-            _canvas = new(graphics.GraphicsDevice, 64 * Map1.Size.X, 64 * (Map1.Size.Y + 1));
+            _canvas = new Canvas(graphics.GraphicsDevice, 64 * Map1.Size.X, 64 * (Map1.Size.Y + 1));
             
             /*
             _map = new();
@@ -39,10 +39,10 @@ namespace GameManager
 
         public void SpawnMonster()
         {
-            Random r = new();
-            Vector2 pos = new(r.Next(64, 448), 0);
+            Random r = new Random();
+            Vector2 pos = new Vector2(r.Next(64, 448), 0);
 
-            _monsters.Add(new(_monsterTex, pos));
+            _monsters.Add(new Monster1(_monsterTex, pos));
         }
 
         public void Update()

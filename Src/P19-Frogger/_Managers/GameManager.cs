@@ -17,7 +17,7 @@ namespace GameManager
         //private readonly Canvas _canvas;
         private readonly Map1 _map;
         private readonly Hero _hero;
-        private readonly List<Monster1> _monsters = new();
+        private readonly List<Monster1> _monsters = new List<Monster1>();
         private readonly Texture2D _monsterTex;
         private readonly Button _button;
 
@@ -44,10 +44,10 @@ namespace GameManager
 
             _font = Glob.Content.Load<SpriteFont>("TextFont");//("font");
 
-            _timer = new(
+            _timer = new Timer(
                Glob.Content.Load<Texture2D>("timer"),
                _font,
-               new(300, 300),
+               new Vector2(300, 300),
                2f
            );
 

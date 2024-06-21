@@ -13,7 +13,7 @@ namespace GameManager
 
         public Monster1(Texture2D texture, Vector2 position) : base(texture, position)
         {
-            Random r = new();
+            Random r = new Random();
             _speed = r.Next(100, 151);
             _direction = new Vector2(0, 1);
         }

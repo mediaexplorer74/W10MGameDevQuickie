@@ -14,7 +14,7 @@ namespace GameManager
         public Canvas(GraphicsDevice graphicsDevice, int width, int height)
         {
             _graphicsDevice = graphicsDevice;
-            _target = new(_graphicsDevice, width, height);
+            _target = new RenderTarget2D(_graphicsDevice, width, height);
             SetDestinationRectangle();
         }
 
@@ -32,7 +32,7 @@ namespace GameManager
 
             int posX = (screenSize.Width - newWidth) / 2;
             int posY = (screenSize.Height - newHeight) / 2;
-            InputManager.Shift = new(posX, posY);
+            InputManager.Shift = new Vector2(posX, posY);
 
             _destinationRectangle = new Rectangle(posX, posY, newWidth, newHeight);
         }

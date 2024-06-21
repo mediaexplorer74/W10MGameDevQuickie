@@ -41,7 +41,7 @@ namespace GameManager
             Clicked = (MouseState.LeftButton == ButtonState.Pressed)
                 && (LastMouseState.LeftButton == ButtonState.Released);
 
-            MouseCursor = new(MouseState.Position, new(1, 1));
+            MouseCursor = new Rectangle(MouseState.Position, new Point(1, 1));
         }
     }
 

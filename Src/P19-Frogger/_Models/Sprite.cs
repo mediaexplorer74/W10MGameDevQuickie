@@ -10,14 +10,14 @@ namespace GameManager
         public Vector2 Position { get; protected set; }
         public Vector2 Origin { get; protected set; }
         public Color Color { get; set; }
-        public Rectangle Rectangle => new((Position - Origin).ToPoint(), 
-            new(texture.Width, texture.Height));
+        public Rectangle Rectangle => new Rectangle((Position - Origin).ToPoint(), 
+            new Point(texture.Width, texture.Height));
 
         public Sprite(Texture2D texture, Vector2 position)
         {
             this.texture = texture;
             Position = position;
-            Origin = new(texture.Width / 2, texture.Height / 2);
+            Origin = new Vector2(texture.Width / 2, texture.Height / 2);
             Color = Color.White;
         }
 

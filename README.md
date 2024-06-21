@@ -30,7 +30,7 @@ This is my new experiment to run some simplest Desktop Monogame2D apps on/in W10
 Min. Win. OS Build descreased to 10240 (Astoria Compatibility)
 
 ## Progress
-- VS 2017 compatibility partiall realized (approx. 15 of 35 projects ready)
+- VS 2017 compatibility partially realized (approx. 15 of 35 projects ready)
 - Q01-Q21 ported to UWP, but a lite incomplete (because of no TouchPanel "handlers" yet)
 - P01 and P02 ported to UWP too (keyboard/mouse control only at now... no touch, heh!)
 - P03 added as *bonus* ( it's my "uwp fork" of https://github.com/semack/land )

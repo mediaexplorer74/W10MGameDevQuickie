@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{125480D8-1B69-4415-A3D4-CA97968CC1BC}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameManager</RootNamespace>
+    <AssemblyName>8bitInviders</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>8bitInviders_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <LangVersion>latest</LangVersion>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <!--PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks-->
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\WindowsUniversal\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="8bit_Invaders\AdditiveLayer.cs" />
+    <Compile Include="8bit_Invaders\ASTAsteroid.cs" />
+    <Compile Include="8bit_Invaders\ASTDefeatScreen.cs" />
+    <Compile Include="8bit_Invaders\AsteroidGenerator.cs" />
+    <Compile Include="8bit_Invaders\AsteroidScreen.cs" />
+    <Compile Include="8bit_Invaders\AsteroidUINode.cs" />
+    <Compile Include="8bit_Invaders\ASTHelpScreen.cs" />
+    <Compile Include="8bit_Invaders\ASTPauseScreen.cs" />
+    <Compile Include="8bit_Invaders\ASTSize.cs" />
+    <Compile Include="8bit_Invaders\ASTSputnik.cs" />
+    <Compile Include="8bit_Invaders\ASTStarLayer.cs" />
+    <Compile Include="8bit_Invaders\ConfirmMusic.cs" />
+    <Compile Include="8bit_Invaders\DefeatScreen.cs" />
+    <Compile Include="8bit_Invaders\Globals.cs" />
+    <Compile Include="8bit_Invaders\HelpScreen.cs" />
+    <Compile Include="8bit_Invaders\HiScoresScreen.cs" />
+    <Compile Include="8bit_Invaders\HowToScreen.cs" />
+    <Compile Include="8bit_Invaders\IngameConfirmMusic.cs" />
+    <Compile Include="8bit_Invaders\IngameOptionsScreen.cs" />
+    <Compile Include="8bit_Invaders\InvaderBlock.cs" />
+    <Compile Include="8bit_Invaders\InvaderEnemyBullet.cs" />
+    <Compile Include="8bit_Invaders\InvaderExplosion.cs" />
+    <Compile Include="8bit_Invaders\InvaderHero.cs" />
+    <Compile Include="8bit_Invaders\InvaderHeroBullet.cs" />
+    <Compile Include="8bit_Invaders\InvaderMeteorite.cs" />
+    <Compile Include="8bit_Invaders\InvaderMissle.cs" />
+    <Compile Include="8bit_Invaders\InvadersBG.cs" />
+    <Compile Include="8bit_Invaders\InvadersBomber.cs" />
+    <Compile Include="8bit_Invaders\InvadersBoss.cs" />
+    <Compile Include="8bit_Invaders\InvadersCritterBase.cs" />
+    <Compile Include="8bit_Invaders\InvadersCritterFactory.cs" />
+    <Compile Include="8bit_Invaders\InvadersFlyer.cs" />
+    <Compile Include="8bit_Invaders\InvadersFX.cs" />
+    <Compile Include="8bit_Invaders\InvadersFXAdditiveLayer.cs" />
+    <Compile Include="8bit_Invaders\InvadersGrunt.cs" />
+    <Compile Include="8bit_Invaders\InvadersMothership.cs" />
+    <Compile Include="8bit_Invaders\InvadersScreen.cs" />
+    <Compile Include="8bit_Invaders\InvadersSputnik.cs" />
+    <Compile Include="8bit_Invaders\InvadersStarfield.cs" />
+    <Compile Include="8bit_Invaders\InvadersTough.cs" />
+    <Compile Include="8bit_Invaders\InvadersUI.cs" />
+    <Compile Include="8bit_Invaders\Game1.cs" />
+    <Compile Include="8bit_Invaders\OptionsScreen.cs" />
+    <Compile Include="8bit_Invaders\OptionsState.cs" />
+    <Compile Include="8bit_Invaders\PauseScreen.cs" />
+    <Compile Include="8bit_Invaders\PlayerScores.cs" />
+    <Compile Include="8bit_Invaders\PlayLayer.cs" />
+    <Compile Include="8bit_Invaders\SaveGameManager.cs" />
+    <Compile Include="8bit_Invaders\SaveState.cs" />
+    <Compile Include="8bit_Invaders\ShellTile.cs" />
+    <Compile Include="8bit_Invaders\ShellTileData.cs" />
+    <Compile Include="8bit_Invaders\SputnikGenerator.cs" />
+    <Compile Include="8bit_Invaders\StandardTileData.cs" />
+    <Compile Include="8bit_Invaders\State.cs" />
+    <Compile Include="8bit_Invaders\TitleScreen.cs" />
+    <Compile Include="Accelerometer.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\AccelerometerInput.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ActivatedHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\AdvancedObjectPool`1.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Alignment.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Anim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\AniManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\AnimStatus.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\AudioManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\BitmapNumbers.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Camera2D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Camera3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Camera3DOrthographic.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\CameraType.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\CelAnimType.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\CelClip.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\CelClip3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\CelSprite.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\CelSprite3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ChaseCamera3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ClipStatus.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ClosingHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Collision.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\DataStore.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\DeactivatedHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\EndBehavior.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Engine.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\EngineExtensions.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\FloatAnim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\GameOrientation.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\GameScreen.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\GestureState.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\IAnim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ICamera.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Interpolator.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\InterpolatorCollection.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\InterpolatorScaleDelegate.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\InterpolatorScales.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ISerializeBinary.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ITouchManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\JPGSprite.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\LaunchingHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Layer2D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Layer3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Light.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\LineDrawNode.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Lines.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\LoadingScreen.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\MeshWarp3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\MixMethod.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Model3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\MotionType.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\MusicManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\MusicSettings.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ObjectPool`1.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ObscuredHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Particle2D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Particle3D2.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ParticleEmitter2D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ParticleEmitter3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ParticleEmitter3DV2.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ParticleEmitterTemplate.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ParticleEmitterTemplate3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ParticleQuad.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PauseOverlay.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PhoneTasks.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PhysicsModel.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PivotLocation.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PlayDirection.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Polygon.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PolygonCollisionResult.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PositionAnim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PrimitiveBatch.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PrimType.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\PTemplate.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\QuickStopwatchExpiredHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\QuickStopwatchTimer.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\QuickTimer.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\QuickTimerExpiredHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\RenderEffect.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\RotationAnim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ScaleAnim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SceneNode.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ScreenManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\ScreenState.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SoundBuilder.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SoundClip.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Spring.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SpringV2.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Sprite.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Sprite3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Sprite3DV2.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SpriteChild.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SpriteParent.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SpriteSheet.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SpriteSheetDescriptor.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\SpriteTile.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\StickDock.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\StopwatchExpiredHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\StopwatchTimer.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TextBlock.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TextureManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Timer.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TimerExpiredHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TimerManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Tools.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TouchInput.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TouchInputManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\TouchManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\UIManager.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\UIManagerMultiTouch.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\UnobscuredHandler.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\UVFlip.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\UVRect.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\VectorAnim.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\VirtualStick.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\VirtualStickV2.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WaypointList.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WaypointList3D.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WaypointListFollower.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\Widget.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetButton.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetButtonWithText.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetCheckBox.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetHorizonalCarousel.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetPanel.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetRectangle.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetSlider.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetSprite.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetText.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetThumbstick_BROKEN.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GameEngine\WidgetVerticalCarousel.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\CircleItem.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\CustomProperty.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\Item.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\Layer.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\Level.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\PathItem.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\RectangleItem.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\SerializableDictionary.cs" />
+    <Compile Include="GameEngineLibrary_1_4_6\GLEED\TextureItem.cs" />
+    <Compile Include="GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Glob.cs" />
+    <Compile Include="Mongopollo.Light\Tiles\CycleTileData.cs" />
+    <Compile Include="Mongopollo.Light\Tiles\FlipTileData.cs" />
+    <Compile Include="Mongopollo.Light\Tiles\IconicTileData.cs" />
+    <Compile Include="Mongopollo.Light\Tiles\ShellTileExt.cs" />
+    <Compile Include="Mongopollo.Light\Tiles\TilesCreator.cs" />
+    <Compile Include="Mongopollo.Light\Utils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-125.png" />
+    <Content Include="Assets\Logo.scale-150.png" />
+    <Content Include="Assets\Logo.scale-200.png" />
+    <Content Include="Assets\Logo.scale-400.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-125.png" />
+    <Content Include="Assets\SmallLogo.scale-150.png" />
+    <Content Include="Assets\SmallLogo.scale-200.png" />
+    <Content Include="Assets\SmallLogo.scale-400.png" />
+    <Content Include="Assets\SmallLogo.targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.targetsize-24.png" />
+    <Content Include="Assets\SmallLogo.targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.targetsize-48.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\WideTile.scale-100.png" />
+    <Content Include="Assets\WideTile.scale-125.png" />
+    <Content Include="Assets\WideTile.scale-150.png" />
+    <Content Include="Assets\WideTile.scale-200.png" />
+    <Content Include="Assets\WideTile.scale-400.png" />
+    <Content Include="backtile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GameEngine\busy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GameEngine\glowpuff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GameEngine\glowpuff2013.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\loading.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\music\boss.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\music\gameplay.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\music\title2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\additive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\asteroids.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\asthelp.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\barrier_off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\barrier_on.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\big_starfield.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\confirm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\defeatscreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\howto.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\ingameopts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\invaders.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\ok.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\pausescreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\startile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sheets\title.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ICON300.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LiveTiles\Tile159.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LiveTiles\Tile336.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LiveTiles\TileBack336.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LiveTiles\wideTile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LiveTiles\wideTileBack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Music\boss.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Music\gameplay.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Music\title2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Sheets\additive.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sheets\asteroids.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sheets\ingameopts.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sheets\invaders.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sheets\title.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="MonoGame.Framework.WindowsUniversal">
+      <Version>3.8.0.1641</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Sprites\VirtualControlArrow.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\GameEngine\defaultfont.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\asthit1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\asthit2.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\buttonPress.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\cancel.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\clink.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\collected.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\eBlaster.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\explosion.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\explosion_new.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\heroshoot.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\iontachyon.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\mothership.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\newlevel.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\oneup.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\particleBeam.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\sputnik.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\stoptime.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="8bitInviders_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!--Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" /-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
